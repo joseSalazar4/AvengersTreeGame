@@ -45,7 +45,6 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
     message.append("Content-Type: multipart/mixed; boundary=frontier\n\n");
 
 
-
     message.append( "--frontier\n" );
     //message.append( "Content-Type: text/html\n\n" );  //Uncomment this for HTML formating, coment the line below
     message.append( "Content-Type: text/plain\n\n" );
@@ -200,7 +199,6 @@ void Smtp::readyRead()
         qDebug() << "Pass";
         *t << QByteArray().append(pass).toBase64() << "\r\n";
         t->flush();
-
         state = Mail;
     }
     else if ( state == Mail && responseLine == "235" )

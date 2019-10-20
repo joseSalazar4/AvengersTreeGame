@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "smtp.h"
-#include "qlist.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
