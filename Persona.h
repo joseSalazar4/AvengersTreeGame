@@ -5,15 +5,13 @@
 #ifndef AVENGERS_TREE_GAME_PERSONA_H
 #define AVENGERS_TREE_GAME_PERSONA_H
 
-
-#include "ListaSimple.h"
-
+#include "qstring.h"
 struct Persona {
     int edad;
     QString ID, nombre, apellido, genero, creencia,profesion,
     fechaNacimiento,estadoMarital, continente, pais;
-    ListaSimple * familia, amigos;
-    ListaSimple * paises; //CREAR LISTA PAISES? USAR TEMPLATE
+    //ListaSimple * familia, amigos;
+    //ListaSimple * paises; //CREAR LISTA PAISES? USAR TEMPLATE
     //salud es algo que falta pero definir como
 
     Persona * siguiente, * anterior;

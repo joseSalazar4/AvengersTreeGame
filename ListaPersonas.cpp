@@ -6,18 +6,18 @@
 
 void ListaPersonas::insertarFinal(QString id, short number) {
     if (estaVacia()) {
-        primerNodo = ultimoNodo = new Mesa(id, number);
+        primerNodo = ultimoNodo = new Persona();
         largo++;
     }
     else {
-        ultimoNodo->siguiente = new Mesa(id, number);
+        ultimoNodo->siguiente = new Persona();
         ultimoNodo->siguiente->anterior = ultimoNodo;
         ultimoNodo = ultimoNodo->siguiente;
         largo++;
     }
 }
 
-void ListaPersonas::insertarFinal(Mesa * m) {
+void ListaPersonas::insertarFinal(Persona * m) {
     if (estaVacia()) {
         primerNodo = ultimoNodo = m;
         largo++;

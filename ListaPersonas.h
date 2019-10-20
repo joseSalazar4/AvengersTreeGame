@@ -8,10 +8,11 @@
 #include "Persona.h"
 
 struct ListaPersonas {
+    int largo = 0;
     Persona * primerNodo, * ultimoNodo;
     ListaPersonas(){
         primerNodo = ultimoNodo = nullptr;
-    };
+    }
 
     bool estaVacia();
     void insertarFinal(QString id, short number);
