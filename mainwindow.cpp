@@ -21,6 +21,6 @@ void MainWindow::on_pushButton_clicked()
     connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
     QList<QString> archivos = {"example.txt"};
 
-    smtp->sendMail("mikomeka1@gmail.com", "jsalazarg48@gmail.com" , "No no o quiero ver","ESto es \n solo una \n prueba para ver si los enters funcionan", archivos);
+    smtp->sendMail("mikomeka1@gmail.com", "jsalazarg48@gmail.com" , "ASUNTO DEL CORREO ENVIADO","CUERPO DEL CORREO", archivos);
 
 }

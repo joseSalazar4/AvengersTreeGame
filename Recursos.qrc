@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/Archivos">
+        <file>NombresH.txt</file>
+        <file>NombresM.txt</file>
+        <file>Paises.txt</file>
+        <file>Profesiones.txt</file>
+    </qresource>
+</RCC>
