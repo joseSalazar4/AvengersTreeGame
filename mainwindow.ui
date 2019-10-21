@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btnEnviarCorreo">
     <property name="geometry">
      <rect>
       <x>450</x>
@@ -27,7 +27,7 @@
      <string>Enviar correo</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="btnNebula">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -40,7 +40,7 @@
      <string>Nebula</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="btnCorvusG">
     <property name="geometry">
      <rect>
       <x>70</x>
@@ -53,7 +53,7 @@
      <string>Corvus Glaive</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="btnMidnight">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -66,7 +66,7 @@
      <string>Midnight</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="btnEbonyMaw">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -79,7 +79,7 @@
      <string>Ebony Maw</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="btnSpiderMan">
     <property name="geometry">
      <rect>
       <x>990</x>
@@ -92,7 +92,7 @@
      <string>Spider-Man</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_7">
+   <widget class="QPushButton" name="btnIronMan">
     <property name="geometry">
      <rect>
       <x>990</x>
@@ -105,7 +105,7 @@
      <string>Iron Man</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_8">
+   <widget class="QPushButton" name="btnThor">
     <property name="geometry">
      <rect>
       <x>990</x>
@@ -118,7 +118,7 @@
      <string>Thor</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_9">
+   <widget class="QPushButton" name="btnAntMan">
     <property name="geometry">
      <rect>
       <x>1000</x>
@@ -131,7 +131,7 @@
      <string>Ant Man</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_10">
+   <widget class="QPushButton" name="btnGenerarPersonas">
     <property name="geometry">
      <rect>
       <x>500</x>
@@ -144,7 +144,7 @@
      <string>Generar personas</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="lblHeroes">
     <property name="geometry">
      <rect>
       <x>1010</x>
@@ -157,7 +157,7 @@
      <string>Heroes</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="lblVillanos">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -170,7 +170,7 @@
      <string>Villanos</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="lblWallpaper">
     <property name="geometry">
      <rect>
       <x>-10</x>
@@ -183,7 +183,7 @@
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>1119720.jpg</pixmap>
+     <pixmap resource="Recursos.qrc">:/Archivos/WAllpaper.jpg</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -195,7 +195,7 @@
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>50</x>
       <y>150</y>
       <width>113</width>
       <height>24</height>
@@ -285,7 +285,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_11">
+   <widget class="QPushButton" name="btnBlackDwarf">
     <property name="geometry">
      <rect>
       <x>60</x>
@@ -298,19 +298,45 @@
      <string>Black Dwarf</string>
     </property>
    </widget>
-   <zorder>label_3</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>pushButton_2</zorder>
-   <zorder>pushButton_3</zorder>
-   <zorder>pushButton_4</zorder>
-   <zorder>pushButton_5</zorder>
-   <zorder>pushButton_6</zorder>
-   <zorder>pushButton_7</zorder>
-   <zorder>pushButton_8</zorder>
-   <zorder>pushButton_9</zorder>
-   <zorder>pushButton_10</zorder>
-   <zorder>label</zorder>
-   <zorder>label_2</zorder>
+   <widget class="QPushButton" name="btnBuenasAcciones">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>260</y>
+      <width>161</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Hacer Buenas Acciones</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnPecar">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>260</y>
+      <width>131</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pecar </string>
+    </property>
+   </widget>
+   <zorder>lblWallpaper</zorder>
+   <zorder>btnEnviarCorreo</zorder>
+   <zorder>btnNebula</zorder>
+   <zorder>btnCorvusG</zorder>
+   <zorder>btnMidnight</zorder>
+   <zorder>btnEbonyMaw</zorder>
+   <zorder>btnSpiderMan</zorder>
+   <zorder>btnIronMan</zorder>
+   <zorder>btnThor</zorder>
+   <zorder>btnAntMan</zorder>
+   <zorder>btnGenerarPersonas</zorder>
+   <zorder>lblHeroes</zorder>
+   <zorder>lblVillanos</zorder>
    <zorder>lineEdit</zorder>
    <zorder>lineEdit_2</zorder>
    <zorder>lineEdit_3</zorder>
@@ -320,10 +346,14 @@
    <zorder>lineEdit_7</zorder>
    <zorder>lineEdit_8</zorder>
    <zorder>lineEdit_10</zorder>
-   <zorder>pushButton_11</zorder>
+   <zorder>btnBlackDwarf</zorder>
+   <zorder>btnBuenasAcciones</zorder>
+   <zorder>btnPecar</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="Recursos.qrc"/>
+ </resources>
  <connections/>
 </ui>

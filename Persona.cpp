@@ -10,6 +10,7 @@
 #include "qlist.h"
 #include "Persona.h"
 #include"string"
+#include "QRandomGenerator"
 #include "qdebug.h"
 
 //Esto debe de utilizarse para la generacion de archivos
@@ -24,7 +25,7 @@ void escribirArchivo(std::string nombreArchivo){
 void leerArchivo(QString nombreArchivo){
     QString datosRecolectados[999];
     QFile file(nombreArchivo);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))  return;
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))  return ;
     QTextStream inputFile(&file);
     qDebug()<<"EStoy con el archivo: "+nombreArchivo;
     int contador = 0;
@@ -33,5 +34,10 @@ void leerArchivo(QString nombreArchivo){
         datosRecolectados[contador] = linea;
         contador++;
     }
-    datosRecolectados ;
+    contador=0;
+    while(contador<100){
+        int platoAleatorio = QRandomGenerator::global()->bounded(1, 10);
+        qDebug()<<datosRecolectados[platoAleatorio];
+    }
+//
 }
