@@ -10,6 +10,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     ListaPersonas.cpp \
     Persona.cpp \
+    creadorpersonas.cpp \
     main.cpp \
     mainwindow.cpp \
     smtp.cpp
@@ -17,11 +18,12 @@ SOURCES += \
 HEADERS += \
     ListaPersonas.h \
     Persona.h \
+    creadorpersonas.h \
     mainwindow.h \
     smtp.h
 
 FORMS += \
-    dialog.ui \
+    creadorpersonas.ui \
     mainwindow.ui
 
 # Default rules for deployment.
