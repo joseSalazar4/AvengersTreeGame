@@ -4,13 +4,16 @@
 #include"Persona.h"
 //Esto debe de utilizarse para la generacion de archivos
 QString Persona::escribirArchivo(){
+
+    //Creamos el objeto para leer el archivo
     std::ofstream myfile;
     std::string nombreArchivo;
 
+    //Pedimos el tiempo de la compu
     const time_t current = time(nullptr);
-    std::cout << "Number of seconds elapsed since January 1, 1990:" << current << std::endl;
     tm *local_time = localtime(&current);
     
+    //Armamos el nombre del archivo
     nombreArchivo+= std::to_string(1900 + local_time->tm_year);
     nombreArchivo+="-";
     nombreArchivo+=std::to_string(1 + local_time->tm_mon);
@@ -22,7 +25,8 @@ QString Persona::escribirArchivo(){
     nombreArchivo+=std::to_string(1 + local_time->tm_sec);
     nombreArchivo+=".txt";
 
-
+    //Armamos el cuerpo del archivo aunque no creo que este metodo lo haga pero aca
+    //se muestra como se hace
     myfile.open (nombreArchivo);
     myfile << "NO me dejare vencer no los dejare llevarme.\n NUnca nadie meva a dominar no yo voy a pelear SEEEEEEH";
      //aqui solo le ponemos la variable ocn todo el texto ya construido
@@ -35,6 +39,8 @@ QString Persona::escribirArchivo(){
 }
 
 void leerArchivo(QString nombreArchivo){
+    //Este es el array statico que se generara al leer los 5 archivos tons esto debe ir en un
+    //metodo que lea apellidos hombres mujeres y demas.
     QString datosRecolectados[999];
     QFile file(nombreArchivo);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))  return ;
@@ -46,10 +52,4 @@ void leerArchivo(QString nombreArchivo){
         datosRecolectados[contador] = linea;
         contador++;
     }
-    contador=0;
-    while(contador<100){
-        int platoAleatorio = QRandomGenerator::global()->bounded(1, 10);
-        qDebug()<<datosRecolectados[platoAleatorio];
-    }
-//
 }
