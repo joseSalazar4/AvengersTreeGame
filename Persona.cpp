@@ -13,7 +13,7 @@ QString Persona::escribirArchivo(){
     const time_t current = time(nullptr);
     tm *local_time = localtime(&current);
     
-    //Armamos el nombre del archivo
+    //Construimos el nombre del archivo
     nombreArchivo+= std::to_string(1900 + local_time->tm_year);
     nombreArchivo+="-";
     nombreArchivo+=std::to_string(1 + local_time->tm_mon);
@@ -32,9 +32,8 @@ QString Persona::escribirArchivo(){
      //aqui solo le ponemos la variable ocn todo el texto ya construido
     myfile.close();
 
+    //Convertimos de string a QString
     QString nombreArchivoMod = QString::fromStdString(nombreArchivo);
-
-    qDebug()<<nombreArchivoMod;
     return nombreArchivoMod;
 }
 
@@ -52,4 +51,6 @@ void leerArchivo(QString nombreArchivo){
         datosRecolectados[contador] = linea;
         contador++;
     }
+    //PODRIA RECIBIR UN PARAMETRO UN QSTRING ARRAY[] Y le metemos los valores a esa misma
+    //Por lo que nos ahorramos pasos y ya el array que se paso queda completo.
 }

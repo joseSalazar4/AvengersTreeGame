@@ -13,26 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>280</x>
-     <y>10</y>
-     <width>81</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>:/imagenes/configuration.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QLabel" name="Wallpaper">
    <property name="geometry">
     <rect>
      <x>-20</x>
@@ -78,13 +59,13 @@
     <string>Profesiones</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="btnGenerarPersonas">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>740</y>
-     <width>281</width>
-     <height>41</height>
+     <x>20</x>
+     <y>580</y>
+     <width>211</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -109,7 +90,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>510</y>
+     <y>450</y>
      <width>141</width>
      <height>24</height>
     </rect>
@@ -117,12 +98,12 @@
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
-   <widget class="QLineEdit" name="Intervalo1PlatoFuerte">
+   <widget class="QLineEdit" name="lineEditCreencias1">
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="Intervalo2PlatoFuerte">
+   <widget class="QLineEdit" name="lineEditCreencias2">
     <property name="text">
      <string/>
     </property>
@@ -151,7 +132,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>450</y>
+     <y>500</y>
      <width>141</width>
      <height>24</height>
     </rect>
@@ -159,12 +140,12 @@
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
-   <widget class="QLineEdit" name="lineaTiempoGen1">
+   <widget class="QLineEdit" name="lineEditPaises1">
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineaTiempoGen2">
+   <widget class="QLineEdit" name="lineEditPaises2">
     <property name="font">
      <font>
       <stylestrategy>PreferAntialias</stylestrategy>
@@ -175,47 +156,11 @@
     </property>
    </widget>
   </widget>
-  <widget class="QLabel" name="label_13">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>610</y>
-     <width>111</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Intervalo Ensaladas</string>
-   </property>
-  </widget>
-  <widget class="QSplitter" name="splitter_4">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>700</y>
-     <width>131</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <widget class="QLineEdit" name="IntervaloPostres1">
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="IntervaloPostres2">
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-  </widget>
   <widget class="QLabel" name="lblPaises">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>430</y>
+     <y>480</y>
      <width>271</width>
      <height>16</height>
     </rect>
@@ -253,7 +198,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>480</y>
+     <y>420</y>
      <width>131</width>
      <height>20</height>
     </rect>
@@ -273,7 +218,7 @@
     <string>Creencias</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_7">
+  <widget class="QLabel" name="lblInstrucciones">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -294,42 +239,6 @@
     <string>Indique los rangos deseados</string>
    </property>
   </widget>
-  <widget class="QSplitter" name="splitter_3">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>640</y>
-     <width>141</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <widget class="QLineEdit" name="Intervalo1Ensalada">
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="Intervalo2Ensalada">
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QLabel" name="label_14">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>670</y>
-     <width>101</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Intervalo Postres</string>
-   </property>
-  </widget>
   <widget class="QSplitter" name="splitter_5">
    <property name="geometry">
     <rect>
@@ -342,12 +251,12 @@
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
-   <widget class="QLineEdit" name="Intervalo1PlatoFuerte_2">
+   <widget class="QLineEdit" name="lineEditApellidos1">
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="Intervalo2PlatoFuerte_2">
+   <widget class="QLineEdit" name="lineEditApellidos2">
     <property name="text">
      <string/>
     </property>
@@ -365,12 +274,12 @@
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
-   <widget class="QLineEdit" name="lineaTiempoGen1_2">
+   <widget class="QLineEdit" name="lineEditNomb1">
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineaTiempoGen2_2">
+   <widget class="QLineEdit" name="lineEditNomb2">
     <property name="font">
      <font>
       <stylestrategy>PreferAntialias</stylestrategy>
@@ -393,12 +302,12 @@
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
-   <widget class="QLineEdit" name="Intervalo1Ensalada_2">
+   <widget class="QLineEdit" name="lineEditProf1">
     <property name="text">
      <string/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="Intervalo2Ensalada_2">
+   <widget class="QLineEdit" name="lineEditProf2">
     <property name="text">
      <string/>
     </property>

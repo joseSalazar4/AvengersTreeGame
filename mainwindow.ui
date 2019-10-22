@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1174</width>
-    <height>731</height>
+    <width>1220</width>
+    <height>759</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,7 @@
    <widget class="QPushButton" name="btnNebula">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>55</x>
       <y>110</y>
       <width>80</width>
       <height>24</height>
@@ -43,7 +43,7 @@
    <widget class="QPushButton" name="btnCorvusG">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>55</x>
       <y>200</y>
       <width>80</width>
       <height>24</height>
@@ -56,7 +56,7 @@
    <widget class="QPushButton" name="btnMidnight">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>55</x>
       <y>310</y>
       <width>80</width>
       <height>24</height>
@@ -69,7 +69,7 @@
    <widget class="QPushButton" name="btnEbonyMaw">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>55</x>
       <y>410</y>
       <width>80</width>
       <height>24</height>
@@ -82,7 +82,7 @@
    <widget class="QPushButton" name="btnSpiderMan">
     <property name="geometry">
      <rect>
-      <x>990</x>
+      <x>1020</x>
       <y>280</y>
       <width>80</width>
       <height>24</height>
@@ -95,7 +95,7 @@
    <widget class="QPushButton" name="btnIronMan">
     <property name="geometry">
      <rect>
-      <x>990</x>
+      <x>1020</x>
       <y>160</y>
       <width>80</width>
       <height>24</height>
@@ -108,7 +108,7 @@
    <widget class="QPushButton" name="btnThor">
     <property name="geometry">
      <rect>
-      <x>990</x>
+      <x>1020</x>
       <y>380</y>
       <width>80</width>
       <height>24</height>
@@ -121,7 +121,7 @@
    <widget class="QPushButton" name="btnAntMan">
     <property name="geometry">
      <rect>
-      <x>1000</x>
+      <x>1020</x>
       <y>470</y>
       <width>80</width>
       <height>24</height>
@@ -135,7 +135,7 @@
     <property name="geometry">
      <rect>
       <x>500</x>
-      <y>640</y>
+      <y>660</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -153,6 +153,15 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <italic>true</italic>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
     <property name="text">
      <string>Heroes</string>
     </property>
@@ -160,11 +169,20 @@
    <widget class="QLabel" name="lblVillanos">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>25</y>
-      <width>131</width>
+      <x>60</x>
+      <y>30</y>
+      <width>81</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <italic>true</italic>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Villanos</string>
@@ -175,8 +193,8 @@
      <rect>
       <x>-10</x>
       <y>-10</y>
-      <width>1151</width>
-      <height>731</height>
+      <width>1241</width>
+      <height>781</height>
      </rect>
     </property>
     <property name="text">
@@ -195,7 +213,7 @@
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>40</x>
       <y>150</y>
       <width>113</width>
       <height>24</height>
@@ -205,7 +223,7 @@
    <widget class="QLineEdit" name="lineEdit_2">
     <property name="geometry">
      <rect>
-      <x>980</x>
+      <x>1000</x>
       <y>410</y>
       <width>113</width>
       <height>24</height>
@@ -215,8 +233,8 @@
    <widget class="QLineEdit" name="lineEdit_3">
     <property name="geometry">
      <rect>
-      <x>970</x>
-      <y>510</y>
+      <x>1000</x>
+      <y>520</y>
       <width>113</width>
       <height>24</height>
      </rect>
@@ -225,7 +243,7 @@
    <widget class="QLineEdit" name="lineEdit_4">
     <property name="geometry">
      <rect>
-      <x>970</x>
+      <x>1000</x>
       <y>310</y>
       <width>113</width>
       <height>24</height>
@@ -235,7 +253,7 @@
    <widget class="QLineEdit" name="lineEdit_5">
     <property name="geometry">
      <rect>
-      <x>970</x>
+      <x>1000</x>
       <y>210</y>
       <width>113</width>
       <height>24</height>
@@ -255,7 +273,7 @@
    <widget class="QLineEdit" name="lineEdit_7">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>40</x>
       <y>370</y>
       <width>113</width>
       <height>24</height>
@@ -265,7 +283,7 @@
    <widget class="QLineEdit" name="lineEdit_8">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>40</x>
       <y>250</y>
       <width>113</width>
       <height>24</height>
@@ -275,7 +293,7 @@
    <widget class="QLineEdit" name="lineEdit_10">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>40</x>
       <y>580</y>
       <width>113</width>
       <height>24</height>
@@ -288,7 +306,7 @@
    <widget class="QPushButton" name="btnBlackDwarf">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>55</x>
       <y>530</y>
       <width>80</width>
       <height>24</height>
@@ -301,8 +319,8 @@
    <widget class="QPushButton" name="btnBuenasAcciones">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>260</y>
+      <x>400</x>
+      <y>360</y>
       <width>161</width>
       <height>24</height>
      </rect>
@@ -314,8 +332,8 @@
    <widget class="QPushButton" name="btnPecar">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>260</y>
+      <x>600</x>
+      <y>350</y>
       <width>131</width>
       <height>24</height>
      </rect>
@@ -350,7 +368,6 @@
    <zorder>btnBuenasAcciones</zorder>
    <zorder>btnPecar</zorder>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
   <include location="Recursos.qrc"/>
