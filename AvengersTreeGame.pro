@@ -20,7 +20,11 @@ HEADERS += \
     Persona.h \
     creadorpersonas.h \
     mainwindow.h \
-    smtp.h
+    registroIDs.h \
+    smtp.h \
+    templateABB.h \
+    templateAVL.h \
+    templateLista.h
 
 FORMS += \
     creadorpersonas.ui \
