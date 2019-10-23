@@ -8,6 +8,5 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    //std::string s = date::format("%F %T", std::chrono::system_clock::now());
     return a.exec();
 }

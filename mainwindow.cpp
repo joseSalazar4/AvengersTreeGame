@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     //MOdificar tiempo es de la clase de la ventana que queremos abrir y eso que recibe se lo pasamos MainWindow
     //La ventana de crear Personas debe tener un metodo de agarra la info y darle emit a finished.
     //Asi le pasamos los argumentos a la otra funcion y todos contentos... ui->lineEdit.text() y ya
+
     connect(&ventanaCrearPersonas, SIGNAL(finished(int,int,int,int,int,int,int,int,int,int)), this, SLOT(on_modificartiempo_finished(int,int,int,int,int,int,int,int,int,int)));
     ui->setupUi(this);
 }
@@ -68,8 +69,20 @@ void MainWindow::on_btnPecar_clicked()
 
 }
 
-void MainWindow::on_btnGenerarPersonas_clicked()
+
+void MainWindow::on_btnGenerarPersonas_clicked(int rangoNomb1, int rangoNomb2, int rangoApellidos1,int rangoApellidos2, int rangoProf1, int rangoProf2,int rangoCreencias1,int rangoCreencias2,int rangoPaises1,int rangoPaises2)
 {
+    //Eliminar lo de abajo y asi usarlas en los metodos (maybe)
+
+
+    /*rangoNomb1,rangoNomb2
+    rangoApellidos1,rangoApellidos2
+    rangoProf1, rangoProf2
+    rangoCreencias1, rangoCreencias2
+    rangoPaises1, rangoPaises2
+    */
+
+
     //Aca se tuvo que pasar el  metodo ver en simulador el on_modificar y ver como lo paso.
     //Pruebe   Darle click y que haga algo idk. tuvo la convo?
 }

@@ -20,8 +20,8 @@ QString Persona::escribirArchivo(){
     nombreArchivo+="-";
     nombreArchivo+=std::to_string(local_time->tm_mday);
     nombreArchivo+="_";
-    nombreArchivo+=std::to_string(1 + local_time->tm_hour);
-    nombreArchivo+=std::to_string(1 + local_time->tm_min);
+    nombreArchivo+=std::to_string(local_time->tm_hour);
+    nombreArchivo+=std::to_string(local_time->tm_min);
     nombreArchivo+=std::to_string(1 + local_time->tm_sec);
     nombreArchivo+=".txt";
 
@@ -29,7 +29,7 @@ QString Persona::escribirArchivo(){
     //se muestra como se hace
     myfile.open (nombreArchivo);
     myfile << "NO me dejare vencer no los dejare llevarme.\n NUnca nadie meva a dominar no yo voy a pelear SEEEEEEH";
-     //aqui solo le ponemos la variable ocn todo el texto ya construido
+    //aqui solo le ponemos la variable ocn todo el texto ya construido
     myfile.close();
 
     //Convertimos de string a QString

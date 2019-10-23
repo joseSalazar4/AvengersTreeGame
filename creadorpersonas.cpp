@@ -30,8 +30,8 @@ void creadorPersonas::on_btnGenerarPersonas_clicked()
     rangoCreencias1 = ui->lineEditCreencias1->text().toInt();
     rangoCreencias2 = ui->lineEditCreencias2->text().toInt();
 
-    emit finished(rangoNomb1,rangoNomb2,rangoApellidos1,rangoApellidos2, rangoProf1,
-                  rangoProf2, rangoCreencias1, rangoCreencias2, rangoPaises1, rangoPaises2);
+    //envia los datos al mainwindow donde seran utiliados por las funciones de generacion
+    emit finalizo(rangoNomb1,rangoNomb2,rangoApellidos1,rangoApellidos2, rangoProf1,rangoProf2, rangoCreencias1, rangoCreencias2, rangoPaises1, rangoPaises2);
 }
 
 

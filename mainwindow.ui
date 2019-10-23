@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="btnEnviarCorreo">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>500</y>
+      <x>550</x>
+      <y>660</y>
       <width>211</width>
       <height>81</height>
      </rect>
@@ -30,11 +30,16 @@
    <widget class="QPushButton" name="btnNebula">
     <property name="geometry">
      <rect>
-      <x>55</x>
-      <y>110</y>
+      <x>50</x>
+      <y>90</y>
       <width>80</width>
       <height>24</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Nebula</string>
@@ -43,11 +48,16 @@
    <widget class="QPushButton" name="btnCorvusG">
     <property name="geometry">
      <rect>
-      <x>55</x>
-      <y>200</y>
-      <width>80</width>
-      <height>24</height>
+      <x>20</x>
+      <y>530</y>
+      <width>131</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Corvus Glaive</string>
@@ -56,11 +66,16 @@
    <widget class="QPushButton" name="btnMidnight">
     <property name="geometry">
      <rect>
-      <x>55</x>
-      <y>310</y>
-      <width>80</width>
-      <height>24</height>
+      <x>40</x>
+      <y>580</y>
+      <width>91</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Midnight</string>
@@ -69,11 +84,16 @@
    <widget class="QPushButton" name="btnEbonyMaw">
     <property name="geometry">
      <rect>
-      <x>55</x>
-      <y>410</y>
-      <width>80</width>
-      <height>24</height>
+      <x>30</x>
+      <y>220</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Ebony Maw</string>
@@ -82,11 +102,16 @@
    <widget class="QPushButton" name="btnSpiderMan">
     <property name="geometry">
      <rect>
-      <x>1020</x>
-      <y>280</y>
-      <width>80</width>
-      <height>24</height>
+      <x>980</x>
+      <y>180</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Spider-Man</string>
@@ -95,11 +120,16 @@
    <widget class="QPushButton" name="btnIronMan">
     <property name="geometry">
      <rect>
-      <x>1020</x>
-      <y>160</y>
+      <x>1000</x>
+      <y>120</y>
       <width>80</width>
       <height>24</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Iron Man</string>
@@ -108,11 +138,16 @@
    <widget class="QPushButton" name="btnThor">
     <property name="geometry">
      <rect>
-      <x>1020</x>
-      <y>380</y>
+      <x>1000</x>
+      <y>260</y>
       <width>80</width>
       <height>24</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Thor</string>
@@ -121,11 +156,16 @@
    <widget class="QPushButton" name="btnAntMan">
     <property name="geometry">
      <rect>
-      <x>1020</x>
-      <y>470</y>
+      <x>1010</x>
+      <y>420</y>
       <width>80</width>
       <height>24</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Ant Man</string>
@@ -134,8 +174,8 @@
    <widget class="QPushButton" name="btnGenerarPersonas">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>660</y>
+      <x>190</x>
+      <y>390</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -192,7 +232,7 @@
     <property name="geometry">
      <rect>
       <x>-10</x>
-      <y>-10</y>
+      <y>0</y>
       <width>1241</width>
       <height>781</height>
      </rect>
@@ -213,8 +253,8 @@
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>150</y>
+      <x>30</x>
+      <y>160</y>
       <width>113</width>
       <height>24</height>
      </rect>
@@ -223,8 +263,8 @@
    <widget class="QLineEdit" name="lineEdit_2">
     <property name="geometry">
      <rect>
-      <x>1000</x>
-      <y>410</y>
+      <x>990</x>
+      <y>330</y>
       <width>113</width>
       <height>24</height>
      </rect>
@@ -234,27 +274,7 @@
     <property name="geometry">
      <rect>
       <x>1000</x>
-      <y>520</y>
-      <width>113</width>
-      <height>24</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_4">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>310</y>
-      <width>113</width>
-      <height>24</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_5">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>210</y>
+      <y>480</y>
       <width>113</width>
       <height>24</height>
      </rect>
@@ -264,27 +284,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>460</y>
-      <width>113</width>
-      <height>24</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_7">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>370</y>
-      <width>113</width>
-      <height>24</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_8">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>250</y>
+      <y>290</y>
       <width>113</width>
       <height>24</height>
      </rect>
@@ -293,8 +293,8 @@
    <widget class="QLineEdit" name="lineEdit_10">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>580</y>
+      <x>30</x>
+      <y>440</y>
       <width>113</width>
       <height>24</height>
      </rect>
@@ -306,11 +306,16 @@
    <widget class="QPushButton" name="btnBlackDwarf">
     <property name="geometry">
      <rect>
-      <x>55</x>
-      <y>530</y>
-      <width>80</width>
-      <height>24</height>
+      <x>20</x>
+      <y>360</y>
+      <width>131</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Black Dwarf</string>
@@ -319,7 +324,7 @@
    <widget class="QPushButton" name="btnBuenasAcciones">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>570</x>
       <y>360</y>
       <width>161</width>
       <height>24</height>
@@ -332,14 +337,104 @@
    <widget class="QPushButton" name="btnPecar">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>350</y>
+      <x>400</x>
+      <y>30</y>
       <width>131</width>
       <height>24</height>
      </rect>
     </property>
     <property name="text">
      <string>Pecar </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>410</y>
+      <width>111</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Indique el Deporte</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>260</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Indique el ID</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>130</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Indique el ID</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>910</x>
+      <y>450</y>
+      <width>271</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Indique cuantas hormigas mandar</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>300</y>
+      <width>271</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>Indique un nivel del arbol</string>
     </property>
    </widget>
    <zorder>lblWallpaper</zorder>
@@ -358,15 +453,16 @@
    <zorder>lineEdit</zorder>
    <zorder>lineEdit_2</zorder>
    <zorder>lineEdit_3</zorder>
-   <zorder>lineEdit_4</zorder>
-   <zorder>lineEdit_5</zorder>
    <zorder>lineEdit_6</zorder>
-   <zorder>lineEdit_7</zorder>
-   <zorder>lineEdit_8</zorder>
    <zorder>lineEdit_10</zorder>
    <zorder>btnBlackDwarf</zorder>
    <zorder>btnBuenasAcciones</zorder>
    <zorder>btnPecar</zorder>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_4</zorder>
+   <zorder>label_5</zorder>
   </widget>
  </widget>
  <resources>
