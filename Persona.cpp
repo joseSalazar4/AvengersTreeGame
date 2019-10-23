@@ -2,6 +2,8 @@
 // Created by jose on 10/16/19.
 //
 #include"Persona.h"
+
+
 //Esto debe de utilizarse para la generacion de archivos
 QString Persona::escribirArchivo(){
 
@@ -54,3 +56,6 @@ void leerArchivo(QString nombreArchivo){
     //PODRIA RECIBIR UN PARAMETRO UN QSTRING ARRAY[] Y le metemos los valores a esa misma
     //Por lo que nos ahorramos pasos y ya el array que se paso queda completo.
 }
+
+
+

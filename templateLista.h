@@ -14,6 +14,7 @@ template <typename T> struct NodoDoble{
         anterior = nullptr;
         this->dato = nullptr;
     }
+
     NodoDoble(T dato){
         siguiente = nullptr;
         anterior = nullptr;

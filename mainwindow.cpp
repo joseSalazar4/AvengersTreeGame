@@ -6,13 +6,8 @@
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
-    //Parece ser que se une finished que tiene 3 atributos los mismos con on modificar tiempo y este si hsce algo
-    //Finished no es mas que una declaracion que recibe ciertos parametros
-    //On modificar si hace el metodo de seleccionar con los atributos dados algo
-    //MOdificar tiempo es de la clase de la ventana que queremos abrir y eso que recibe se lo pasamos MainWindow
-    //La ventana de crear Personas debe tener un metodo de agarra la info y darle emit a finished.
-    //Asi le pasamos los argumentos a la otra funcion y todos contentos... ui->lineEdit.text() y ya
 
+    ventanaCrearPersonas.hide();
     connect(&ventanaCrearPersonas, SIGNAL(finished(int,int,int,int,int,int,int,int,int,int)), this, SLOT(on_modificartiempo_finished(int,int,int,int,int,int,int,int,int,int)));
     ui->setupUi(this);
 }
@@ -72,8 +67,8 @@ void MainWindow::on_btnPecar_clicked()
 
 void MainWindow::on_btnGenerarPersonas_clicked(int rangoNomb1, int rangoNomb2, int rangoApellidos1,int rangoApellidos2, int rangoProf1, int rangoProf2,int rangoCreencias1,int rangoCreencias2,int rangoPaises1,int rangoPaises2)
 {
-    //Eliminar lo de abajo y asi usarlas en los metodos (maybe)
-
+    //Eliminar lo de abajo y asi usarlas en los metodos
+    ventanaCrearPersonas.show();
 
     /*rangoNomb1,rangoNomb2
     rangoApellidos1,rangoApellidos2
@@ -89,7 +84,6 @@ void MainWindow::on_btnGenerarPersonas_clicked(int rangoNomb1, int rangoNomb2, i
 
 void MainWindow::on_btnAntMan_clicked()
 {
-
 
 }
 

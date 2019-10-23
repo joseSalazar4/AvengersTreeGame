@@ -19,6 +19,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     creadorPersonas ventanaCrearPersonas;
 
+
     ~MainWindow();
 
 private slots:
