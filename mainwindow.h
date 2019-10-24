@@ -36,6 +36,8 @@ private slots:
     void on_btnEnviarCorreo_clicked();
     void on_btnBuenasAcciones_clicked();
     void on_btnGenerarPersonas_clicked(int,int,int,int,int,int,int,int,int,int);
+    void on_btnGenerarPersonas_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

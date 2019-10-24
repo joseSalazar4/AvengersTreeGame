@@ -3,7 +3,6 @@
 #include "Persona.h"
 #include "creadorpersonas.h"
 
-
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
 
@@ -25,7 +24,6 @@ void MainWindow::on_btnEnviarCorreo_clicked()
     connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
     QList<QString> archivos = {nombre};
     smtp->sendMail("mikomeka1@gmail.com", "jsalazarg48@gmail.com" , "ASUNTO DEL CORREO ENVIADO","CUERPO DEL CORREO", archivos);
-
 
 }
 
@@ -80,6 +78,10 @@ void MainWindow::on_btnGenerarPersonas_clicked(int rangoNomb1, int rangoNomb2, i
 
     //Aca se tuvo que pasar el  metodo ver en simulador el on_modificar y ver como lo paso.
     //Pruebe   Darle click y que haga algo idk. tuvo la convo?
+
+
+
+
 }
 
 void MainWindow::on_btnAntMan_clicked()
@@ -99,5 +101,11 @@ void MainWindow::on_btnSpiderMan_clicked()
 
 void MainWindow::on_btnIronMan_clicked()
 {
+
+}
+
+void MainWindow::on_btnGenerarPersonas_clicked()
+{
+
 
 }

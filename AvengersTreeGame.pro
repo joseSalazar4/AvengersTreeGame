@@ -16,7 +16,10 @@ SOURCES += \
     smtp.cpp
 
 HEADERS += \
+    Deportes.h \
+    FechaNacimiento.h \
     ListaPersonas.h \
+    Longevidad.h \
     Persona.h \
     creadorpersonas.h \
     mainwindow.h \

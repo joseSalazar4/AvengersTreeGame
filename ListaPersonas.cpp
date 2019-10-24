@@ -30,7 +30,6 @@ void ListaPersonas::insertarFinal(Persona * m) {
     }
 }
 
-
 bool ListaPersonas::estaVacia(){
     return  primerNodo == nullptr;
 }

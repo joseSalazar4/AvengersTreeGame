@@ -20,7 +20,6 @@ template<typename T> struct Nodo
     }
 };
 
-
 template<typename T> struct AVL{
     Nodo<T> * root;
 
