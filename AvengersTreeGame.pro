@@ -13,6 +13,7 @@ SOURCES += \
     creadorpersonas.cpp \
     main.cpp \
     mainwindow.cpp \
+    mundo.cpp \
     smtp.cpp
 
 HEADERS += \
@@ -23,6 +24,7 @@ HEADERS += \
     Persona.h \
     creadorpersonas.h \
     mainwindow.h \
+    mundo.h \
     registroIDs.h \
     smtp.h \
     templateABB.h \

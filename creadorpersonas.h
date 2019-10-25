@@ -20,8 +20,8 @@ private slots:
 
     void on_btnGenerarPersonas_clicked();
 
-    void finalizo(int rangoNomb1,int rangoNomb2,int rangoApellidos1,int rangoApellidos2, int rangoProf1,int rangoProf2,int rangoCreencias1,int rangoCreencias2,int rangoPaises1,int rangoPaises2){
-    }
+signals:
+    void finalizo(int rangoNomb1,int rangoNomb2,int rangoApellidos1,int rangoApellidos2, int rangoProf1,int rangoProf2,int rangoCreencias1,int rangoCreencias2,int rangoPaises1,int rangoPaises2);
 
 private:
     Ui::creadorPersonas *ui;

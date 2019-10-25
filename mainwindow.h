@@ -35,8 +35,8 @@ private slots:
     void on_btnBlackDwarf_clicked();
     void on_btnEnviarCorreo_clicked();
     void on_btnBuenasAcciones_clicked();
-    void on_btnGenerarPersonas_clicked(int,int,int,int,int,int,int,int,int,int);
     void on_btnGenerarPersonas_clicked();
+    void on_btnGenerarPersonas_Finished(int,int,int,int,int,int,int,int,int,int);
 
 private:
     Ui::MainWindow *ui;
