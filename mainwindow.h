@@ -1,9 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "iostream"
+#include "smtp.h"
 #include "fstream"
+#include "iostream"
+#include "Persona.h"
 #include "creadorpersonas.h"
+
 #include <QMainWindow>
 
 

@@ -2,44 +2,37 @@
 // Created by jose on 10/16/19.
 //
 
-
 #ifndef AVENGERS_TREE_GAME_PERSONA_H
 #define AVENGERS_TREE_GAME_PERSONA_H
 
-#include <iostream>
-#include <fstream>
-#include <string>
-#include "qfile.h"
-#include "QTextStream"
-#include "qlist.h"
-#include <iostream>
-#include "smtp.h"
 #include <ctime>
-#include"string"
-#include "QRandomGenerator"
-#include "qdebug.h"
-#include "qstring.h"
+#include <string>
+#include <fstream>
+#include <iostream>
+#include <iostream>
+#include <string>
+#include <qfile.h>
+#include <qlist.h>
+#include <qdebug.h>
+#include <qstring.h>
+#include <QTextStream>
 #include "FechaNacimiento.h"
 
 struct Persona {
-    int edad, ctdEjercicioxSemana;
-    FechaNacimiento * fechaNacimiento;
-    QString ID, nombre, apellido, genero, creencia,profesion,estadoMarital, continente, pais;
     QList<QString> * deportes;
-    QList<Persona*> * hijos;
-    QList<Persona*> * amigos;
     Persona *padre, *madre, *pareja;
-    //ListaSimple * familia, amigos;
-    //ListaSimple * paises; //CREAR LISTA PAISES? USAR TEMPLATE
-    //salud es algo que falta pero definir como
+    FechaNacimiento * fechaNacimiento;
+    QList<Persona*> * hijos, * amigos;
+    QString ID, nombre, apellido, genero, creencia,profesion,estadoMarital, continente, pais;
+    int edad, ctdEjercicioxSemana, pecados[6], buenasAcciones[6], pecadosTotales, buenasAccionesTotales;
 
     Persona(){
         ID = nombre = apellido = genero = creencia =
         profesion = estadoMarital = continente = pais = "";
 
-        fechaNacimiento = nullptr;
         deportes = nullptr;
-        edad = ctdEjercicioxSemana = 0;
+        fechaNacimiento = nullptr;
+        edad = ctdEjercicioxSemana = pecadosTotales =buenasAccionesTotales = 0;
 
         hijos = amigos = nullptr;
         padre = madre = pareja = nullptr;

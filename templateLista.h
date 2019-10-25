@@ -8,7 +8,7 @@
 template <typename T> struct NodoDoble{
     NodoDoble<T> * siguiente;
     NodoDoble<T> * anterior;
-    T dato;
+    T * dato;
     NodoDoble(){
         siguiente = nullptr;
         anterior = nullptr;

@@ -17,7 +17,7 @@ class Mundo {
 public:
     ListaDoble<Persona> * listaPersonasTotales;
     AVL<Persona> * arbolMundo; //Tal vez deba ser otro tipo de tipo
-    QString arrayNombresHombres[499], arrayNombresMujeres[499], ArrayApellidos[999], ArrayPaises[99], ArrayCreencias[13], arrayProfesiones[55];
+    QString nombresHombres[499], nombresMujeres[499], apellidos[999], paises[99], creencias[13], profesiones[55];
 
     Deportes * deportes = new Deportes();
     Longevidad * longevidad = new Longevidad();
@@ -37,8 +37,8 @@ public:
     void spiderMan();
     void blackDwarf();
     void corvusGlaive();
-    void hacerlesPegar();
-    void hacerBuenasAcciones();
+    void hacerlesPecar(Persona* persona);  //recorrer la lista de personas y darles qrandom a cada una de las personas.
+    void hacerBuenasAcciones(Persona* persona);
 
     void crearPoblacion(int);
 

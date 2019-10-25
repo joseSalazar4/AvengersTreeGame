@@ -250,59 +250,6 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>160</y>
-      <width>113</width>
-      <height>24</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
-    <property name="geometry">
-     <rect>
-      <x>990</x>
-      <y>330</y>
-      <width>113</width>
-      <height>24</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>480</y>
-      <width>113</width>
-      <height>24</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_6">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>290</y>
-      <width>113</width>
-      <height>24</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_10">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>440</y>
-      <width>113</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btnBlackDwarf">
     <property name="geometry">
      <rect>
@@ -447,6 +394,56 @@
      </rect>
     </property>
    </widget>
+   <widget class="QSpinBox" name="spinBox_2">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>290</y>
+      <width>51</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox_3">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>170</y>
+      <width>51</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>440</y>
+      <width>101</width>
+      <height>24</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox_4">
+    <property name="geometry">
+     <rect>
+      <x>1020</x>
+      <y>501</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox_5">
+    <property name="geometry">
+     <rect>
+      <x>1020</x>
+      <y>330</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>lblWallpaper</zorder>
    <zorder>btnEnviarCorreo</zorder>
    <zorder>btnNebula</zorder>
@@ -460,11 +457,6 @@
    <zorder>btnGenerarPersonas</zorder>
    <zorder>lblHeroes</zorder>
    <zorder>lblVillanos</zorder>
-   <zorder>lineEdit</zorder>
-   <zorder>lineEdit_2</zorder>
-   <zorder>lineEdit_3</zorder>
-   <zorder>lineEdit_6</zorder>
-   <zorder>lineEdit_10</zorder>
    <zorder>btnBlackDwarf</zorder>
    <zorder>btnBuenasAcciones</zorder>
    <zorder>btnPecar</zorder>
@@ -474,6 +466,11 @@
    <zorder>label_4</zorder>
    <zorder>label_5</zorder>
    <zorder>spinBox</zorder>
+   <zorder>spinBox_2</zorder>
+   <zorder>spinBox_3</zorder>
+   <zorder>comboBox</zorder>
+   <zorder>spinBox_4</zorder>
+   <zorder>spinBox_5</zorder>
   </widget>
  </widget>
  <resources>
