@@ -20,17 +20,30 @@
 #include "qdebug.h"
 #include "qstring.h"
 #include "FechaNacimiento.h"
+
 struct Persona {
-    int edad;
+    int edad, ctdEjercicioxSemana;
     FechaNacimiento * fechaNacimiento;
     QString ID, nombre, apellido, genero, creencia,profesion,estadoMarital, continente, pais;
+    QList<QString> * deportes;
+    QList<Persona*> * hijos;
+    QList<Persona*> * amigos;
+    Persona *padre, *madre, *pareja;
     //ListaSimple * familia, amigos;
     //ListaSimple * paises; //CREAR LISTA PAISES? USAR TEMPLATE
     //salud es algo que falta pero definir como
 
-    Persona * siguiente, * anterior;
     Persona(){
-        siguiente = anterior = nullptr;
+        ID = nombre = apellido = genero = creencia =
+        profesion = estadoMarital = continente = pais = "";
+
+        fechaNacimiento = nullptr;
+        deportes = nullptr;
+        edad = ctdEjercicioxSemana = 0;
+
+        hijos = amigos = nullptr;
+        padre = madre = pareja = nullptr;
+
     }
 
     QString escribirArchivo();

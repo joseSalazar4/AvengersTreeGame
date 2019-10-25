@@ -437,6 +437,16 @@
      <string>Indique un nivel del arbol</string>
     </property>
    </widget>
+   <widget class="QSpinBox" name="spinBox">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>430</y>
+      <width>51</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>lblWallpaper</zorder>
    <zorder>btnEnviarCorreo</zorder>
    <zorder>btnNebula</zorder>
@@ -463,6 +473,7 @@
    <zorder>label_3</zorder>
    <zorder>label_4</zorder>
    <zorder>label_5</zorder>
+   <zorder>spinBox</zorder>
   </widget>
  </widget>
  <resources>

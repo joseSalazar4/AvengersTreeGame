@@ -19,7 +19,6 @@ SOURCES += \
 HEADERS += \
     Deportes.h \
     FechaNacimiento.h \
-    ListaPersonas.h \
     Longevidad.h \
     Persona.h \
     creadorpersonas.h \
@@ -27,7 +26,6 @@ HEADERS += \
     mundo.h \
     registroIDs.h \
     smtp.h \
-    templateABB.h \
     templateAVL.h \
     templateLista.h
 

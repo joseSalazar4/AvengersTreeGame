@@ -7,16 +7,20 @@
 template<typename T> struct Nodo
 {
     public:
-    T dato;
+    T dato; //Persona
     Nodo *left;
     Nodo *right;
     int height;
+
+    int feromonas;  //Para Ant Man
+    bool utilizado; //true = ya pasó por ahi
 
     Nodo(T dato){
         this->dato = dato;
         left = nullptr;
         right = nullptr;
         height = 1;
+        feromonas = 0;
     }
 };
 
@@ -38,7 +42,26 @@ public:
             preOrder(root->right);
         }
     }
+
+    void imprimirArbol(){
+        verArbol(root, 0);
+    }
+
 private:
+
+    void verArbol(Nodo<T> * nodo, int n)
+    {
+         if(nodo == nullptr)
+              return;
+         verArbol(nodo->right, n+1);
+
+         for(int i=0; i<n; i++)
+             qDebug()<<"   ";
+
+         qDebug() << nodo->dato->ID <<endl;
+
+         verArbol(nodo->izq, n+1);
+    }
 
     // A utility function to get maximum
     // of two integers
@@ -125,6 +148,8 @@ private:
     // returns the new root of the subtree.
     Nodo<T>* insert(Nodo<T>* node, T dato)
     {
+        // AGREGAR DATO->ID PERSONALIZARLO PARA PERSONAS.
+
         /* 1. Perform the normal BST insertion */
         if (node == nullptr)
             return(newNodo(dato));
