@@ -56,6 +56,7 @@ void Mundo::crearPoblacion(int cantSolicitada){
 void Mundo::crearPersona(){
     Deportes * deportes = new Deportes();
     Persona * nuevaPersona = new Persona();
+
     //Genero
     if(QRandomGenerator::global()->bounded(0,1) == 0) nuevaPersona->genero = "mujer";
     else nuevaPersona->genero = "hombre";
@@ -64,22 +65,22 @@ void Mundo::crearPersona(){
     nuevaPersona->ID = QString::number(registroIds->generarId());
 
     //Lectura de archivos
-    nuevaPersona->pais = paises[QRandomGenerator::global()->bounded(0,99)];
-    nuevaPersona->creencia = creencias[QRandomGenerator::global()->bounded(0,13)];
-    nuevaPersona->apellido = apellidos[QRandomGenerator::global()->bounded(0,999)];
-    nuevaPersona->profesion = profesiones[QRandomGenerator::global()->bounded(0,50)];
-    if(nuevaPersona->genero == "mujer") nuevaPersona->nombre = nombresMujeres[QRandomGenerator::global()->bounded(0,499)];
-    else nuevaPersona->nombre = nombresHombres[QRandomGenerator::global()->bounded(0,499)];
+    nuevaPersona->pais = paises[QRandomGenerator::global()->bounded(rangoPaises1,rangoPaises2)];
+    nuevaPersona->creencia = creencias[QRandomGenerator::global()->bounded(rangoCreencias2,rangoCreencias2)];
+    nuevaPersona->apellido = apellidos[QRandomGenerator::global()->bounded(rangoApellidos1,rangoApellidos2)];
+    nuevaPersona->profesion = profesiones[QRandomGenerator::global()->bounded(rangoProfesiones1,rangoProfesiones2)];
+    if(nuevaPersona->genero == "mujer") nuevaPersona->nombre = nombresMujeres[QRandomGenerator::global()->bounded(rangoNombres1,rangoNombres2)];
+    else nuevaPersona->nombre = nombresHombres[QRandomGenerator::global()->bounded(rangoNombres1,rangoNombres2)];
 
-    //Acciones y edades
+    //Acciones, edades y deportes
     nuevaPersona->fechaNacimiento = new FechaNacimiento();
     nuevaPersona->edad = longevidad->obtenerEdad(nuevaPersona);
-
     deportes->generarDeportes(nuevaPersona);
     hacerBuenasAcciones(nuevaPersona);
     hacerlesPecar(nuevaPersona);
-    listaPersonasTotales->insertar(nuevaPersona);
 
+    //Finalmente se agrega a la listaPrincipal del mundo
+    listaPersonasTotales->insertar(nuevaPersona);
 
 }
 void Mundo::asignarFamilia(Persona* persona){
@@ -92,7 +93,6 @@ void Mundo::asignarFamilia(Persona* persona){
           tmp->amigos->append(tmp);
         }
     }
-
 }
 void Mundo::asignarAmigos(Persona* persona){
     int cantAmigos = QRandomGenerator::global()->bounded(0,51);
@@ -136,56 +136,97 @@ void Mundo::asignarAmigos(Persona* persona){
     }
 }
 
-void Mundo::thor(){
-
-}
-
-void Mundo::nebula(int IDCulpable){
-    Persona * culpable = listaPersonasTotales->buscar(IDCulpable);
-    //maybe llamar a un metodo secundario
-}
-
-void Mundo::antMan(){
-
-}
-
-void Mundo::ironMan(){
-    //Recorre el arbol, pregunta si ya pasó por ese nodo. Si no, hace random y depende del resultado salva ese nodo y lo pone true.
-}            //Al terminar el proceso, restaura los valores de los nodos a false.
-
-void Mundo::midnight(){
-
-}
-
-void Mundo::ebonyMaw(int IDCulpable){
-    Persona * culpable = listaPersonasTotales->buscar(IDCulpable);  //modificar para que sea * menor
-
-}
-void Mundo::spiderMan(){
-
-}
-
-void Mundo::blackDwarf(){
-
-}
-
-void Mundo::corvusGlaive(){
-
-}
-
-void Mundo::leerArchivo(QString nombreArchivo, QString datosRecolectados[]){
-
-    QFile file(nombreArchivo);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))  return ;
-    QTextStream inputFile(&file);
-
-    int contador = 0;
-    while (!inputFile.atEnd()) {
-        QString linea = inputFile.readLine();
-        datosRecolectados[contador] = linea;
-        contador++;
+//METODO que permite irse a los nodos de un nivel.
+void irANivel(Nodo<Persona> * root, int nivel){
+    if (root == nullptr)
+        return;
+    if (nivel == 1) {
+        //Aqui salva a los amigs de la fam
+        root->dato.madre;
+        root->dato.padre;
+        root->dato.hijos;
+    }
+    else if (nivel > 1)
+    {
+        irANivel(root->left, nivel-1);
+        irANivel(root->right, nivel-1);
     }
 }
+
+QString Mundo::thor(int nivel){
+        Nodo<Persona> * root = arbolMundo->root;
+
+
+        std::string textoLog = "";
+        //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
+      return   escribirArchivo(textoLog);
+
+}
+
+QString Mundo::nebula(int IDCulpable){
+    Persona * culpable = listaPersonasTotales->buscar(IDCulpable);
+    //maybe llamar a un metodo secundario
+
+
+    std::string textoLog = "";
+    //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
+    return escribirArchivo(textoLog);
+}
+
+QString Mundo::antMan(){
+
+
+    std::string textoLog = "";
+    //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
+    return escribirArchivo(textoLog);
+}
+
+QString Mundo::ironMan(){
+    //Recorre el arbol, pregunta si ya pasó por ese nodo. Si no, hace random y depende del resultado salva ese nodo y lo pone true.
+            //Al terminar el proceso, restaura los valores de los nodos a false.
+
+
+    std::string textoLog = "";
+    //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
+    return escribirArchivo(textoLog);
+}
+
+QString Mundo::midnight(){
+
+    std::string textoLog = "";
+    //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
+    return escribirArchivo(textoLog);
+}
+
+QString Mundo::ebonyMaw(int IDCulpable){
+    Persona * culpable = listaPersonasTotales->buscar(IDCulpable);  //modificar para que sea * menor
+
+
+    std::string textoLog = "";
+    //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
+    return escribirArchivo(textoLog);
+
+}
+QString Mundo::spiderMan(){
+
+    std::string textoLog = "";
+    //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
+    return escribirArchivo(textoLog);
+}
+
+QString Mundo::blackDwarf(){
+
+    std::string textoLog = "";
+    //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
+    return escribirArchivo(textoLog);
+}
+
+QString Mundo::corvusGlaive(){
+    std::string textoLog = "";
+    //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
+    return escribirArchivo(textoLog);
+}
+
 
  QString Mundo::escribirArchivo(std::string textoLog){
 
@@ -222,6 +263,19 @@ void Mundo::leerArchivo(QString nombreArchivo, QString datosRecolectados[]){
     return nombreArchivoMod;
 }
 
+ void Mundo::leerArchivo(QString nombreArchivo, QString datosRecolectados[]){
+
+     QFile file(nombreArchivo);
+     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))  return ;
+     QTextStream inputFile(&file);
+
+     int contador = 0;
+     while (!inputFile.atEnd()) {
+         QString linea = inputFile.readLine();
+         datosRecolectados[contador] = linea;
+         contador++;
+     }
+ }
 
 
 

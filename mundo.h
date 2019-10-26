@@ -25,23 +25,24 @@ public:
     Longevidad * longevidad = new Longevidad();
     RegistroIds * registroIds = new RegistroIds();
     QString nombresHombres[499], nombresMujeres[499], apellidos[999], paises[99], creencias[13], profesiones[55];
-
-    int generacion;
+    int rangoNombres1, rangoNombres2,  rangoApellidos1, rangoApellidos2,
+    rangoProfesiones1,  rangoProfesiones2, rangoCreencias1, rangoCreencias2,
+    rangoPaises1, rangoPaises2, generacion;
 
     Mundo();
 
     //SUPERHEROES
-    void thor();
-    void antMan();
-    void ironMan();
-    void spiderMan();
+    QString antMan();
+    QString thor(int);
+    QString ironMan();
+    QString spiderMan();
 
     //Villanos
-    void midnight();
-    void nebula(int);
-    void blackDwarf();
-    void ebonyMaw(int);
-    void corvusGlaive();
+    QString midnight();
+    QString nebula(int);
+    QString blackDwarf();
+    QString ebonyMaw(int);
+    QString corvusGlaive();
 
     //Pecados ^ Buenas Acciones
     void hacerlesPecar(Persona* persona);  //recorrer la lista de personas y darles qrandom a cada una de las personas.
