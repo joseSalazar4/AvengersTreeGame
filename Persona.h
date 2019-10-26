@@ -5,17 +5,6 @@
 #ifndef AVENGERS_TREE_GAME_PERSONA_H
 #define AVENGERS_TREE_GAME_PERSONA_H
 
-#include <ctime>
-#include <string>
-#include <fstream>
-#include <iostream>
-#include <iostream>
-#include <string>
-#include <qfile.h>
-#include <qlist.h>
-#include <qdebug.h>
-#include <qstring.h>
-#include <QTextStream>
 #include "FechaNacimiento.h"
 
 struct Persona {
@@ -36,10 +25,7 @@ struct Persona {
 
         hijos = amigos = nullptr;
         padre = madre = pareja = nullptr;
-
     }
-
-    QString escribirArchivo();
 };
 
 

@@ -17,6 +17,7 @@ private:
 
 };
 
+
 int Longevidad::obtenerEdad(Persona *persona){
     return persona->fechaNacimiento->anno - 2019;
 }

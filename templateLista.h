@@ -15,7 +15,7 @@ template <typename T> struct NodoDoble{
         this->dato = nullptr;
     }
 
-    NodoDoble(T dato){
+    NodoDoble(T * dato){
         siguiente = nullptr;
         anterior = nullptr;
         this->dato = dato;
@@ -33,7 +33,7 @@ template <typename T> struct ListaDoble{
         largo = 0;
     }
 
-    void insertar(T dato){
+    void insertar(T * dato){
         if(estaVacio()){
             primerNodo = ultimoNodo = new NodoDoble<T>(dato);
             largo++;
@@ -63,7 +63,7 @@ template <typename T> struct ListaDoble{
         return false;
     }
 
-   T buscar(int ID){
+   T * buscar(int ID){
     //Devuelve el nodo solicitado
     if(!estaVacio()){
         NodoDoble<T> * temp = primerNodo;
@@ -76,7 +76,7 @@ template <typename T> struct ListaDoble{
     return nullptr;
     }
 
-   T buscarNombre(QString nombre){
+   T * buscarNombre(QString nombre){
     //Devuelve el nodo solicitado
     if(!estaVacio()){
         NodoDoble<T> * temp = primerNodo;

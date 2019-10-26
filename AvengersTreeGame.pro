@@ -8,7 +8,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-    Persona.cpp \
     creadorpersonas.cpp \
     main.cpp \
     mainwindow.cpp \

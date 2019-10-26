@@ -14,19 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="btnEnviarCorreo">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>660</y>
-      <width>211</width>
-      <height>81</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Enviar correo</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btnNebula">
     <property name="geometry">
      <rect>
@@ -445,7 +432,6 @@
     </property>
    </widget>
    <zorder>lblWallpaper</zorder>
-   <zorder>btnEnviarCorreo</zorder>
    <zorder>btnNebula</zorder>
    <zorder>btnCorvusG</zorder>
    <zorder>btnMidnight</zorder>

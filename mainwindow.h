@@ -3,8 +3,8 @@
 
 #include "smtp.h"
 #include "fstream"
+#include "mundo.h"
 #include "iostream"
-#include "Persona.h"
 #include "creadorpersonas.h"
 
 #include <QMainWindow>
@@ -20,6 +20,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    Mundo * mundo;
     creadorPersonas ventanaCrearPersonas;
 
 
@@ -36,10 +37,13 @@ private slots:
     void on_btnMidnight_clicked();
     void on_btnSpiderMan_clicked();
     void on_btnBlackDwarf_clicked();
+    void enviarCorreo(QString nombre);
     void on_btnEnviarCorreo_clicked();
     void on_btnBuenasAcciones_clicked();
     void on_btnGenerarPersonas_clicked();
     void on_btnGenerarPersonas_Finished(int,int,int,int,int,int,int,int,int,int);
+
+    void on_comboBox_activated(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;

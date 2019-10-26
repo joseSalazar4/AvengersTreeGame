@@ -1,50 +1,62 @@
 #ifndef MUNDO_H
 #define MUNDO_H
 
-#include "Persona.h"
-#include "templateAVL.h"
-#include "templateLista.h"
+//#include "smtp.h"
 
+#include <ctime>
+#include <string>
+#include <fstream>
+#include <iostream>
+#include <QTextStream>
 #include "Deportes.h"
 #include "Longevidad.h"
-#include "FechaNacimiento.h"
 #include "registroIDs.h"
+#include "templateAVL.h"
+#include "templateLista.h"
+#include "FechaNacimiento.h"
 //Pecados
 //NoPecados (BuenasAcciones)
 
 class Mundo {
 
 public:
-    ListaDoble<Persona> * listaPersonasTotales;
-    AVL<Persona> * arbolMundo; //Tal vez deba ser otro tipo de tipo
-    QString nombresHombres[499], nombresMujeres[499], apellidos[999], paises[99], creencias[13], profesiones[55];
-
+    AVL<Persona> * arbolMundo;
     Deportes * deportes = new Deportes();
+    ListaDoble<Persona> * listaPersonasTotales;
     Longevidad * longevidad = new Longevidad();
     RegistroIds * registroIds = new RegistroIds();
-
+    QString nombresHombres[499], nombresMujeres[499], apellidos[999], paises[99], creencias[13], profesiones[55];
 
     int generacion;
+
     Mundo();
 
+    //SUPERHEROES
     void thor();
-    void nebula();
+    void nebula(int);
     void antMan();
-    void ironMan(); //Recorre el arbol, pregunta si ya pasó por ese nodo. Si no, hace random y depende del resultado salva ese nodo y lo pone true.
-                    //Al terminar el proceso, restaura los valores de los nodos a false.
-    void midnight();
-    void ebonyMaw();
+    void ironMan();
     void spiderMan();
+
+    //Villanos
+    void midnight();
+    void ebonyMaw(int);
     void blackDwarf();
     void corvusGlaive();
+
+    //Pecados ^ Buenas Acciones
     void hacerlesPecar(Persona* persona);  //recorrer la lista de personas y darles qrandom a cada una de las personas.
     void hacerBuenasAcciones(Persona* persona);
 
-    void crearPoblacion(int);
-
+    //Generaciones
     void crearPersona();
-    void asignarFamilia(Persona*);
+    void crearPoblacion(int);
     void asignarAmigos(Persona*);
+    void asignarFamilia(Persona*);
+
+    //Archivos
+    QString escribirArchivo(std::string);
+    void leerArchivo(QString nombreArchivo,QString datosRecolectados[]);
 
 
 };

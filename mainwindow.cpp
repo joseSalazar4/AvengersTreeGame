@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 {
     ventanaCrearPersonas.hide();
     connect(&ventanaCrearPersonas, SIGNAL(finished(int,int,int,int,int,int,int,int,int,int)), this, SLOT(on_modificartiempo_finished(int,int,int,int,int,int,int,int,int,int)));
+    mundo = new Mundo();
     ui->setupUi(this);
 }
 
@@ -13,34 +14,28 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_btnEnviarCorreo_clicked()
-{
-    Persona * tmp = new Persona();
-    QString nombre  = tmp->escribirArchivo();
+void MainWindow::enviarCorreo(QString nombre){
+
     QList<QString> archivos = {nombre};
     Smtp* smtp = new Smtp("mikomeka1@gmail.com", "mikomeka11", "smtp.gmail.com", 465);
     connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
-    smtp->sendMail("mikomeka1@gmail.com", "jsalazarg48@gmail.com" , "ASUNTO DEL CORREO ENVIADO","CUERPO DEL CORREO", archivos);
+    smtp->sendMail("mikomeka1@gmail.com", "jsalazarg48@gmail.com" , "Log de ",
+                   "He cumplido con lo solicitado, aca esta la informacion", archivos);
+}
+
+void MainWindow::on_btnBlackDwarf_clicked(){
 
 }
 
-void MainWindow::on_btnBlackDwarf_clicked()
-{
+void MainWindow::on_btnEbonyMaw_clicked(){
 
 }
 
-void MainWindow::on_btnEbonyMaw_clicked()
-{
+void MainWindow::on_btnMidnight_clicked(){
 
 }
 
-void MainWindow::on_btnMidnight_clicked()
-{
-
-}
-
-void MainWindow::on_btnCorvusG_clicked()
-{
+void MainWindow::on_btnCorvusG_clicked(){
 
 }
 
@@ -101,4 +96,9 @@ void MainWindow::on_btnGenerarPersonas_clicked()
 {
     ventanaCrearPersonas.show();
     //Luego de mostrada podemos ver que se muestra la ventana
+}
+
+void MainWindow::on_comboBox_activated(const QString &opcion)
+{
+    int queNoSeOlvideAgregarElementos;
 }
