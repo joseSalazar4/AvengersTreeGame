@@ -14,7 +14,6 @@ Limpiador
 Payaso
 Zapatero
 Consultor
-Cocinero
 Asesor
 Cocinero
 Químico
@@ -23,7 +22,6 @@ Dentista
 Diseñador
 Médico
 Modista
-Basurero 
 Economista
 Electricista
 Ingeniero
@@ -32,7 +30,7 @@ Bombero
 Pescador
 Florista
 Frutero
-Basurero 
+Basurero
 Jardinero
 Peluquero
 Ama de casa

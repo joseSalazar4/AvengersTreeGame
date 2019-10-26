@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include "templateAVL.h"
-#include "registroIDs.h"
 using namespace std;
 int main(int argc, char *argv[])
 {

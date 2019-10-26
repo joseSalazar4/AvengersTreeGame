@@ -4,7 +4,6 @@
 #include "smtp.h"
 #include "fstream"
 #include "mundo.h"
-#include "iostream"
 #include "creadorpersonas.h"
 
 #include <QMainWindow>
@@ -19,10 +18,16 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
     Mundo * mundo;
     creadorPersonas ventanaCrearPersonas;
+    QStringList nombresDeportes = {"Futbol", "Basketball", "Boxeo",
+    "Atletismo", "Natacion", "Golf", "Futbol Americano","Ultimate Frisbee"};
+    int rangoNombres1, rangoNombres2,  rangoApellidos1, rangoApellidos2,
+    rangoProfesiones1,  rangoProfesiones2, rangoCreencias1, rangoCreencias2,
+    rangoPaises1, rangoPaises2;
 
+
+    MainWindow(QWidget *parent = nullptr);
 
     ~MainWindow();
 

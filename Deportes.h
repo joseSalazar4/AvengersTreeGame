@@ -1,7 +1,6 @@
 #ifndef DEPORTES_H
 #define DEPORTES_H
 #include <QList>
-#include <QRandomGenerator>
 #include "Persona.h"
 
 //Use el metodo generarDeportes() a la hora de crear una persona y asignarle
@@ -15,7 +14,8 @@
 //veces que es persona practica un deporte. El rango es de 1 a 21.
 
 struct Deportes{
-    QList<QString> nombresDeportes = {"Futbol", "Basketball", "Boxeo", "Atletismo", "Natacion"};
+    QList<QString> nombresDeportes = {"Futbol", "Basketball", "Boxeo",
+                   "Atletismo", "Natacion", "Golf", "Futbol Americano","Ultimate Frisbee"};
     QList<QList<Persona*>*> * deportes;
     Deportes(){
         deportes = new QList<QList<Persona*>*>;
@@ -23,46 +23,41 @@ struct Deportes{
             deportes->append(new QList<Persona*>);
         }
     }
-public:
-    QList<QString> *generarDeportes(Persona*);
-    int generarVecesxSemana();
+
 private:
-    int generateRandom(int, int);
 
-};
-
-QList<QString>* Deportes::generarDeportes(Persona *persona){
-    QList<QString> * deportesPersona = new QList<QString>;
-    int numeroDeportes = generateRandom(1, nombresDeportes.size()-1);
-
-    for(int i=0; i<numeroDeportes; i++){
-        QString dep;
-        int deporteIndex;
-        do{
-            deporteIndex = generateRandom(0, nombresDeportes.size()-1);
-            //Agregamos a la lista el deporte que practica la persona
-            dep = nombresDeportes.at(deporteIndex);
-
-        }while(deportesPersona->contains(dep));
-
-        deportesPersona->append(dep);
-        //Guardamos en la lista de ese deporte un puntero a la persona
-        deportes->at(deporteIndex)->append(persona);
-
+    int generateRandom(int min, int max){
+        std::uniform_int_distribution<int> dist(min, max);
+        int numRandom = dist(*QRandomGenerator::global());
+        return numRandom;
     }
-    return deportesPersona;
-}
+public:
 
+    QList<QString>* generarDeportes(Persona *persona){
+        QList<QString> * deportesPersona = new QList<QString>;
+        int numeroDeportes = generateRandom(1, nombresDeportes.size()-1);
 
-int Deportes::generateRandom(int min, int max){
-    std::uniform_int_distribution<int> dist(min, max);
-    int numRandom = dist(*QRandomGenerator::global());
-    return numRandom;
-}
+        for(int i=0; i<numeroDeportes; i++){
+            QString dep;
+            int deporteIndex;
+            do{
+                deporteIndex = generateRandom(0, nombresDeportes.size()-1);
+                //Agregamos a la lista el deporte que practica la persona
+                dep = nombresDeportes.at(deporteIndex);
 
-int Deportes::generarVecesxSemana(){
-    return generateRandom(1, 21);
-}
+            }while(deportesPersona->contains(dep));
 
+            deportesPersona->append(dep);
+            //Guardamos en la lista de ese deporte un puntero a la persona
+            deportes->at(deporteIndex)->append(persona);
+
+        }
+        return deportesPersona;
+    }
+
+    int generarVecesxSemana(){
+        return generateRandom(1, 21);
+    }
+};
 
 #endif // DEPORTES_H

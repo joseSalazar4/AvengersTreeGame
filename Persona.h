@@ -26,7 +26,10 @@ struct Persona {
         hijos = amigos = nullptr;
         padre = madre = pareja = nullptr;
     }
+
 };
+
+
 
 
 #endif //AVENGERS_TREE_GAME_PERSONA_H

@@ -10,11 +10,12 @@ Mundo::Mundo()
     listaPersonasTotales = new ListaDoble<Persona>();
 
     //El metodo lee el archivo, extrae y coloca directamente en los arrays la informacion
-    leerArchivo("Apellidos.txt",apellidos);
-    leerArchivo("Creencias.txt",creencias);
-    leerArchivo("NombresH.txt",nombresHombres);
-    leerArchivo("NombresM.txt",nombresMujeres);
-    leerArchivo("Profesiones.txt",profesiones);
+    leerArchivo(":/Archivos/Paises.txt",paises);
+    leerArchivo(":/Archivos/Apellidos.txt",apellidos);
+    leerArchivo(":/Archivos/Creencias.txt",creencias);
+    leerArchivo(":/Archivos/NombresH.txt",nombresHombres);
+    leerArchivo(":/Archivos/NombresM.txt",nombresMujeres);
+    leerArchivo(":/Archivos/Profesiones.txt",profesiones);
 }
 
 void Mundo::hacerlesPecar(Persona* persona){
@@ -53,6 +54,7 @@ void Mundo::crearPoblacion(int cantSolicitada){
 }
 
 void Mundo::crearPersona(){
+    Deportes * deportes = new Deportes();
     Persona * nuevaPersona = new Persona();
     //Genero
     if(QRandomGenerator::global()->bounded(0,1) == 0) nuevaPersona->genero = "mujer";
@@ -72,55 +74,65 @@ void Mundo::crearPersona(){
     //Acciones y edades
     nuevaPersona->fechaNacimiento = new FechaNacimiento();
     nuevaPersona->edad = longevidad->obtenerEdad(nuevaPersona);
+
+    deportes->generarDeportes(nuevaPersona);
     hacerBuenasAcciones(nuevaPersona);
     hacerlesPecar(nuevaPersona);
     listaPersonasTotales->insertar(nuevaPersona);
 
+
 }
 void Mundo::asignarFamilia(Persona* persona){
     int cantAmigos = QRandomGenerator::global()->bounded(0,51);
-    NodoDoble<Persona> * tmp = listaPersonasTotales->primerNodo;
+    Persona * tmp = listaPersonasTotales->primerNodo->dato;
     //agregarMetodo de moverse x nodos en la lista para seleccionar gente random
 
     for(int i = 0 ;i<cantAmigos;i++){
-        if(persona->pais  == tmp->dato->pais){
-          tmp->dato->amigos->append(tmp->dato);
+        if(persona->pais  == tmp->pais){
+          tmp->amigos->append(tmp);
         }
     }
 
 }
 void Mundo::asignarAmigos(Persona* persona){
     int cantAmigos = QRandomGenerator::global()->bounded(0,51);
-    NodoDoble<Persona> * tmp = listaPersonasTotales->primerNodo;
+    Persona * extrano = listaPersonasTotales->primerNodo->dato;
     //agregarMetodo de moverse x nodos en la lista para seleccionar gente random
 
     int cont = 0;
     while(cont<cantAmigos){
-        if(persona->pais  == tmp->dato->pais){
-          tmp->dato->amigos->append(tmp->dato);
-          cont++;
-        }
-        else if(QRandomGenerator::global()->bounded(1,100) <40){
-            tmp->dato->amigos->append(tmp->dato);
-            cont++;
-        }
-
-        else {
-            bool coinciden = false;
-            Persona * tmp2 = tmp->dato->amigos->first();
-            for(int i = 0;i<tmp->dato->amigos->length();i++){
-
-                if(persona->amigos){
-
-                    return;
-                }
-                tmp2; //recorrer ambas listas de los amimgos de uno y los de esa persona
-                        //y econtrar similitudes
-
+        if(!persona->amigos->contains(extrano)){
+            if(persona->pais  == extrano->pais){
+              persona->amigos->append(extrano);
+              cont++;
             }
-            if(coinciden)
-            cont++;
+            else if(QRandomGenerator::global()->bounded(1,100) <40){
+                persona->amigos->append(extrano);
+                cont++;
+            }
+
+            else {
+                bool coinciden = false;
+                QList<Persona*>  * amigosExtrano = extrano->amigos;
+                QList<Persona*> * amigosPersona = persona->amigos;
+                for(int i = 0;i<extrano->amigos->length();i++){
+                    for(int j = 0;j<persona->amigos->length();j++ ){
+                        if(amigosPersona[j] == amigosExtrano[i]){
+                            coinciden = true;
+                            return;
+                        }
+                        if(coinciden) return;
+                    }
+                }
+
+                if(coinciden){
+                    persona->amigos->append(extrano);
+                    cont++;
+                    coinciden = false;
+                }
+            }
         }
+        continue;
     }
 }
 

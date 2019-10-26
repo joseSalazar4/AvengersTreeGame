@@ -1,7 +1,7 @@
 #ifndef REGISTROIDS_H
 #define REGISTROIDS_H
-#include <QString>
 #include <QList>
+#include <QString>
 #include <QRandomGenerator>
 
 struct RegistroIds{

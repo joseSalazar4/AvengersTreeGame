@@ -13,7 +13,6 @@
 #include "registroIDs.h"
 #include "templateAVL.h"
 #include "templateLista.h"
-#include "FechaNacimiento.h"
 //Pecados
 //NoPecados (BuenasAcciones)
 
@@ -33,15 +32,15 @@ public:
 
     //SUPERHEROES
     void thor();
-    void nebula(int);
     void antMan();
     void ironMan();
     void spiderMan();
 
     //Villanos
     void midnight();
-    void ebonyMaw(int);
+    void nebula(int);
     void blackDwarf();
+    void ebonyMaw(int);
     void corvusGlaive();
 
     //Pecados ^ Buenas Acciones
@@ -58,6 +57,9 @@ public:
     QString escribirArchivo(std::string);
     void leerArchivo(QString nombreArchivo,QString datosRecolectados[]);
 
+
+    //
+    bool existeAmigo(Persona *);
 
 };
 

@@ -10,19 +10,15 @@ struct Longevidad{
     QList<QList<Persona*>*> tablaRangoEtario[9];
 
 public:
-    int obtenerEdad(Persona*);
-private:
-    int fHash(int edad);
-    void agregarARangoEtario(Persona*, int);
 
-};
-
-
-int Longevidad::obtenerEdad(Persona *persona){
-    return persona->fechaNacimiento->anno - 2019;
+    int obtenerEdad(Persona *persona){
+        return persona->fechaNacimiento->anno - 2019;
 }
 
-int Longevidad::fHash(int edad){
+private:
+
+
+int fHash(int edad){
     if(edad >= 0 && edad <= 1) return 0;
     else if(edad >= 2 && edad <= 4) return 1;
     else if(edad >= 5 && edad <= 10) return 2;
@@ -34,9 +30,9 @@ int Longevidad::fHash(int edad){
     else return 8;
 }
 
-void Longevidad::agregarARangoEtario(Persona *persona, int edad){
+void agregarARangoEtario(Persona *persona, int edad){
     int index = fHash(edad);
     tablaRangoEtario->at(index)->append(persona);
-}
-
+    }
+};
 #endif // LONGEVIDAD_H

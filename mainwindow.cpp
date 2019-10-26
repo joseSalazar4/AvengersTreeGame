@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     connect(&ventanaCrearPersonas, SIGNAL(finished(int,int,int,int,int,int,int,int,int,int)), this, SLOT(on_modificartiempo_finished(int,int,int,int,int,int,int,int,int,int)));
     mundo = new Mundo();
     ui->setupUi(this);
+    ui->comboBoxDeportes->setSizeAdjustPolicy(ui->comboBoxDeportes->AdjustToMinimumContentsLength);
+    ui->comboBoxDeportes->addItems(nombresDeportes);
 }
 
 MainWindow::~MainWindow()
@@ -55,16 +57,24 @@ void MainWindow::on_btnPecar_clicked()
 }
 
 
-void MainWindow::on_btnGenerarPersonas_Finished(int rangoNomb1, int rangoNomb2, int rangoApellidos1,int rangoApellidos2, int rangoProf1, int rangoProf2,int rangoCreencias1,int rangoCreencias2,int rangoPaises1,int rangoPaises2)
+void MainWindow::on_btnGenerarPersonas_Finished(int _rangoNomb1, int _rangoNomb2, int _rangoApellidos1,int _rangoApellidos2, int _rangoProf1, int _rangoProf2,int _rangoCreencias1,int _rangoCreencias2,int _rangoPaises1,int _rangoPaises2)
 {
     //Eliminar lo de abajo y asi usarlas en los metodos
 
-    /*rangoNomb1,rangoNomb2
-    rangoApellidos1,rangoApellidos2
-    rangoProf1, rangoProf2
-    rangoCreencias1, rangoCreencias2
-    rangoPaises1, rangoPaises2
-    */
+    rangoNombres1 = _rangoNomb1;
+    rangoNombres2 = _rangoNomb2;
+    rangoPaises1 =_rangoPaises1;
+    rangoPaises2 =_rangoPaises2;
+    rangoProfesiones1 = _rangoProf1;
+    rangoProfesiones2 = _rangoProf2;
+    rangoCreencias1 = _rangoCreencias1;
+    rangoCreencias2 = _rangoCreencias2;
+    rangoApellidos1 = _rangoApellidos1;
+    rangoApellidos2 = _rangoApellidos2;
+
+    for(int i = 0 ;;i++){
+
+    }
 
     //Aca se tuvo que pasar el  metodo ver en simulador el on_modificar y ver como lo paso.
     //Pruebe   Darle click y que haga algo idk.
@@ -101,4 +111,7 @@ void MainWindow::on_btnGenerarPersonas_clicked()
 void MainWindow::on_comboBox_activated(const QString &opcion)
 {
     int queNoSeOlvideAgregarElementos;
+}
+void MainWindow::on_btnEnviarCorreo_clicked(){
+
 }
