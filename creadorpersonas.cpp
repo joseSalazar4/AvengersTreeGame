@@ -36,7 +36,6 @@ void creadorPersonas::on_btnGenerarPersonas_clicked()
 
 }
 
-
 //Eliminar depues
 void creadorPersonas::on_pushButton_clicked(){
 

@@ -57,7 +57,6 @@ void Mundo::crearPoblacion(int cantSolicitada){
 }
 
 void Mundo::crearPersona(){
-    Deportes * deportes = new Deportes();
     Persona * nuevaPersona = new Persona();
 
     //Genero
@@ -79,12 +78,17 @@ void Mundo::crearPersona(){
     //Acciones, edades y deportes
     nuevaPersona->fechaNacimiento = new FechaNacimiento();
     nuevaPersona->edad = longevidad->obtenerEdad(nuevaPersona);
-    deportes->generarDeportes(nuevaPersona);
+    nuevaPersona->deportes = deportes->generarDeportes(nuevaPersona);
     hacerBuenasAcciones(nuevaPersona);
     hacerlesPecar(nuevaPersona);
 
     //Finalmente se agrega a la listaPrincipal del mundo
     listaPersonasTotales->insertar(nuevaPersona);
+    //Insertar en AVL Para prueba
+    arbolMundo->insertar(nuevaPersona);
+    arbolMundo->imprimirArbol(); //Prueba
+    qDebug() << "Nueva Persona";
+
 
 }
 void Mundo::asignarFamilia(Persona* persona){
@@ -146,9 +150,9 @@ void irANivel(Nodo<Persona> * root, int nivel){
         return;
     if (nivel == 1) {
         //Aqui salva a los amigs de la fam
-        root->dato.madre;
-        root->dato.padre;
-        root->dato.hijos;
+        root->dato->madre;
+        root->dato->padre;
+        root->dato->hijos;
     }
     else if (nivel > 1)
     {

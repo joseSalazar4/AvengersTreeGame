@@ -7,7 +7,7 @@
 template<typename T> struct Nodo
 {
     public:
-    T dato; //Persona
+    T * dato; //Persona
     Nodo *left;
     Nodo *right;
     int height;
@@ -15,7 +15,7 @@ template<typename T> struct Nodo
     int feromonas;  //Para Ant Man
     bool utilizado; //true = ya pasó por ahi
 
-    Nodo(T dato){
+    Nodo(T *dato){
         this->dato = dato;
         left = nullptr;
         right = nullptr;
@@ -26,28 +26,35 @@ template<typename T> struct Nodo
 
 template<typename T> struct AVL{
     Nodo<T> * root;
+    QList<Nodo<T>*> * listaArbol = new QList<Nodo<T>*>();
 
 public:
 
-    Nodo<T>* insertar(T dato){
+    Nodo<T>* insertar(T * dato){
         return insert(root, dato);
-    }
-
-    void preOrder()
-    {
-        if(root != nullptr)
-        {
-            qDebug() << root->dato << " ";
-            preOrder(root->left);
-            preOrder(root->right);
-        }
     }
 
     void imprimirArbol(){
         verArbol(root, 0);
     }
 
+     QList<Nodo<T>*> * aplastarArbol(){
+       aplastarArbolPrivate(root);
+       return listaArbol;
+    }
+
 private:
+
+    void * aplastarArbolPrivate(Nodo<T> *rootN)  //Genera una lista del arbol
+    {
+        if(root != nullptr)
+        {
+            qDebug() << rootN->dato << "";
+            listaArbol->append(rootN);
+            preOrder(rootN->left);
+            preOrder(rootN->right);
+        }
+    }
 
     void verArbol(Nodo<T> * nodo, int n)
     {
@@ -60,7 +67,7 @@ private:
 
          qDebug() << nodo->dato->ID <<endl;
 
-         verArbol(nodo->izq, n+1);
+         verArbol(nodo->left, n+1);
     }
 
     // A utility function to get maximum
@@ -83,10 +90,9 @@ private:
     new Nodo<T> with the given dato and
     nullptr left and right pointers. */
 
-    Nodo<T>* newNodo(T dato)
+    Nodo<T>* newNodo(T *dato)
     {
-        Nodo<T> *nodo = new Nodo<T>();
-        nodo->dato = dato;
+        Nodo<T> *nodo = new Nodo<T>(dato);
         return(nodo);
     }
 
@@ -142,20 +148,19 @@ private:
         return height(N->left) - height(N->right);
     }
 
-
     // Recursive function to insert a dato
     // in the subtree rooted with node and
     // returns the new root of the subtree.
-    Nodo<T>* insert(Nodo<T>* node, T dato)
+    Nodo<T>* insert(Nodo<T>* node, T *dato)
     {
         // AGREGAR DATO->ID PERSONALIZARLO PARA PERSONAS.
 
         /* 1. Perform the normal BST insertion */
         if (node == nullptr)
             return(newNodo(dato));
-        if (dato < node->dato)
+        if (dato->ID < node->dato->ID)
             node->left = insert(node->left, dato);
-        else if (dato > node->dato)
+        else if (dato->ID > node->dato->ID)
             node->right = insert(node->right, dato);
         else // Equal datos are not allowed in BST
             return node;
