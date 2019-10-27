@@ -19,16 +19,16 @@ void creadorPersonas::on_btnGenerarPersonas_clicked()
     int rangoNomb1,rangoNomb2,rangoApellidos1,rangoApellidos2, rangoProf1,
             rangoProf2, rangoCreencias1, rangoCreencias2, rangoPaises1, rangoPaises2;
 
-    rangoNomb1 = ui->lineEditNomb1->text().toInt();
-    rangoNomb2 = ui->lineEditNomb2->text().toInt();
-    rangoProf1 = ui->lineEditProf1->text().toInt();
-    rangoProf2 = ui->lineEditProf2->text().toInt();
-    rangoPaises1 = ui->lineEditPaises1->text().toInt();
-    rangoPaises2 = ui->lineEditPaises2->text().toInt();
-    rangoApellidos1 = ui->lineEditApellidos1->text().toInt();
-    rangoApellidos2 = ui->lineEditApellidos2->text().toInt();
-    rangoCreencias1 = ui->lineEditCreencias1->text().toInt();
-    rangoCreencias2 = ui->lineEditCreencias2->text().toInt();
+    rangoNomb1 = ui->spinBoxNombres1->value();
+    rangoNomb2 = ui->spinBoxNombres2->value();
+    rangoProf1 = ui->spinBoxProfesiones1->value();
+    rangoProf2 = ui->spinBoxProfesiones2->value();
+    rangoPaises1 = ui->spinBoxPaises1->value();
+    rangoPaises2 = ui->spinBoxPaises2->value();
+    rangoApellidos1 = ui->spinBoxApellidos1->value();
+    rangoApellidos2 = ui->spinBoxApellidos2->value();
+    rangoCreencias1 = ui->spinBoxCreencias1->value();
+    rangoCreencias2 = ui->spinBoxCreencias2->value();
 
     //envia los datos al mainwindow donde seran utilizados por las funciones de generacion
     emit finalizo(rangoNomb1,rangoNomb2,rangoApellidos1,rangoApellidos2, rangoProf1,rangoProf2, rangoCreencias1, rangoCreencias2, rangoPaises1, rangoPaises2);
