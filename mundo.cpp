@@ -91,7 +91,7 @@ void Mundo::asignarFamilia(Persona* persona){
 
     for(int i = 0 ;i<cantAmigos;i++){
         if(persona->pais  == tmp->pais){
-          tmp->amigos->append(tmp);
+            tmp->amigos->append(tmp);
         }
     }
 }
@@ -104,8 +104,8 @@ void Mundo::asignarAmigos(Persona* persona){
     while(cont<cantAmigos){
         if(!persona->amigos->contains(extrano)){
             if(persona->pais  == extrano->pais){
-              persona->amigos->append(extrano);
-              cont++;
+                persona->amigos->append(extrano);
+                cont++;
             }
             else if(QRandomGenerator::global()->bounded(1,100) <40){
                 persona->amigos->append(extrano);
@@ -155,12 +155,12 @@ void irANivel(Nodo<Persona> * root, int nivel){
 }
 
 QString Mundo::thor(int nivel){
-        Nodo<Persona> * root = arbolMundo->root;
+    Nodo<Persona> * root = arbolMundo->root;
 
 
-        std::string textoLog = "";
-        //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
-      return   escribirArchivo(textoLog);
+    std::string textoLog = "";
+    //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
+    return   escribirArchivo(textoLog);
 
 }
 
@@ -184,7 +184,7 @@ QString Mundo::antMan(){
 
 QString Mundo::ironMan(){
     //Recorre el arbol, pregunta si ya pasó por ese nodo. Si no, hace random y depende del resultado salva ese nodo y lo pone true.
-            //Al terminar el proceso, restaura los valores de los nodos a false.
+    //Al terminar el proceso, restaura los valores de los nodos a false.
 
 
     std::string textoLog = "";
@@ -217,7 +217,7 @@ QString Mundo::spiderMan(){
 
 QString Mundo::blackDwarf(){
 
-    std::string textoLog = "";
+    std::string textoLog = "ESto en teoria hizo el metodo y envio el correo/nConteste a sunuy";
     //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
     return escribirArchivo(textoLog);
 }
@@ -229,23 +229,15 @@ QString Mundo::corvusGlaive(){
 }
 
 
- QString Mundo::escribirArchivo(std::string textoLog){
+QString Mundo::escribirArchivo(std::string textoLog){
 
     //Creamos el objeto para leer el archivo
     std::ofstream herramientaArchivo;
-    std::string nombreArchivo;
+    std::string nombreArchivo = "";
 
     //Pedimos el tiempo de la compu
     const time_t current = time(nullptr);
     tm *local_time = localtime(&current);
-
-    //Armamos el cuerpo del archivo aunque no creo que este metodo lo haga pero aca
-    //se muestra como se hace
-    herramientaArchivo.open (nombreArchivo);
-    herramientaArchivo << textoLog;
-
-    //aqui solo le ponemos la variable ocn todo el texto ya construido
-    herramientaArchivo.close();
 
     //Construimos el nombre del archivo
     nombreArchivo+= std::to_string(1900 + local_time->tm_year);
@@ -259,24 +251,29 @@ QString Mundo::corvusGlaive(){
     nombreArchivo+=std::to_string(1 + local_time->tm_sec);
     nombreArchivo+=".txt";
 
+    herramientaArchivo.open (nombreArchivo);
+    herramientaArchivo << textoLog;
+    herramientaArchivo.close();
+
+
     //Convertimos de string a QString
     QString nombreArchivoMod = QString::fromStdString(nombreArchivo);
     return nombreArchivoMod;
 }
 
- void Mundo::leerArchivo(QString nombreArchivo, QString datosRecolectados[]){
+void Mundo::leerArchivo(QString nombreArchivo, QString datosRecolectados[]){
 
-     QFile file(nombreArchivo);
-     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))  return ;
-     QTextStream inputFile(&file);
+    QFile file(nombreArchivo);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))  return ;
+    QTextStream inputFile(&file);
 
-     int contador = 0;
-     while (!inputFile.atEnd()) {
-         QString linea = inputFile.readLine();
-         datosRecolectados[contador] = linea;
-         contador++;
-     }
- }
+    int contador = 0;
+    while (!inputFile.atEnd()) {
+        QString linea = inputFile.readLine();
+        datosRecolectados[contador] = linea;
+        contador++;
+    }
+}
 
 
 

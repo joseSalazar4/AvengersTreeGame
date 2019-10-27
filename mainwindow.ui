@@ -161,8 +161,8 @@
    <widget class="QPushButton" name="btnGenerarPersonas">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>390</y>
+      <x>350</x>
+      <y>370</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -374,8 +374,8 @@
    <widget class="QSpinBox" name="spinBoxGenerarPersonas">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>430</y>
+      <x>350</x>
+      <y>410</y>
       <width>51</width>
       <height>22</height>
      </rect>
@@ -406,7 +406,7 @@
      <rect>
       <x>30</x>
       <y>440</y>
-      <width>101</width>
+      <width>141</width>
       <height>24</height>
      </rect>
     </property>

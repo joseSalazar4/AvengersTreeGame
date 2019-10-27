@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>527</width>
-    <height>796</height>
+    <height>764</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <widget class="QLabel" name="Wallpaper">
    <property name="geometry">
     <rect>
-     <x>-20</x>
+     <x>0</x>
      <y>-20</y>
      <width>551</width>
      <height>881</height>
@@ -44,16 +44,25 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>360</y>
+     <y>330</y>
      <width>141</width>
-     <height>16</height>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Uroob</family>
+     <pointsize>17</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="autoFillBackground">
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);</string>
+    <string notr="true">color: rgb(12, 254, 215);</string>
    </property>
    <property name="text">
     <string>Profesiones</string>
@@ -62,8 +71,8 @@
   <widget class="QPushButton" name="btnGenerarPersonas">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>580</y>
+     <x>10</x>
+     <y>680</y>
      <width>211</width>
      <height>31</height>
     </rect>
@@ -86,90 +95,57 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QSplitter" name="splitter_2">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>450</y>
-     <width>141</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <widget class="QLineEdit" name="lineEditCreencias1">
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEditCreencias2">
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-  </widget>
   <widget class="QLabel" name="lblApellidos">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>300</y>
+     <y>260</y>
      <width>141</width>
-     <height>16</height>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Uroob</family>
+     <pointsize>17</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="autoFillBackground">
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);</string>
+    <string notr="true">color: rgb(12, 254, 215);</string>
    </property>
    <property name="text">
     <string>Apellidos</string>
    </property>
   </widget>
-  <widget class="QSplitter" name="splitter">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>500</y>
-     <width>141</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <widget class="QLineEdit" name="lineEditPaises1">
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEditPaises2">
-    <property name="font">
-     <font>
-      <stylestrategy>PreferAntialias</stylestrategy>
-     </font>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-  </widget>
   <widget class="QLabel" name="lblPaises">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>480</y>
-     <width>271</width>
-     <height>16</height>
+     <y>530</y>
+     <width>101</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Uroob</family>
+     <pointsize>17</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="autoFillBackground">
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);</string>
+    <string notr="true">color: rgb(12, 254, 215);</string>
    </property>
    <property name="text">
     <string>Paises</string>
@@ -179,16 +155,25 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>240</y>
+     <y>190</y>
      <width>141</width>
-     <height>16</height>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Uroob</family>
+     <pointsize>17</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="autoFillBackground">
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);</string>
+    <string notr="true">color: rgb(12, 254, 215);</string>
    </property>
    <property name="text">
     <string>Nombres</string>
@@ -198,13 +183,18 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>420</y>
+     <y>470</y>
      <width>131</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="font">
     <font>
+     <family>Uroob</family>
+     <pointsize>17</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
      <kerning>false</kerning>
     </font>
    </property>
@@ -212,7 +202,7 @@
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(0, 0, 0);</string>
+    <string notr="true">color: rgb(1, 255, 215);</string>
    </property>
    <property name="text">
     <string>Creencias</string>
@@ -222,7 +212,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>150</y>
+     <y>140</y>
      <width>261</width>
      <height>41</height>
     </rect>
@@ -239,79 +229,143 @@
     <string>Indique los rangos deseados</string>
    </property>
   </widget>
-  <widget class="QSplitter" name="splitter_5">
+  <widget class="QLabel" name="lblPaises_2">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>320</y>
-     <width>141</width>
-     <height>24</height>
+     <y>595</y>
+     <width>271</width>
+     <height>21</height>
     </rect>
    </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
+   <property name="font">
+    <font>
+     <family>Uroob</family>
+     <pointsize>17</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
    </property>
-   <widget class="QLineEdit" name="lineEditApellidos1">
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEditApellidos2">
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(12, 254, 215);</string>
+   </property>
+   <property name="text">
+    <string>Cantidad Por Generar</string>
+   </property>
   </widget>
-  <widget class="QSplitter" name="splitter_6">
+  <widget class="QSpinBox" name="spinBoxCantGenerar">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>260</y>
-     <width>141</width>
-     <height>24</height>
+     <y>620</y>
+     <width>111</width>
+     <height>25</height>
     </rect>
    </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <widget class="QLineEdit" name="lineEditNomb1">
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEditNomb2">
-    <property name="font">
-     <font>
-      <stylestrategy>PreferAntialias</stylestrategy>
-     </font>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
   </widget>
-  <widget class="QSplitter" name="splitter_7">
+  <widget class="QSpinBox" name="spinBoxPaises2">
+   <property name="geometry">
+    <rect>
+     <x>84</x>
+     <y>560</y>
+     <width>51</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBoxPaises1">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>390</y>
-     <width>141</width>
-     <height>24</height>
+     <y>560</y>
+     <width>41</width>
+     <height>25</height>
     </rect>
    </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
+  </widget>
+  <widget class="QSpinBox" name="spinBoxCreencias2">
+   <property name="geometry">
+    <rect>
+     <x>84</x>
+     <y>500</y>
+     <width>51</width>
+     <height>25</height>
+    </rect>
    </property>
-   <widget class="QLineEdit" name="lineEditProf1">
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEditProf2">
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
+  </widget>
+  <widget class="QSpinBox" name="spinBoxCreencias1">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>500</y>
+     <width>42</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBoxProfesiones1">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>350</y>
+     <width>42</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBoxApellidos2">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>290</y>
+     <width>51</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBoxApellidos1">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>290</y>
+     <width>42</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBoxNombres1">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>220</y>
+     <width>42</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBoxNombres2">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>220</y>
+     <width>51</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBoxProfesiones2">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>350</y>
+     <width>51</width>
+     <height>25</height>
+    </rect>
+   </property>
   </widget>
  </widget>
  <resources>
