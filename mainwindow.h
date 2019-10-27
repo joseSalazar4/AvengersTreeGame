@@ -42,11 +42,11 @@ private slots:
     void on_btnMidnight_clicked();
     void on_btnSpiderMan_clicked();
     void on_btnBlackDwarf_clicked();
-    void enviarCorreo(QString nombre);
     void on_btnEnviarCorreo_clicked();
     void on_btnBuenasAcciones_clicked();
     void on_btnGenerarPersonas_clicked();
-    void on_btnGenerarPersonas_Finished(int,int,int,int,int,int,int,int,int,int);
+    void enviarCorreo(QString nombre, QString nombre2);
+    void on_btnGenerarPersonas_Finished(int,int,int,int,int,int,int,int,int,int, int);
 
     void on_comboBox_activated(const QString &arg1);
 
