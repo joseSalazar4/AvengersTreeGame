@@ -8,6 +8,9 @@ Mundo::Mundo()
     generacion = 0;
     arbolMundo = new AVL<Persona>();
     listaPersonasTotales = new ListaDoble<Persona>();
+    rangoPaises1 = rangoPaises2 = rangoNombres1 = rangoNombres2
+            = rangoApellidos1 = rangoApellidos2 = rangoCreencias1
+            = rangoCreencias2 = rangoProfesiones1 = rangoProfesiones2 = 0;
 
     //El metodo lee el archivo, extrae y coloca directamente en los arrays la informacion
     leerArchivo(":/Archivos/Paises.txt",paises);
@@ -65,8 +68,9 @@ void Mundo::crearPersona(){
     nuevaPersona->ID = QString::number(registroIds->generarId());
 
     //Lectura de archivos
-    nuevaPersona->pais = paises[QRandomGenerator::global()->bounded(rangoPaises1,rangoPaises2)];
-    nuevaPersona->creencia = creencias[QRandomGenerator::global()->bounded(rangoCreencias2,rangoCreencias2)];
+    int n = QRandomGenerator::global()->bounded(rangoPaises1,rangoPaises2);
+    nuevaPersona->pais = paises[n];
+    nuevaPersona->creencia = creencias[QRandomGenerator::global()->bounded(rangoCreencias1,rangoCreencias2)];
     nuevaPersona->apellido = apellidos[QRandomGenerator::global()->bounded(rangoApellidos1,rangoApellidos2)];
     nuevaPersona->profesion = profesiones[QRandomGenerator::global()->bounded(rangoProfesiones1,rangoProfesiones2)];
     if(nuevaPersona->genero == "mujer") nuevaPersona->nombre = nombresMujeres[QRandomGenerator::global()->bounded(rangoNombres1,rangoNombres2)];

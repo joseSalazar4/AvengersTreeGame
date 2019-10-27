@@ -17,7 +17,7 @@ creadorPersonas::~creadorPersonas()
 void creadorPersonas::on_btnGenerarPersonas_clicked()
 {
     int rangoNomb1,rangoNomb2,rangoApellidos1,rangoApellidos2, rangoProf1,
-            rangoProf2, rangoCreencias1, rangoCreencias2, rangoPaises1, rangoPaises2;
+        rangoProf2, rangoCreencias1, rangoCreencias2, rangoPaises1, rangoPaises2, cantGenerar;
 
     rangoNomb1 = ui->spinBoxNombres1->value();
     rangoNomb2 = ui->spinBoxNombres2->value();
@@ -29,9 +29,11 @@ void creadorPersonas::on_btnGenerarPersonas_clicked()
     rangoApellidos2 = ui->spinBoxApellidos2->value();
     rangoCreencias1 = ui->spinBoxCreencias1->value();
     rangoCreencias2 = ui->spinBoxCreencias2->value();
-
+    cantGenerar =  ui->spinBoxCantGenerar->value();
+    this->hide();
     //envia los datos al mainwindow donde seran utilizados por las funciones de generacion
-    emit finalizo(rangoNomb1,rangoNomb2,rangoApellidos1,rangoApellidos2, rangoProf1,rangoProf2, rangoCreencias1, rangoCreencias2, rangoPaises1, rangoPaises2);
+    emit finalizo(rangoNomb1,rangoNomb2,rangoApellidos1,rangoApellidos2, rangoProf1,rangoProf2, rangoCreencias1, rangoCreencias2, rangoPaises1, rangoPaises2, cantGenerar);
+
 }
 
 

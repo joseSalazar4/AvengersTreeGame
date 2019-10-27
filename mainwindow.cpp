@@ -4,7 +4,7 @@
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ventanaCrearPersonas.hide();
-    connect(&ventanaCrearPersonas, SIGNAL(finished(int,int,int,int,int,int,int,int,int,int)), this, SLOT(on_btnGenerarPersonas_Finished(int,int,int,int,int,int,int,int,int,int, int)));
+    connect(&ventanaCrearPersonas, SIGNAL(finalizo(int,int,int,int,int,int,int,int,int,int,int)), this, SLOT(on_btnGenerarPersonas_Finished(int,int,int,int,int,int,int,int,int,int, int)));
     mundo = new Mundo();
     ui->setupUi(this);
     //ui->comboBoxDeportes->setSizeAdjustPolicy(ui->comboBoxDeportes->AdjustToMinimumContentsLength);
@@ -64,17 +64,18 @@ void MainWindow::on_btnGenerarPersonas_Finished(int _rangoNomb1, int _rangoNomb2
 {
     //Eliminar lo de abajo y asi usarlas en los metodos
 
-    rangoNombres1 = _rangoNomb1;
-    rangoNombres2 = _rangoNomb2;
-    rangoPaises1 =_rangoPaises1;
-    rangoPaises2 =_rangoPaises2;
-    rangoProfesiones1 = _rangoProf1;
-    rangoProfesiones2 = _rangoProf2;
-    rangoCreencias1 = _rangoCreencias1;
-    rangoCreencias2 = _rangoCreencias2;
-    rangoApellidos1 = _rangoApellidos1;
-    rangoApellidos2 = _rangoApellidos2;
+    mundo->rangoNombres1 = _rangoNomb1;
+    mundo->rangoNombres2 = _rangoNomb2;
+    mundo->rangoPaises1 =_rangoPaises1;
+    mundo->rangoPaises2 =_rangoPaises2;
+    mundo->rangoProfesiones1 = _rangoProf1;
+    mundo->rangoProfesiones2 = _rangoProf2;
+    mundo->rangoCreencias1 = _rangoCreencias1;
+    mundo->rangoCreencias2 = _rangoCreencias2;
+    mundo->rangoApellidos1 = _rangoApellidos1;
+    mundo->rangoApellidos2 = _rangoApellidos2;
 
+    ventanaCrearPersonas.hide();
     mundo->crearPoblacion(cantidadPersonas);
 }
 

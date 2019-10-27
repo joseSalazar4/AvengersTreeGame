@@ -371,16 +371,6 @@
      <string>Indique un nivel del arbol</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBoxGenerarPersonas">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>410</y>
-      <width>51</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QSpinBox" name="spinBoxEbonyMaw">
     <property name="geometry">
      <rect>
@@ -451,7 +441,6 @@
    <zorder>label_3</zorder>
    <zorder>label_4</zorder>
    <zorder>label_5</zorder>
-   <zorder>spinBoxGenerarPersonas</zorder>
    <zorder>spinBoxEbonyMaw</zorder>
    <zorder>spinBoxNebula</zorder>
    <zorder>comboBoxDeportes</zorder>
