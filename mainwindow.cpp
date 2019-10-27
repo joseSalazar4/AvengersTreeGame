@@ -4,7 +4,7 @@
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ventanaCrearPersonas.hide();
-    connect(&ventanaCrearPersonas, SIGNAL(finished(int,int,int,int,int,int,int,int,int,int)), this, SLOT(on_modificartiempo_finished(int,int,int,int,int,int,int,int,int,int)));
+    connect(&ventanaCrearPersonas, SIGNAL(finished(int,int,int,int,int,int,int,int,int,int)), this, SLOT(on_btnGenerarPersonas_Finished(int,int,int,int,int,int,int,int,int,int, int)));
     mundo = new Mundo();
     ui->setupUi(this);
     //ui->comboBoxDeportes->setSizeAdjustPolicy(ui->comboBoxDeportes->AdjustToMinimumContentsLength);
