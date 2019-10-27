@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "Persona.h"
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -105,6 +106,9 @@ void MainWindow::on_btnIronMan_clicked()
 void MainWindow::on_btnGenerarPersonas_clicked()
 {
     ventanaCrearPersonas.show();
+    //Prueba del arbol
+    mundo->crearPoblacion(20);
+    mundo->arbolMundo->imprimirArbol();
     //Luego de mostrada podemos ver que se muestra la ventana
 }
 

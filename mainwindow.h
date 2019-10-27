@@ -5,6 +5,7 @@
 #include "fstream"
 #include "mundo.h"
 #include "creadorpersonas.h"
+#include "templateAVL.h"
 
 #include <QMainWindow>
 
