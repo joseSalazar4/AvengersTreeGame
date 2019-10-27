@@ -34,7 +34,6 @@ void creadorPersonas::on_btnGenerarPersonas_clicked()
     emit finalizo(rangoNomb1,rangoNomb2,rangoApellidos1,rangoApellidos2, rangoProf1,rangoProf2, rangoCreencias1, rangoCreencias2, rangoPaises1, rangoPaises2);
 }
 
-
 //Eliminar depues
 void creadorPersonas::on_pushButton_clicked(){
 

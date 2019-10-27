@@ -77,6 +77,7 @@ void MainWindow::on_btnGenerarPersonas_Finished(int _rangoNomb1, int _rangoNomb2
     rangoApellidos2 = _rangoApellidos2;
 
     mundo->crearPoblacion(cantidadPersonas);
+    mundo->arbolMundo->imprimirArbol(); //Prueba
 }
 
 void MainWindow::on_btnAntMan_clicked()
@@ -106,9 +107,6 @@ void MainWindow::on_btnIronMan_clicked()
 void MainWindow::on_btnGenerarPersonas_clicked()
 {
     ventanaCrearPersonas.show();
-    //Prueba del arbol
-    mundo->crearPoblacion(20);
-    mundo->arbolMundo->imprimirArbol();
     //Luego de mostrada podemos ver que se muestra la ventana
 }
 
