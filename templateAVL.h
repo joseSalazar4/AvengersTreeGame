@@ -26,16 +26,23 @@ template<typename T> struct Nodo
 
 template<typename T> struct AVL{
     Nodo<T> * root;
+    int cantidadPersonas = 0;
     QList<Nodo<T>*> * listaArbol = new QList<Nodo<T>*>();
+    QList<QString> * niveles;
 
 public:
 
-    Nodo<T>* insertar(T * dato){
-        return insert(root, dato);
+    void insertar(T * dato){
+        root = insert(root, dato);
+        cantidadPersonas++;
     }
 
     void imprimirArbol(){
         verArbol(root, 0);
+        qDebug() << "Altura: " + QString::number(root->height);
+        qDebug() << "Cantidad: " + QString::number(this->cantidadPersonas);
+        imprimirNiveles();
+
     }
 
      QList<Nodo<T>*> * aplastarArbol(){
@@ -43,7 +50,26 @@ public:
        return listaArbol;
     }
 
+     void imprimirNiveles(){
+        niveles = new QList<QString>();
+        for(int i=0; i<root->height; i++){
+            niveles->append("Nivel "+QString::number(i)+": ");
+        }
+        imprimirNivelPrivate(root, 0);
+        for(int i=0; i<niveles->size(); i++){
+            qDebug().noquote() << niveles->at(i) + "\n";
+        }
+     }
+
 private:
+
+     void imprimirNivelPrivate(Nodo<T> *nodo, int nivel){
+         if(nodo!=nullptr){
+            niveles->replace(nivel, niveles->at(nivel) +"-"+nodo->dato->ID);
+            imprimirNivelPrivate(nodo->right, nivel+1);
+            imprimirNivelPrivate(nodo->left, nivel+1);
+         }
+     }
 
     void * aplastarArbolPrivate(Nodo<T> *rootN)  //Genera una lista del arbol
     {
@@ -178,22 +204,22 @@ private:
         // there are 4 cases
 
         // Left Left Case
-        if (balance > 1 && dato < node->left->dato)
+        if (balance > 1 && dato->ID < node->left->dato->ID)
             return rightRotate(node);
 
         // Right Right Case
-        if (balance < -1 && dato > node->right->dato)
+        if (balance < -1 && dato->ID > node->right->dato->ID)
             return leftRotate(node);
 
         // Left Right Case
-        if (balance > 1 && dato > node->left->dato)
+        if (balance > 1 && dato->ID > node->left->dato->ID)
         {
             node->left = leftRotate(node->left);
             return rightRotate(node);
         }
 
         // Right Left Case
-        if (balance < -1 && dato < node->right->dato)
+        if (balance < -1 && dato->ID < node->right->dato->ID)
         {
             node->right = rightRotate(node->right);
             return leftRotate(node);
