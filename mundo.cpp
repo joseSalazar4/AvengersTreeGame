@@ -162,21 +162,27 @@ void Mundo::asignarFamilia(Persona* persona){
     Persona * tmp = getPersonaRandom();
     //agregarMetodo de moverse x nodos en la lista para seleccionar gente random
 
-    int cont = 0;
+    int cont = 0, contMax = 0;
     while(cont<cantHijos){
         //Preguntamos primero por verificar para no hacer las otras preguntas
-        if(verificarEdadesHijos(persona,tmp) && (persona->pais  == tmp->pais || persona->pareja->pais == tmp->pais)  &&
-                (persona->apellido == tmp->apellido ||  persona->pareja->apellido == tmp->apellido) ){
+        if(verificarValidezHijos(persona,tmp) && (persona->pais  == tmp->pais || persona->pareja->pais == tmp->pais)  &&
+                (persona->apellido == tmp->apellido ||  persona->pareja->apellido == tmp->apellido)){
+
             tmp->amigos->append(tmp);
             cont++;
         }
+        //Si no hay suficientes personas con ese apellido podria enciclarse entonces que busque un maximo de 30 000 personas
+        if(contMax>30000) return;
+        contMax++;
         tmp =  getPersonaRandom();
     }
 }
 
 
 //Permite saber si puede ser hijo o no
-bool Mundo::verificarEdadesHijos(Persona * supuestoPadre, Persona * supuestoHijo){
+bool Mundo::verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHijo){
+
+    int rangoPadre = 0 ,rangoHijo = 0;
 
     //Primero preguntamos si el padre no es ya hijo de su supuesto hijo
     bool esDigno = true;
@@ -185,22 +191,25 @@ bool Mundo::verificarEdadesHijos(Persona * supuestoPadre, Persona * supuestoHijo
     }
     if(!esDigno) return esDigno;
 
+    esDigno = false;
 
     //Revisar los rangos pero como?
     for(int i = 0;i<9;i++){ //recorrer rango etario y revisar si es muy joven o  muy viejo para ser su hijo
-    longevidad->tablaRangoEtario[i]->contains(supuestoHijo);
+        if(longevidad->tablaRangoEtario[i]->contains(supuestoHijo))rangoHijo = i;
     }
 
-//     O CON UN SWITCH ?
 
+    for(int i = 0;i<9;i++){ //recorrer rango etario y revisar si es muy joven o  muy viejo para ser su hijo
+        if(longevidad->tablaRangoEtario[i]->contains(supuestoPadre))rangoPadre = i;
+    }
 
-//    int opcion = 0;
-//    switch (opcion) {
-//        case 0:
-//            break;
-//        case 1:
-//    }
+    if(rangoPadre==5 && (rangoHijo == 0|| rangoHijo == 1)) return esDigno = true;
+    else if(rangoPadre ==6 && (rangoHijo == 0 || rangoHijo ==1 || rangoHijo == 2|| rangoHijo == 3 )) return esDigno = true;
+    else if(rangoPadre ==7 && (rangoHijo == 4|| rangoHijo == 5|| rangoHijo == 6 ))return esDigno = true;
+    else if(rangoPadre ==8 && (rangoHijo == 6|| rangoHijo == 7))return esDigno = true;
+    else qDebug()<<"ERROR EN LA EDAD DEL PADRE!!!!!!!\n\nALERTAAAA\\n\nATENCIONNNN";
 
+    return esDigno;
 }
 
 void Mundo::asignarAmigos(Persona* persona){

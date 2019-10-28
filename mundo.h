@@ -61,7 +61,7 @@ public:
 
     //
     bool existeAmigo(Persona *);
-    bool verificarEdadesHijos(Persona * supuestoPadre, Persona * supuestoHijo);
+    bool verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHijo);
 
     //Devuelve una persona Random de la lista Principal
     Persona* getPersonaRandom();
