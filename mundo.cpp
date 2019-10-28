@@ -131,16 +131,39 @@ void Mundo::crearPersona(){
 
 }
 void Mundo::asignarFamilia(Persona* persona){
-    int cantAmigos = QRandomGenerator::global()->bounded(0,51);
+    //Preguntar si estara soltero o en otro estado
+    int estadoMarit = QRandomGenerator::global()->bounded(0,2);
+
+    if(estadoMarit == 2) persona->estadoMarital = "Casad@";
+    else if (estadoMarit == 1)persona->estadoMarital = "Separad@";
+    else persona->estadoMarital = "Solter@";
+
+    //Soltero es no tener hijos
+    if(persona->estadoMarital == "Solter@") return;
+
+    NodoDoble<Persona> * pareja = listaPersonasTotales->obtenerRandom;
+    while(pareja->dato->pareja != nullptr){
+        pareja = listaPersonasTotales->obtenerRandom;
+    }
+
+    persona->pareja = pareja;
+
+    //Si no tiene mas de 20 no es Joven y no puede tener hijos
+    if(persona->edad< 20) return;
+
+    int cantHijos = QRandomGenerator::global()->bounded(0,4);
     Persona * tmp = listaPersonasTotales->primerNodo->dato;
     //agregarMetodo de moverse x nodos en la lista para seleccionar gente random
 
-    for(int i = 0 ;i<cantAmigos;i++){
-        if(persona->pais  == tmp->pais){
+    int cont = 0;
+    while(cont<cantHijos){
+        if( (persona->pais  == tmp->pais || persona->pareja->pais == tmp->pais)  &&  (persona->apellido == tmp->apellido ||  persona->pareja->apellido == tmp->apellido) ){
             tmp->amigos->append(tmp);
         }
+        tmp =  listaPersonasTotales->;
     }
 }
+
 void Mundo::asignarAmigos(Persona* persona){
     int cantAmigos = QRandomGenerator::global()->bounded(0,51);
     Persona * extrano = listaPersonasTotales->primerNodo->dato;

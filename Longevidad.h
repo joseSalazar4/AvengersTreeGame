@@ -22,7 +22,6 @@ public:
 
 private:
 
-
 int fHash(int edad){
     if(edad >= 0 && edad <= 1) return 0;
     else if(edad >= 2 && edad <= 4) return 1;
