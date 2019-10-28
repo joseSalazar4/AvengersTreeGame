@@ -55,6 +55,14 @@ void Mundo::crearPoblacion(int cantSolicitada){
     }
     generacion++;
     arbolMundo->imprimirArbol(); //Prueba
+
+    for(int i = 0; i<9; i++){
+        qDebug() << "       Rango "+QString::number(i);
+        for(int j= 0; j<longevidad->tablaRangoEtario[i]->size(); j++){
+            Persona * p = longevidad->tablaRangoEtario[i]->at(j);
+            qDebug().noquote() << p->nombre + ": "+ QString::number(p->edad) + "\n";
+        }
+    }
 }
 
 void Mundo::crearPersona(){
@@ -88,7 +96,6 @@ void Mundo::crearPersona(){
     //Insertar en AVL Para prueba
     arbolMundo->insertar(nuevaPersona);
     qDebug() << "Nueva Persona";
-
 
 }
 void Mundo::asignarFamilia(Persona* persona){

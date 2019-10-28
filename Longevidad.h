@@ -7,12 +7,17 @@
 //Este le deuelve un entero con su respectiva edad y además lo agrega a la lista de Personas de su rango Etario.
 
 struct Longevidad{
-    QList<QList<Persona*>*> tablaRangoEtario[9];
+    QList<Persona*> * tablaRangoEtario[9];
 
 public:
-
+    Longevidad(){
+        for(int i=0; i<9; i++)
+            tablaRangoEtario[i] = new QList<Persona*>;
+    }
     int obtenerEdad(Persona *persona){
-        return persona->fechaNacimiento->anno - 2019;
+        int edad = 2019 - persona->fechaNacimiento->anno;
+        agregarARangoEtario(persona, edad);
+        return edad;
 }
 
 private:
@@ -32,7 +37,7 @@ int fHash(int edad){
 
 void agregarARangoEtario(Persona *persona, int edad){
     int index = fHash(edad);
-    tablaRangoEtario->at(index)->append(persona);
+    tablaRangoEtario[index]->append(persona);
     }
 };
 #endif // LONGEVIDAD_H

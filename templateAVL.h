@@ -38,7 +38,7 @@ public:
     }
 
     void imprimirArbol(){
-        verArbol(root, 0);
+        //verArbol(root, 0);
         qDebug() << "Altura: " + QString::number(root->height);
         qDebug() << "Cantidad: " + QString::number(this->cantidadPersonas);
         imprimirNiveles();
@@ -65,9 +65,9 @@ private:
 
      void imprimirNivelPrivate(Nodo<T> *nodo, int nivel){
          if(nodo!=nullptr){
-            niveles->replace(nivel, niveles->at(nivel) +"-"+nodo->dato->ID);
-            imprimirNivelPrivate(nodo->right, nivel+1);
+            niveles->replace(nivel, niveles->at(nivel) +" "+nodo->dato->ID);
             imprimirNivelPrivate(nodo->left, nivel+1);
+            imprimirNivelPrivate(nodo->right, nivel+1);
          }
      }
 

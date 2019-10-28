@@ -8,7 +8,7 @@
 #include "FechaNacimiento.h"
 
 struct Persona {
-    QList<QString> * deportes;
+    QList<QString> * deportes, *paisesVisitados;
     Persona *padre, *madre, *pareja;
     FechaNacimiento * fechaNacimiento;
     QList<Persona*> * hijos, * amigos;
@@ -19,7 +19,7 @@ struct Persona {
         ID = nombre = apellido = genero = creencia =
         profesion = estadoMarital = continente = pais = "";
 
-        deportes = nullptr;
+        deportes = paisesVisitados = nullptr;
         fechaNacimiento = nullptr;
         edad = ctdEjercicioxSemana = pecadosTotales =buenasAccionesTotales = 0;
 

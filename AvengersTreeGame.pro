@@ -18,6 +18,7 @@ HEADERS += \
     Deportes.h \
     FechaNacimiento.h \
     Longevidad.h \
+    MundoThanos.h \
     Persona.h \
     creadorpersonas.h \
     mainwindow.h \
