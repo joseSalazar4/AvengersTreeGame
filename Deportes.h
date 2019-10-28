@@ -38,8 +38,8 @@ public:
         int numeroDeportes = generateRandom(1, nombresDeportes.size()-1);
 
         for(int i=0; i<numeroDeportes; i++){
-            QString dep;
-            int deporteIndex;
+            QString dep = "";
+            int deporteIndex = 0;
             do{
                 deporteIndex = generateRandom(0, nombresDeportes.size()-1);
                 //Agregamos a la lista el deporte que practica la persona

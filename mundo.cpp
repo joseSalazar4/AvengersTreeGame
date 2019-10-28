@@ -334,13 +334,13 @@ QString Mundo::spiderMan(){
 }
 
 QString Mundo:: blackDwarf(int veces, QString deporte){
-    Nodo<Persona> * persona = this->arbolMundo->root;
-    QList<Persona> * deportistas = {};
-    QString textoLog = "", tiempoMuerte = "", vecesQStr = "";
     QString::number(veces);
     std::string tiempoMuerteSTD = "";
+    QList<Persona*> * deportistas = new QList<Persona*>();
     const time_t current = time(nullptr);
     tm *local_time = localtime(&current);
+    Nodo<Persona> * persona = this->arbolMundo->root;
+    QString textoLog = "", tiempoMuerte = "", vecesQStr = "";
 
     //STD::STRING
     tiempoMuerteSTD+= std::to_string(1900 + local_time->tm_year);
@@ -361,12 +361,13 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
     vecesQStr = QString::number(veces);
 
     //Recorrer el arbol  y hacer esto
-
-    if(persona->dato->deportes->contains(deporte) && persona->dato->ctdEjercicioxSemana == veces){
-        deportistas->append(*persona->dato);
+    QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
+    for(int i = 0 ;i<arbolAplastado->length();i++){
+        if(persona->dato->deportes->contains(deporte) && persona->dato->ctdEjercicioxSemana == veces) deportistas->append(persona->dato);
     }
+
     for(int i=0;i<(deportistas->length()/2);i++){
-        *persona->dato  = deportistas->at(i);
+        persona->dato  = deportistas->at(i);
         persona->dato->vivo = false;
 
         textoLog+=tiempoMuerte+"Humano: "+persona->dato->ID+
@@ -387,7 +388,7 @@ QString Mundo::corvusGlaive(){
     return escribirArchivo(textoLog);
 }
 
-QString Mundo::escribirArchivo(std::string textoLog){
+QString Mundo:: escribirArchivo(std::string textoLog){
 
     //Creamos el objeto para leer el archivo
     std::ofstream herramientaArchivo;
