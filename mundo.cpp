@@ -358,8 +358,6 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
 
     //Convertir solo una vez y dejarlo asi para el for
     tiempoMuerte = QString::fromStdString(tiempoMuerteSTD);
-
-    //Convertir solo una vez
     vecesQStr = QString::number(veces);
 
     //Recorrer el arbol  y hacer esto
@@ -442,7 +440,7 @@ int Mundo::generateRandom(int min, int max){
 
 }
 Persona* Mundo::getPersonaRandom(){
-    int index = generateRandom(0, listaPersonasTotales->largo);
+    int index = generateRandom(0, listaPersonasTotales->largo-1);
     return listaPersonasTotales->at(index);
 }
 
