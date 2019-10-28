@@ -77,7 +77,6 @@ void MainWindow::on_btnGenerarPersonas_Finished(int _rangoNomb1, int _rangoNomb2
     rangoApellidos2 = _rangoApellidos2;
 
     mundo->crearPoblacion(cantidadPersonas);
-    mundo->arbolMundo->imprimirArbol(); //Prueba
 }
 
 void MainWindow::on_btnAntMan_clicked()

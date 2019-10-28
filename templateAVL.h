@@ -26,6 +26,7 @@ template<typename T> struct Nodo
 
 template<typename T> struct AVL{
     Nodo<T> * root;
+    QList<Nodo<T>*> * listaArbol = new QList<Nodo<T>*>();
 
 public:
 
@@ -33,21 +34,27 @@ public:
         return insert(root, dato);
     }
 
-    void preOrder()
-    {
-        if(root != nullptr)
-        {
-            qDebug() << root->dato << " ";
-            preOrder(root->left);
-            preOrder(root->right);
-        }
-    }
-
     void imprimirArbol(){
         verArbol(root, 0);
     }
 
+     QList<Nodo<T>*> * aplastarArbol(){
+       aplastarArbolPrivate(root);
+       return listaArbol;
+    }
+
 private:
+
+    void * aplastarArbolPrivate(Nodo<T> *rootN)  //Genera una lista del arbol
+    {
+        if(root != nullptr)
+        {
+            qDebug() << rootN->dato << "";
+            listaArbol->append(rootN);
+            preOrder(rootN->left);
+            preOrder(rootN->right);
+        }
+    }
 
     void verArbol(Nodo<T> * nodo, int n)
     {

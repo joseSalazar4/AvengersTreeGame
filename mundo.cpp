@@ -82,6 +82,9 @@ void Mundo::crearPersona(){
     listaPersonasTotales->insertar(nuevaPersona);
     //Insertar en AVL Para prueba
     arbolMundo->insertar(nuevaPersona);
+    arbolMundo->imprimirArbol(); //Prueba
+    qDebug() << "Nueva Persona";
+
 
 }
 void Mundo::asignarFamilia(Persona* persona){
