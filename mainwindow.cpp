@@ -54,12 +54,13 @@ void MainWindow::on_btnNebula_clicked()
 
 void MainWindow::on_btnBuenasAcciones_clicked()
 {
+
 }
 
 void MainWindow::on_btnPecar_clicked()
 {
-}
 
+}
 
 void MainWindow::on_btnGenerarPersonas_Finished(int _rangoNomb1, int _rangoNomb2, int _rangoApellidos1,int _rangoApellidos2, int _rangoProf1, int _rangoProf2,int _rangoCreencias1,int _rangoCreencias2,int _rangoPaises1,int _rangoPaises2, int cantidadPersonas)
 {
@@ -108,12 +109,4 @@ void MainWindow::on_btnGenerarPersonas_clicked()
 {
     ventanaCrearPersonas.show();
     //Luego de mostrada podemos ver que se muestra la ventana
-}
-
-void MainWindow::on_comboBox_activated(const QString &opcion)
-{
-    int queNoSeOlvideAgregarElementos;
-}
-void MainWindow::on_btnEnviarCorreo_clicked(){
-
 }
