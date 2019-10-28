@@ -32,9 +32,9 @@ public:
     Mundo();
 
     //SUPERHEROES
-    QString antMan();
     QString thor(int);
     QString ironMan();
+    QString antMan(int);
     QString spiderMan();
 
     //Villanos

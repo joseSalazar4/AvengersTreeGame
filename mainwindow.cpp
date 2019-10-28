@@ -4,12 +4,11 @@
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    mundo = new Mundo();
     ventanaCrearPersonas.hide();
     connect(&ventanaCrearPersonas, SIGNAL(finalizo(int,int,int,int,int,int,int,int,int,int,int)), this, SLOT(on_btnGenerarPersonas_Finished(int,int,int,int,int,int,int,int,int,int, int)));
-    mundo = new Mundo();
-    ui->setupUi(this);
-    //ui->comboBoxDeportes->setSizeAdjustPolicy(ui->comboBoxDeportes->AdjustToMinimumContentsLength);
     ui->comboBoxDeportes->addItems(nombresDeportes);
+    ui->setupUi(this);
 }
 
 MainWindow::~MainWindow()
@@ -32,12 +31,17 @@ void MainWindow::on_btnBlackDwarf_clicked(){
     cantidadVeces = ui->spinBoxBlackD->value();
     QString deporte = ui->comboBoxDeportes->currentText();
 
+    //REESTABLECEMOS LOS VALORES ORIGINALES PARA SIGUIENTE ITERACION
+    ui->spinBoxBlackD->setValue(0);
+    ui->comboBoxDeportes->setCurrentIndex(0);
     enviarCorreo(mundo->blackDwarf(cantidadVeces,deporte),"Black Dwarf");
 }
 
 void MainWindow::on_btnEbonyMaw_clicked(){
     //El boton simplemente enviara el correo con el archivo de texto
     int ID = ui->spinBoxEbonyMaw->value();
+
+    ui->spinBoxEbonyMaw->setValue(0);
     enviarCorreo(mundo->ebonyMaw(ID),"Ebony Maw");
 }
 
@@ -56,18 +60,30 @@ void MainWindow::on_btnCorvusG_clicked(){
 void MainWindow::on_btnNebula_clicked()
 {
     int ID = ui->spinBoxNebula->value();
+
+    ui->spinBoxNebula->setValue(0);
     //El boton simplemente enviara el correo con el archivo de texto
     enviarCorreo(mundo->nebula(ID),"Nebula");
 }
 
 void MainWindow::on_btnBuenasAcciones_clicked()
 {
+    NodoDoble<Persona> * persona = mundo->listaPersonasTotales->primerNodo;
 
+    for(int i = 0;i<mundo->listaPersonasTotales->largo;i++){
+        mundo->hacerBuenasAcciones(persona->dato);
+        persona = persona->siguiente;
+    }
 }
 
 void MainWindow::on_btnPecar_clicked()
 {
+    NodoDoble<Persona> * persona = mundo->listaPersonasTotales->primerNodo;
 
+    for(int i = 0;i<mundo->listaPersonasTotales->largo;i++){
+        mundo->hacerlesPecar(persona->dato);
+        persona = persona->siguiente;
+    }
 }
 
 void MainWindow::on_btnGenerarPersonas_Finished(int _rangoNomb1, int _rangoNomb2, int _rangoApellidos1,int _rangoApellidos2, int _rangoProf1, int _rangoProf2,int _rangoCreencias1,int _rangoCreencias2,int _rangoPaises1,int _rangoPaises2, int cantidadPersonas)
@@ -91,13 +107,17 @@ void MainWindow::on_btnGenerarPersonas_Finished(int _rangoNomb1, int _rangoNomb2
 
 void MainWindow::on_btnAntMan_clicked()
 {
+    int cantHormigas =  ui->spinBoxAntMan->value();
+    ui->spinBoxAntMan->setValue(0);
     //El boton simplemente enviara el correo con el archivo de texto
-    enviarCorreo(mundo->antMan(),"Ant Man");
+
+    enviarCorreo(mundo->antMan(cantHormigas),"Ant Man");
 }
 
 void MainWindow::on_btnThor_clicked()
 {
     int nivel  = ui->spinBoxThor->value();
+    ui->spinBoxThor->setValue(0);
     //El boton simplemente enviara el correo con el archivo de texto
     enviarCorreo(mundo->thor(nivel),"Thor");
 }
@@ -117,5 +137,4 @@ void MainWindow::on_btnIronMan_clicked()
 void MainWindow::on_btnGenerarPersonas_clicked()
 {
     ventanaCrearPersonas.show();
-    //Luego de mostrada podemos ver que se muestra la ventana
 }

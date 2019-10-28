@@ -8,6 +8,7 @@
 #include "FechaNacimiento.h"
 
 struct Persona {
+    bool vivo;
     QList<QString> * deportes;
     Persona *padre, *madre, *pareja;
     FechaNacimiento * fechaNacimiento;
@@ -25,6 +26,8 @@ struct Persona {
 
         hijos = amigos = nullptr;
         padre = madre = pareja = nullptr;
+
+        vivo = true;
     }
 
 };
