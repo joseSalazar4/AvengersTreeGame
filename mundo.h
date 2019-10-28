@@ -62,6 +62,10 @@ public:
     //
     bool existeAmigo(Persona *);
 
+    //Devuelve una persona Random de la lista Principal
+    Persona* getPersonaRandom();
+    int generateRandom(int min, int max);
+
 };
 
 #endif // MUNDO_H

@@ -63,6 +63,13 @@ void Mundo::crearPoblacion(int cantSolicitada){
             qDebug().noquote() << p->nombre + ": "+ QString::number(p->edad) + "\n";
         }
     }
+
+    //Prueba de obtener persona random
+    qDebug() << "Prueba de personas Random";
+    for(int k=0; k<10; k++){
+        Persona *pn= getPersonaRandom();
+        qDebug().noquote() << pn->nombre + "\n";
+    }
 }
 
 QString crearListaAmigosTxt(Persona * persona){
@@ -266,7 +273,7 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
     Nodo<Persona> * persona = this->arbolMundo->root;
     QList<Persona> * deportistas = {};
     QString textoLog = "", tiempoMuerte = "", vecesQStr = "";
-    QString::number(veces)
+    QString::number(veces);
     std::string tiempoMuerteSTD = "";
     const time_t current = time(nullptr);
     tm *local_time = localtime(&current);
@@ -362,6 +369,17 @@ void Mundo::leerArchivo(QString nombreArchivo, QString datosRecolectados[]){
         datosRecolectados[contador] = linea;
         contador++;
     }
+}
+
+int Mundo::generateRandom(int min, int max){
+    std::uniform_int_distribution<int> dist(min, max);
+    int numRandom = dist(*QRandomGenerator::global());
+    return numRandom;
+
+}
+Persona* Mundo::getPersonaRandom(){
+    int index = generateRandom(0, listaPersonasTotales->largo);
+    return listaPersonasTotales->at(index);
 }
 
 
