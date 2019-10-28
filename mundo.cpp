@@ -54,6 +54,7 @@ void Mundo::crearPoblacion(int cantSolicitada){
         }
     }
     generacion++;
+    arbolMundo->imprimirArbol(); //Prueba
 }
 
 void Mundo::crearPersona(){
@@ -86,7 +87,6 @@ void Mundo::crearPersona(){
     listaPersonasTotales->insertar(nuevaPersona);
     //Insertar en AVL Para prueba
     arbolMundo->insertar(nuevaPersona);
-    arbolMundo->imprimirArbol(); //Prueba
     qDebug() << "Nueva Persona";
 
 
