@@ -28,28 +28,36 @@ void MainWindow::enviarCorreo(QString nombre,QString nombreCaracter){
 
 void MainWindow::on_btnBlackDwarf_clicked(){
     //El boton simplemente enviara el correo con el archivo de texto
-    enviarCorreo(mundo->blackDwarf(),"Black Dwarf");
+    int cantidadVeces = 0;
+    cantidadVeces = ui->spinBoxBlackD->value();
+    QString deporte = ui->comboBoxDeportes->currentText();
+
+    enviarCorreo(mundo->blackDwarf(cantidadVeces,deporte),"Black Dwarf");
 }
 
 void MainWindow::on_btnEbonyMaw_clicked(){
     //El boton simplemente enviara el correo con el archivo de texto
-    enviarCorreo(mundo->blackDwarf(),"Ebony Maw");
+    int ID = ui->spinBoxEbonyMaw->value();
+    enviarCorreo(mundo->ebonyMaw(ID),"Ebony Maw");
 }
 
 void MainWindow::on_btnMidnight_clicked(){
     //El boton simplemente enviara el correo con el archivo de texto
-    enviarCorreo(mundo->blackDwarf(),"Midnight");
+
+    enviarCorreo(mundo->midnight(),"Midnight");
 }
 
 void MainWindow::on_btnCorvusG_clicked(){
     //El boton simplemente enviara el correo con el archivo de texto
-    enviarCorreo(mundo->blackDwarf(),"Corvus Glaive");
+
+    enviarCorreo(mundo->corvusGlaive(),"Corvus Glaive");
 }
 
 void MainWindow::on_btnNebula_clicked()
 {
+    int ID = ui->spinBoxNebula->value();
     //El boton simplemente enviara el correo con el archivo de texto
-    enviarCorreo(mundo->blackDwarf(),"Nebula");
+    enviarCorreo(mundo->nebula(ID),"Nebula");
 }
 
 void MainWindow::on_btnBuenasAcciones_clicked()
@@ -84,25 +92,26 @@ void MainWindow::on_btnGenerarPersonas_Finished(int _rangoNomb1, int _rangoNomb2
 void MainWindow::on_btnAntMan_clicked()
 {
     //El boton simplemente enviara el correo con el archivo de texto
-    enviarCorreo(mundo->blackDwarf(),"Ant Man");
+    enviarCorreo(mundo->antMan(),"Ant Man");
 }
 
 void MainWindow::on_btnThor_clicked()
 {
+    int nivel  = ui->spinBoxThor->value();
     //El boton simplemente enviara el correo con el archivo de texto
-    enviarCorreo(mundo->blackDwarf(),"Thor");
+    enviarCorreo(mundo->thor(nivel),"Thor");
 }
 
 void MainWindow::on_btnSpiderMan_clicked()
 {
     //El boton simplemente enviara el correo con el archivo de texto
-    enviarCorreo(mundo->blackDwarf(),"Spider Man");
+    enviarCorreo(mundo->spiderMan(),"Spider Man");
 }
 
 void MainWindow::on_btnIronMan_clicked()
 {
     //El boton simplemente enviara el correo con el archivo de texto
-    enviarCorreo(mundo->blackDwarf(),"Iron Man");
+    enviarCorreo(mundo->ironMan(),"Iron Man");
 }
 
 void MainWindow::on_btnGenerarPersonas_clicked()

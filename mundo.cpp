@@ -222,9 +222,14 @@ QString Mundo::spiderMan(){
     return escribirArchivo(textoLog);
 }
 
-QString Mundo::blackDwarf(){
+QString Mundo:: blackDwarf(int veces, QString deporte){
+    Nodo<Persona> *persona = this->arbolMundo->root;
+    QList<Persona> * deportistas = {};
+    if(persona->dato->deportes->contains(deporte) && persona->dato->ctdEjercicioxSemana == veces){
+        //deportistas->append(&persona);
+    }
 
-    std::string textoLog = "ESto en teoria hizo el metodo y envio el correo/nConteste a sunuy";
+    std::string textoLog = "ESto en teoria hizo el metodo y envio el correo/n\n\n hola\nEnviado";
     //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
     return escribirArchivo(textoLog);
 }

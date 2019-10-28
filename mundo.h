@@ -40,9 +40,9 @@ public:
     //Villanos
     QString midnight();
     QString nebula(int);
-    QString blackDwarf();
     QString ebonyMaw(int);
     QString corvusGlaive();
+    QString blackDwarf(int,QString);
 
     //Pecados ^ Buenas Acciones
     void hacerlesPecar(Persona* persona);  //recorrer la lista de personas y darles qrandom a cada una de las personas.
