@@ -14,7 +14,7 @@ public:
         for(int i=0; i<9; i++)
             tablaRangoEtario[i] = new QList<Persona*>;
     }
-    int obtenerEdad(Persona *persona){
+    int     obtenerEdad(Persona *persona){
         int edad = 2019 - persona->fechaNacimiento->anno;
         agregarARangoEtario(persona, edad);
         return edad;

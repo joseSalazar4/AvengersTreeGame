@@ -148,9 +148,9 @@ void Mundo::asignarFamilia(Persona* persona){
     //Soltero es no tener hijos
     if(persona->estadoMarital == "Solter@") return;
 
-    NodoDoble<Persona> * pareja = listaPersonasTotales->obtenerRandom;
-    while(pareja->dato->pareja != nullptr){
-        pareja = listaPersonasTotales->obtenerRandom;
+    Persona * pareja = getPersonaRandom();
+    while(pareja->pareja != nullptr && pareja->genero!=persona->genero){
+        pareja = getPersonaRandom();
     }
 
     persona->pareja = pareja;
@@ -159,16 +159,48 @@ void Mundo::asignarFamilia(Persona* persona){
     if(persona->edad< 20) return;
 
     int cantHijos = QRandomGenerator::global()->bounded(0,4);
-    Persona * tmp = listaPersonasTotales->primerNodo->dato;
+    Persona * tmp = getPersonaRandom();
     //agregarMetodo de moverse x nodos en la lista para seleccionar gente random
 
     int cont = 0;
     while(cont<cantHijos){
-        if( (persona->pais  == tmp->pais || persona->pareja->pais == tmp->pais)  &&  (persona->apellido == tmp->apellido ||  persona->pareja->apellido == tmp->apellido) ){
+        //Preguntamos primero por verificar para no hacer las otras preguntas
+        if(verificarEdadesHijos(persona,tmp) && (persona->pais  == tmp->pais || persona->pareja->pais == tmp->pais)  &&
+                (persona->apellido == tmp->apellido ||  persona->pareja->apellido == tmp->apellido) ){
             tmp->amigos->append(tmp);
+            cont++;
         }
-        tmp =  listaPersonasTotales->;
+        tmp =  getPersonaRandom();
     }
+}
+
+
+//Permite saber si puede ser hijo o no
+bool Mundo::verificarEdadesHijos(Persona * supuestoPadre, Persona * supuestoHijo){
+
+    //Primero preguntamos si el padre no es ya hijo de su supuesto hijo
+    bool esDigno = true;
+    for(int i = 0;i<supuestoHijo->hijos->length();i++){
+        if(supuestoPadre == supuestoHijo->hijos->at(i)) esDigno = false;
+    }
+    if(!esDigno) return esDigno;
+
+
+    //Revisar los rangos pero como?
+    for(int i = 0;i<9;i++){ //recorrer rango etario y revisar si es muy joven o  muy viejo para ser su hijo
+    longevidad->tablaRangoEtario[i]->contains(supuestoHijo);
+    }
+
+//     O CON UN SWITCH ?
+
+
+//    int opcion = 0;
+//    switch (opcion) {
+//        case 0:
+//            break;
+//        case 1:
+//    }
+
 }
 
 void Mundo::asignarAmigos(Persona* persona){
