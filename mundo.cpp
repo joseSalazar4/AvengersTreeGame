@@ -65,6 +65,38 @@ void Mundo::crearPoblacion(int cantSolicitada){
     }
 }
 
+QString crearListaAmigosTxt(Persona * persona){
+
+    QString listaTxt = "Amigos  [ ";
+    for(int i = 0 ; i<persona->amigos->length();i++){
+        listaTxt+=persona->amigos->at(i)->ID+"--";
+        listaTxt+=persona->amigos->at(i)->nombre+", ";
+    }
+    listaTxt = " ]";
+    return  listaTxt;
+}
+
+QString crearListaFamiliaTxt(Persona * persona){
+
+    QString listaTxt = "Familia  [ ";
+    for(int i = 0 ; i<persona->hijos->length();i++){
+        listaTxt+=persona->hijos->at(i)->ID+"--";
+        listaTxt+=persona->hijos->at(i)->nombre+", ";
+    }
+    listaTxt = " ]";
+    return  listaTxt;
+}
+
+QString crearExperienciasTxt(Persona * persona){
+
+    QString listaTxt = "Experiencias  [ ";
+    for(int i = 0 ; i<persona->hijos->length();i++){
+        listaTxt+="";
+    }
+    listaTxt = " ]";
+    return  listaTxt;
+}
+
 void Mundo::crearPersona(){
     Persona * nuevaPersona = new Persona();
 
@@ -188,7 +220,8 @@ QString Mundo::nebula(int IDCulpable){
     return escribirArchivo(textoLog);
 }
 
-QString Mundo::antMan(){
+QString Mundo::antMan(int cantHormigas){
+
 
 
     std::string textoLog = "";
@@ -229,11 +262,54 @@ QString Mundo::spiderMan(){
     return escribirArchivo(textoLog);
 }
 
-QString Mundo::blackDwarf(){
+QString Mundo:: blackDwarf(int veces, QString deporte){
+    Nodo<Persona> * persona = this->arbolMundo->root;
+    QList<Persona> * deportistas = {};
+    QString textoLog = "", tiempoMuerte = "", vecesQStr = "";
+    QString::number(veces)
+    std::string tiempoMuerteSTD = "";
+    const time_t current = time(nullptr);
+    tm *local_time = localtime(&current);
 
-    std::string textoLog = "ESto en teoria hizo el metodo y envio el correo/nConteste a sunuy";
+    //STD::STRING
+    tiempoMuerteSTD+= std::to_string(1900 + local_time->tm_year);
+    tiempoMuerteSTD+="-";
+    tiempoMuerteSTD+=std::to_string(1 + local_time->tm_mon);
+    tiempoMuerteSTD+="-";
+    tiempoMuerteSTD+=std::to_string(local_time->tm_mday);
+    tiempoMuerteSTD+=" ";
+    tiempoMuerteSTD+=std::to_string(local_time->tm_hour);
+    tiempoMuerteSTD+=":";
+    tiempoMuerteSTD+=std::to_string(local_time->tm_min);
+    tiempoMuerteSTD+=":";
+    tiempoMuerteSTD+=std::to_string(1 + local_time->tm_sec);
+    tiempoMuerteSTD+="  ";
+
+    //Convertir solo una vez y dejarlo asi para el for
+    tiempoMuerte = QString::fromStdString(tiempoMuerteSTD);
+
+    //Convertir solo una vez
+    vecesQStr = QString::number(veces);
+
+    //Recorrer el arbol  y hacer esto
+
+    if(persona->dato->deportes->contains(deporte) && persona->dato->ctdEjercicioxSemana == veces){
+        deportistas->append(*persona->dato);
+    }
+    for(int i=0;i<(deportistas->length()/2);i++){
+        *persona->dato  = deportistas->at(i);
+        persona->dato->vivo = false;
+
+        textoLog+=tiempoMuerte+"Humano: "+persona->dato->ID+
+                "  "+persona->dato->nombre+"\n"+persona->dato->pais+" "+
+                crearListaAmigosTxt(persona->dato)+"\nPareja: "+persona->dato->pareja->nombre+" "+
+                crearListaFamiliaTxt(persona->dato)+crearExperienciasTxt(persona->dato)+
+                "\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+vecesQStr
+                +" veces "+deporte;
+    }
+
     //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
-    return escribirArchivo(textoLog);
+    return escribirArchivo(textoLog.toStdString());
 }
 
 QString Mundo::corvusGlaive(){
@@ -241,7 +317,6 @@ QString Mundo::corvusGlaive(){
     //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
     return escribirArchivo(textoLog);
 }
-
 
 QString Mundo::escribirArchivo(std::string textoLog){
 
