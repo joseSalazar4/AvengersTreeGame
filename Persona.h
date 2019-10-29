@@ -6,6 +6,7 @@
 #define AVENGERS_TREE_GAME_PERSONA_H
 
 #include "FechaNacimiento.h"
+#include <QList>
 
 struct Persona {
     QList<QString> * deportes, *paisesVisitados;
@@ -24,7 +25,8 @@ struct Persona {
         fechaNacimiento = nullptr;
         edad = ctdEjercicioxSemana = pecadosTotales =buenasAccionesTotales = 0;
 
-        hijos = amigos = nullptr;
+        hijos = new QList<Persona*>;
+        amigos = new QList<Persona*>;
         padre = madre = pareja = nullptr;
 
         vivo = true;
