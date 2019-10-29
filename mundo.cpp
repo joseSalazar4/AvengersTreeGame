@@ -56,11 +56,11 @@ void Mundo::vivirExperiencias(Persona * persona){
     else if(cantExperiencias <55) cantPaises= QRandomGenerator::global()->bounded(2,10);
     else if(cantExperiencias <75) cantPaises= QRandomGenerator::global()->bounded(10,15);
     else if(cantExperiencias <90) cantPaises= QRandomGenerator::global()->bounded(16,25);
-    else cantPaises= QRandomGenerator::global()->bounded(25,100);
+    else cantPaises= cantPaises = QRandomGenerator::global()->bounded(25,100);
 
 
     for(int i = 0; i<cantPaises;i++){
-        QString paisVisitado = paises[QRandomGenerator::global()->bounded(0,100)];
+        QString paisVisitado = paises[QRandomGenerator::global()->bounded(0,99)];
         if(!persona->paisesVisitados->contains(paisVisitado)) persona->paisesVisitados->append(paisVisitado);
     }
 }
@@ -89,8 +89,6 @@ void Mundo::crearPoblacion(int cantSolicitada){
             qDebug().noquote() << p->nombre + ": "+ QString::number(p->edad) + "\n";
         }
     }
-
-    qDebug() << "Termino de crear poblacion";
 }
 
 QString crearListaAmigosTxt(Persona * persona){
@@ -118,8 +116,8 @@ QString crearListaFamiliaTxt(Persona * persona){
 QString crearExperienciasTxt(Persona * persona){
 
     QString listaTxt = "\nExperiencias [ ";
-    for(int i = 0 ; i<persona->hijos->length();i++){
-        listaTxt+="";
+    for(int i = 0 ; i<persona->paisesVisitados->length();i++){
+        listaTxt+=persona->paisesVisitados->at(i)+", ";
     }
     listaTxt += " ]";
     return  listaTxt;
@@ -266,7 +264,7 @@ QString Mundo::crearLog(Persona *persona){
     QString tiempoMuerte = crearTxtTiempo(), logGenerado = "";
 
     logGenerado+="\n\n"+tiempoMuerte+"ID:"+persona->ID+"  Nombre:"+persona->nombre+
-            "  Apellido:"+persona->apellido+"Pais:"+persona->pais+
+            "  Apellido:"+persona->apellido+"  Pais:"+persona->pais+
             crearListaAmigosTxt(persona)+crearListaFamiliaTxt(persona)+
             crearExperienciasTxt(persona);
 
