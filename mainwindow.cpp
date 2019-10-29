@@ -32,7 +32,7 @@ void MainWindow::on_btnBlackDwarf_clicked(){
     QString deporte = ui->comboBoxDeportes->currentText();
 
     //REESTABLECEMOS LOS VALORES ORIGINALES PARA SIGUIENTE ITERACION
-    ui->spinBoxBlackD->setValue(0);
+    ui->spinBoxBlackD->setValue(1);
     ui->comboBoxDeportes->setCurrentIndex(0);
     enviarCorreo(mundo->blackDwarf(cantidadVeces,deporte),"Black Dwarf");
 }
