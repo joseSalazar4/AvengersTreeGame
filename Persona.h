@@ -9,7 +9,7 @@
 #include <QList>
 
 struct Persona {
-    QList<QString> * deportes, *paisesVisitados;
+    QList<QString> * deportes, *paisesVisitados ;
     bool vivo;
     Persona *padre, *madre, *pareja;
     FechaNacimiento * fechaNacimiento;
@@ -27,6 +27,7 @@ struct Persona {
 
         hijos = new QList<Persona*>;
         amigos = new QList<Persona*>;
+        paisesVisitados = new QList<QString>;
         padre = madre = pareja = nullptr;
 
         vivo = true;

@@ -60,7 +60,7 @@ public:
     QString crearLog(Persona *);
     QString escribirArchivo(std::string);
     void leerArchivo(QString nombreArchivo,QString datosRecolectados[]);
-
+    QString crearTxtTiempo();
 
     //
     bool existeAmigo(Persona *);

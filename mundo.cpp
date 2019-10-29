@@ -8,13 +8,14 @@ Mundo::Mundo()
     generacion = 0;
     arbolMundo = new AVL<Persona>();
     listaPersonasTotales = new ListaDoble<Persona>();
-    continentes->append(*america);continentes->append(*asia);
-    continentes->append(*africa);continentes->append(*europa);
-    continentes->append(*oceania);
+
+    //  continentes->append(*america);continentes->append(*asia);
+    //continentes->append(*africa);continentes->append(*europa);
+   // continentes->append(*oceania);
     rangoPaises1 = rangoPaises2 = rangoNombres1 = rangoNombres2
             = rangoApellidos1 = rangoApellidos2 = rangoCreencias1
             = rangoCreencias2 = rangoProfesiones1 = rangoProfesiones2 = 0;
-    continentes->at(0);
+    //continentes->at(0);
     //El metodo lee el archivo, extrae y coloca directamente en los arrays la informacion
     leerArchivo(":/Archivos/Paises.txt",paises);
     leerArchivo(":/Archivos/Apellidos.txt",apellidos);
@@ -50,7 +51,7 @@ void Mundo::hacerBuenasAcciones(Persona* persona){
 
 
 void Mundo::vivirExperiencias(Persona * persona){
-    int cantExperiencias = QRandomGenerator::global()->bounded(0,100), cantPaises = 0;
+    int cantExperiencias = QRandomGenerator::global()->bounded(0,99), cantPaises = 0;
     if(cantExperiencias<30) cantPaises= QRandomGenerator::global()->bounded(0,2);
     else if(cantExperiencias <55) cantPaises= QRandomGenerator::global()->bounded(2,10);
     else if(cantExperiencias <75) cantPaises= QRandomGenerator::global()->bounded(10,15);
@@ -94,7 +95,7 @@ void Mundo::crearPoblacion(int cantSolicitada){
 
 QString crearListaAmigosTxt(Persona * persona){
 
-    QString listaTxt = "\nAmigos  [ ";
+    QString listaTxt = "\nAmigos [ ";
     for(int i = 0 ; i<persona->amigos->length();i++){
         listaTxt+=persona->amigos->at(i)->ID+"--";
         listaTxt+=persona->amigos->at(i)->nombre+", ";
@@ -105,25 +106,24 @@ QString crearListaAmigosTxt(Persona * persona){
 
 QString crearListaFamiliaTxt(Persona * persona){
 
-    QString listaTxt = "\nFamilia  [ ";
+    QString listaTxt = "\nFamilia [ ";
     for(int i = 0 ; i<persona->hijos->length();i++){
         listaTxt+=persona->hijos->at(i)->ID+"--";
         listaTxt+=persona->hijos->at(i)->nombre+", ";
     }
-    listaTxt =+ " ]";
+    listaTxt += " ]";
     return  listaTxt;
 }
 
 QString crearExperienciasTxt(Persona * persona){
 
-    QString listaTxt = "\nExperiencias  [ ";
+    QString listaTxt = "\nExperiencias [ ";
     for(int i = 0 ; i<persona->hijos->length();i++){
         listaTxt+="";
     }
-    listaTxt =+ " ]";
+    listaTxt += " ]";
     return  listaTxt;
 }
-
 void Mundo::crearPersona(){
     Persona * nuevaPersona = new Persona();
 
@@ -241,11 +241,36 @@ bool Mundo::verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHij
     return esDigno;
 }
 
-QString Mundo::crearLog(Persona *){
-    QString logGenerado = "";
-    METER LOG ACA PERO HAY VARIABLES QUE DEPENDEN DE CADA METODO ENTONCES \
-            PODEMOS USAR LOS crearCosas() y unir esos y luego concatenar menos cosas maybe y lo del tiempo en definitiva aca;
+QString Mundo::crearTxtTiempo(){
+    const time_t current = time(nullptr);
+    tm *local_time = localtime(&current);
 
+    std::string tiempo = "";
+    //STD::STRING
+    tiempo+= std::to_string(1900 + local_time->tm_year);
+    tiempo+="-";
+    tiempo+=std::to_string(1 + local_time->tm_mon);
+    tiempo+="-";
+    tiempo+=std::to_string(local_time->tm_mday);
+    tiempo+=" ";
+    tiempo+=std::to_string(local_time->tm_hour);
+    tiempo+=":";
+    tiempo+=std::to_string(local_time->tm_min);
+    tiempo+=":";
+    tiempo+=std::to_string(1 + local_time->tm_sec);
+    tiempo+="  ";
+    return QString::fromStdString(tiempo);
+}
+
+QString Mundo::crearLog(Persona *persona){
+    QString tiempoMuerte = crearTxtTiempo(), logGenerado = "";
+
+    logGenerado+="\n\n"+tiempoMuerte+"ID:"+persona->ID+"  Nombre:"+persona->nombre+
+            "  Apellido:"+persona->apellido+"Pais:"+persona->pais+
+            crearListaAmigosTxt(persona)+crearListaFamiliaTxt(persona)+
+            crearExperienciasTxt(persona);
+
+    return  logGenerado;
 }
 
 void Mundo::asignarAmigos(Persona* persona){
@@ -372,29 +397,10 @@ QString Mundo::spiderMan(){
 
 QString Mundo:: blackDwarf(int veces, QString deporte){
     QString::number(veces);
-    std::string tiempoMuerteSTD = "";
     QList<Persona*> * deportistas = new QList<Persona*>();
-    const time_t current = time(nullptr);
-    tm *local_time = localtime(&current);
-    Nodo<Persona> * persona = this->arbolMundo->root;
-    QString textoLog = "", tiempoMuerte = "", vecesQStr = "";
-
-    //STD::STRING
-    tiempoMuerteSTD+= std::to_string(1900 + local_time->tm_year);
-    tiempoMuerteSTD+="-";
-    tiempoMuerteSTD+=std::to_string(1 + local_time->tm_mon);
-    tiempoMuerteSTD+="-";
-    tiempoMuerteSTD+=std::to_string(local_time->tm_mday);
-    tiempoMuerteSTD+=" ";
-    tiempoMuerteSTD+=std::to_string(local_time->tm_hour);
-    tiempoMuerteSTD+=":";
-    tiempoMuerteSTD+=std::to_string(local_time->tm_min);
-    tiempoMuerteSTD+=":";
-    tiempoMuerteSTD+=std::to_string(1 + local_time->tm_sec);
-    tiempoMuerteSTD+="  ";
+    QString textoLog = "", tiempoMuerte = crearTxtTiempo() , vecesQStr = "";
 
     //Convertir solo una vez y dejarlo asi para el for
-    tiempoMuerte = QString::fromStdString(tiempoMuerteSTD);
     vecesQStr = QString::number(veces);
 
     //Recorrer el arbol  y hacer esto
@@ -406,15 +412,13 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
     }
 
     for(int i=0;i<(deportistas->length()/2);i++){
-        persona->dato  = deportistas->at(i);
-        persona->dato->vivo = false;
+        deportistas->at(i)->vivo = false;
 
         QString pareja = "N/A";
-        if (persona->dato->pareja) pareja = persona->dato->pareja->nombre;
-        textoLog+= "\n\n"+tiempoMuerte+"  ID:"+persona->dato->ID+
-                "  Nombre:"+persona->dato->nombre+" Apellido:"+persona->dato->apellido+"\nPais:"+persona->dato->pais+" "+
-                crearListaAmigosTxt(persona->dato)+"\nPareja: "+pareja+" "+crearListaFamiliaTxt(persona->dato)+
-                crearExperienciasTxt(persona->dato)+"\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+
+        if (deportistas->at(i)->pareja) pareja = deportistas->at(i)->pareja->nombre;
+
+        //GENERACION DE LOG
+        textoLog+= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+
                 vecesQStr+" veces "+deporte;
     }
 
