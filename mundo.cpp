@@ -65,7 +65,6 @@ void Mundo::crearPoblacion(int cantSolicitada){
     }
 
     qDebug() << "Termino de crear poblacion";
-
 }
 
 QString crearListaAmigosTxt(Persona * persona){

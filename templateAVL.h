@@ -91,8 +91,8 @@ private:
         {
             qDebug() << rootN->dato->ID << " ";
             listaArbol->append(rootN);
-            preOrder(rootN->left);
-            preOrder(rootN->right);
+            aplastarArbolPrivate(rootN->left);
+            aplastarArbolPrivate(rootN->right);
         }
     }
 
