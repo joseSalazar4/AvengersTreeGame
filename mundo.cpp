@@ -368,8 +368,10 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
 
     //Recorrer el arbol  y hacer esto
     QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
+
     for(int i = 0 ;i<arbolAplastado->length();i++){
-        if(persona->dato->deportes->contains(deporte) && persona->dato->ctdEjercicioxSemana == veces) deportistas->append(persona->dato);
+        if(arbolAplastado->at(i)->dato->deportes->contains(deporte) && arbolAplastado->at(i)->dato->ctdEjercicioxSemana == veces)
+            deportistas->append(arbolAplastado->at(i)->dato);
     }
 
     for(int i=0;i<(deportistas->length()/2);i++){
