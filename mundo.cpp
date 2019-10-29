@@ -149,7 +149,7 @@ void Mundo::asignarFamilia(Persona* persona){
     if(persona->estadoMarital == "Solter@") return;
 
     Persona * pareja = getPersonaRandom();
-    while(pareja->pareja != nullptr && pareja->genero!=persona->genero){
+    while((pareja->pareja != nullptr && pareja->genero!=persona->genero) || (!longevidad->validarEdadPareja(persona, pareja))){
         pareja = getPersonaRandom();
     }
 

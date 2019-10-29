@@ -14,11 +14,21 @@ public:
         for(int i=0; i<9; i++)
             tablaRangoEtario[i] = new QList<Persona*>;
     }
-    int     obtenerEdad(Persona *persona){
+    int obtenerEdad(Persona *persona){
         int edad = 2019 - persona->fechaNacimiento->anno;
         agregarARangoEtario(persona, edad);
         return edad;
 }
+
+
+     bool validarEdadPareja(Persona* p, Persona*pareja){
+        int rangoP = fHash(p->edad);
+        int rangoPareja = fHash(pareja->edad);
+
+        if(rangoPareja == rangoP || rangoPareja+1 == rangoP ||rangoPareja-1 == rangoP) return true;
+
+        return false;
+    }
 
 private:
 
@@ -37,6 +47,7 @@ int fHash(int edad){
 void agregarARangoEtario(Persona *persona, int edad){
     int index = fHash(edad);
     tablaRangoEtario[index]->append(persona);
-    }
+}
+
 };
 #endif // LONGEVIDAD_H
