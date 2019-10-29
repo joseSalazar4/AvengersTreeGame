@@ -69,18 +69,18 @@ void Mundo::crearPoblacion(int cantSolicitada){
 
 QString crearListaAmigosTxt(Persona * persona){
 
-    QString listaTxt = "Amigos  [ ";
+    QString listaTxt = "\nAmigos  [ ";
     for(int i = 0 ; i<persona->amigos->length();i++){
         listaTxt+=persona->amigos->at(i)->ID+"--";
         listaTxt+=persona->amigos->at(i)->nombre+", ";
     }
-    listaTxt = " ]";
+    listaTxt += " ]";
     return  listaTxt;
 }
 
 QString crearListaFamiliaTxt(Persona * persona){
 
-    QString listaTxt = "Familia  [ ";
+    QString listaTxt = "\nFamilia  [ ";
     for(int i = 0 ; i<persona->hijos->length();i++){
         listaTxt+=persona->hijos->at(i)->ID+"--";
         listaTxt+=persona->hijos->at(i)->nombre+", ";
@@ -91,7 +91,7 @@ QString crearListaFamiliaTxt(Persona * persona){
 
 QString crearExperienciasTxt(Persona * persona){
 
-    QString listaTxt = "Experiencias  [ ";
+    QString listaTxt = "\nExperiencias  [ ";
     for(int i = 0 ; i<persona->hijos->length();i++){
         listaTxt+="";
     }
@@ -377,9 +377,11 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
         persona->dato  = deportistas->at(i);
         persona->dato->vivo = false;
 
-        textoLog+=tiempoMuerte+"Humano: "+persona->dato->ID+
+        QString pareja = "N/A";
+        if (persona->dato->pareja) pareja = persona->dato->pareja->nombre;
+        textoLog+="\n\n"+tiempoMuerte+"Humano: "+persona->dato->ID+
                 "  "+persona->dato->nombre+"\n"+persona->dato->pais+" "+
-                crearListaAmigosTxt(persona->dato)+"\nPareja: "+persona->dato->pareja->nombre+" "+
+                crearListaAmigosTxt(persona->dato)+"\nPareja: "+pareja+" "+
                 crearListaFamiliaTxt(persona->dato)+crearExperienciasTxt(persona->dato)+
                 "\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+vecesQStr
                 +" veces "+deporte;
@@ -420,7 +422,6 @@ QString Mundo:: escribirArchivo(std::string textoLog){
     herramientaArchivo.open (nombreArchivo);
     herramientaArchivo << textoLog;
     herramientaArchivo.close();
-
 
     //Convertimos de string a QString
     QString nombreArchivoMod = QString::fromStdString(nombreArchivo);
