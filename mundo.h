@@ -24,6 +24,8 @@ public:
     ListaDoble<Persona> * listaPersonasTotales;
     Longevidad * longevidad = new Longevidad();
     RegistroIds * registroIds = new RegistroIds();
+    QList<QString> * asia, *america,* africa, *oceania, *europa;
+    QList<QList<QString>> * continentes = new QList<QList<QString>>();
     QString nombresHombres[499], nombresMujeres[499], apellidos[999], paises[99], creencias[13], profesiones[55];
     int rangoNombres1, rangoNombres2,  rangoApellidos1, rangoApellidos2,
     rangoProfesiones1,  rangoProfesiones2, rangoCreencias1, rangoCreencias2,
@@ -55,6 +57,7 @@ public:
     void asignarFamilia(Persona*);
 
     //Archivos
+    QString crearLog(Persona *);
     QString escribirArchivo(std::string);
     void leerArchivo(QString nombreArchivo,QString datosRecolectados[]);
 
@@ -63,6 +66,7 @@ public:
     bool existeAmigo(Persona *);
     bool verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHijo);
     void vivirExperiencias(Persona *);
+    void encontrarContinente(Persona *  );
 
     //Devuelve una persona Random de la lista Principal
     Persona* getPersonaRandom();

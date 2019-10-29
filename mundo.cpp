@@ -8,10 +8,13 @@ Mundo::Mundo()
     generacion = 0;
     arbolMundo = new AVL<Persona>();
     listaPersonasTotales = new ListaDoble<Persona>();
+    continentes->append(*america);continentes->append(*asia);
+    continentes->append(*africa);continentes->append(*europa);
+    continentes->append(*oceania);
     rangoPaises1 = rangoPaises2 = rangoNombres1 = rangoNombres2
             = rangoApellidos1 = rangoApellidos2 = rangoCreencias1
             = rangoCreencias2 = rangoProfesiones1 = rangoProfesiones2 = 0;
-
+    continentes->at(0);
     //El metodo lee el archivo, extrae y coloca directamente en los arrays la informacion
     leerArchivo(":/Archivos/Paises.txt",paises);
     leerArchivo(":/Archivos/Apellidos.txt",apellidos);
@@ -19,6 +22,12 @@ Mundo::Mundo()
     leerArchivo(":/Archivos/NombresH.txt",nombresHombres);
     leerArchivo(":/Archivos/NombresM.txt",nombresMujeres);
     leerArchivo(":/Archivos/Profesiones.txt",profesiones);
+}
+
+void Mundo::encontrarContinente(Persona * persona){
+    for(int i = 0 ; i<5 ; i++){
+        if(continentes->at(i).contains(persona->pais)) persona->continente = continentes->at(i).at(0);
+    }
 }
 
 void Mundo::hacerlesPecar(Persona* persona){
@@ -38,6 +47,7 @@ void Mundo::hacerBuenasAcciones(Persona* persona){
         persona->buenasAccionesTotales+= persona->buenasAcciones[j];
     }
 }
+
 
 void Mundo::vivirExperiencias(Persona * persona){
     int cantExperiencias = QRandomGenerator::global()->bounded(0,100), cantPaises = 0;
@@ -137,8 +147,8 @@ void Mundo::crearPersona(){
     nuevaPersona->edad = longevidad->obtenerEdad(nuevaPersona);
     nuevaPersona->deportes = deportes->generarDeportes(nuevaPersona);
     nuevaPersona->ctdEjercicioxSemana = deportes->generarVecesxSemana();
-    nuevaPersona->paisesVisitados->append(paises)QRandomGenerator::global()->bounded();
     hacerBuenasAcciones(nuevaPersona);
+    vivirExperiencias(nuevaPersona);
     hacerlesPecar(nuevaPersona);
 
     //Finalmente se agrega a la listaPrincipal del mundo
@@ -229,6 +239,13 @@ bool Mundo::verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHij
     else qDebug()<<"ERROR EN LA EDAD DEL PADRE!!!!!!!\n\nALERTAAAA\\n\nATENCIONNNN";
 
     return esDigno;
+}
+
+QString Mundo::crearLog(Persona *){
+    QString logGenerado = "";
+    METER LOG ACA PERO HAY VARIABLES QUE DEPENDEN DE CADA METODO ENTONCES \
+            PODEMOS USAR LOS crearCosas() y unir esos y luego concatenar menos cosas maybe y lo del tiempo en definitiva aca;
+
 }
 
 void Mundo::asignarAmigos(Persona* persona){
@@ -394,7 +411,7 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
 
         QString pareja = "N/A";
         if (persona->dato->pareja) pareja = persona->dato->pareja->nombre;
-        textoLog+="\n\n"+tiempoMuerte+"  ID:"+persona->dato->ID+
+        textoLog+= "\n\n"+tiempoMuerte+"  ID:"+persona->dato->ID+
                 "  Nombre:"+persona->dato->nombre+" Apellido:"+persona->dato->apellido+"\nPais:"+persona->dato->pais+" "+
                 crearListaAmigosTxt(persona->dato)+"\nPareja: "+pareja+" "+crearListaFamiliaTxt(persona->dato)+
                 crearExperienciasTxt(persona->dato)+"\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+
