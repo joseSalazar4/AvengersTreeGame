@@ -62,6 +62,7 @@ public:
     //
     bool existeAmigo(Persona *);
     bool verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHijo);
+    void vivirExperiencias(Persona *);
 
     //Devuelve una persona Random de la lista Principal
     Persona* getPersonaRandom();

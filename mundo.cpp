@@ -39,6 +39,21 @@ void Mundo::hacerBuenasAcciones(Persona* persona){
     }
 }
 
+void Mundo::vivirExperiencias(Persona * persona){
+    int cantExperiencias = QRandomGenerator::global()->bounded(0,100), cantPaises = 0;
+    if(cantExperiencias<30) cantPaises= QRandomGenerator::global()->bounded(0,2);
+    else if(cantExperiencias <55) cantPaises= QRandomGenerator::global()->bounded(2,10);
+    else if(cantExperiencias <75) cantPaises= QRandomGenerator::global()->bounded(10,15);
+    else if(cantExperiencias <90) cantPaises= QRandomGenerator::global()->bounded(16,25);
+    else cantPaises= QRandomGenerator::global()->bounded(25,100);
+
+
+    for(int i = 0; i<cantPaises;i++){
+        QString paisVisitado = paises[QRandomGenerator::global()->bounded(0,100)];
+        if(!persona->paisesVisitados->contains(paisVisitado)) persona->paisesVisitados->append(paisVisitado);
+    }
+}
+
 void Mundo::crearPoblacion(int cantSolicitada){
     //La mayor parte de las veces no sera la primera vez entonces preguntamos al inicio.
     for(int i = 0 ; i<cantSolicitada;i++){
@@ -110,8 +125,7 @@ void Mundo::crearPersona(){
     nuevaPersona->ID = QString::number(registroIds->generarId());
 
     //Lectura de archivos
-    int n = QRandomGenerator::global()->bounded(rangoPaises1,rangoPaises2);
-    nuevaPersona->pais = paises[n];
+    nuevaPersona->pais = paises[QRandomGenerator::global()->bounded(rangoPaises1,rangoPaises2)];
     nuevaPersona->creencia = creencias[QRandomGenerator::global()->bounded(rangoCreencias1,rangoCreencias2)];
     nuevaPersona->apellido = apellidos[QRandomGenerator::global()->bounded(rangoApellidos1,rangoApellidos2)];
     nuevaPersona->profesion = profesiones[QRandomGenerator::global()->bounded(rangoProfesiones1,rangoProfesiones2)];
@@ -123,6 +137,7 @@ void Mundo::crearPersona(){
     nuevaPersona->edad = longevidad->obtenerEdad(nuevaPersona);
     nuevaPersona->deportes = deportes->generarDeportes(nuevaPersona);
     nuevaPersona->ctdEjercicioxSemana = deportes->generarVecesxSemana();
+    nuevaPersona->paisesVisitados->append(paises)QRandomGenerator::global()->bounded();
     hacerBuenasAcciones(nuevaPersona);
     hacerlesPecar(nuevaPersona);
 
