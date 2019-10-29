@@ -85,7 +85,7 @@ QString crearListaFamiliaTxt(Persona * persona){
         listaTxt+=persona->hijos->at(i)->ID+"--";
         listaTxt+=persona->hijos->at(i)->nombre+", ";
     }
-    listaTxt = " ]";
+    listaTxt =+ " ]";
     return  listaTxt;
 }
 
@@ -95,7 +95,7 @@ QString crearExperienciasTxt(Persona * persona){
     for(int i = 0 ; i<persona->hijos->length();i++){
         listaTxt+="";
     }
-    listaTxt = " ]";
+    listaTxt =+ " ]";
     return  listaTxt;
 }
 
@@ -379,12 +379,11 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
 
         QString pareja = "N/A";
         if (persona->dato->pareja) pareja = persona->dato->pareja->nombre;
-        textoLog+="\n\n"+tiempoMuerte+"Humano: "+persona->dato->ID+
-                "  "+persona->dato->nombre+"\n"+persona->dato->pais+" "+
-                crearListaAmigosTxt(persona->dato)+"\nPareja: "+pareja+" "+
-                crearListaFamiliaTxt(persona->dato)+crearExperienciasTxt(persona->dato)+
-                "\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+vecesQStr
-                +" veces "+deporte;
+        textoLog+="\n\n"+tiempoMuerte+"  ID:"+persona->dato->ID+
+                "  Nombre:"+persona->dato->nombre+" Apellido:"+persona->dato->apellido+"\nPais:"+persona->dato->pais+" "+
+                crearListaAmigosTxt(persona->dato)+"\nPareja: "+pareja+" "+crearListaFamiliaTxt(persona->dato)+
+                crearExperienciasTxt(persona->dato)+"\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+
+                vecesQStr+" veces "+deporte;
     }
 
     //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
