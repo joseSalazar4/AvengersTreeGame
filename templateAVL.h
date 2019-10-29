@@ -71,6 +71,20 @@ private:
          }
      }
 
+     void preOrder( Nodo<T>* node)
+     {
+         if (node == NULL)
+             return;
+
+         /* first print data of node */
+          node->dato;
+
+         /* then recur on left sutree */
+         preOrder(node->left);
+
+         /* now recur on right subtree */
+         preOrder(node->right);
+     }
     void * aplastarArbolPrivate(Nodo<T> *rootN)  //Genera una lista del arbol
     {
         if(root != nullptr)

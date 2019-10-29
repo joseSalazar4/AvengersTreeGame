@@ -4,11 +4,11 @@
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    ui->setupUi(this);
     mundo = new Mundo();
     ventanaCrearPersonas.hide();
-    connect(&ventanaCrearPersonas, SIGNAL(finalizo(int,int,int,int,int,int,int,int,int,int,int)), this, SLOT(on_btnGenerarPersonas_Finished(int,int,int,int,int,int,int,int,int,int, int)));
     ui->comboBoxDeportes->addItems(nombresDeportes);
-    ui->setupUi(this);
+    connect(&ventanaCrearPersonas, SIGNAL(finalizo(int,int,int,int,int,int,int,int,int,int,int)), this, SLOT(on_btnGenerarPersonas_Finished(int,int,int,int,int,int,int,int,int,int, int)));
 }
 
 MainWindow::~MainWindow()
