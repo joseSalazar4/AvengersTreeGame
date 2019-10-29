@@ -54,7 +54,7 @@ void Mundo::crearPoblacion(int cantSolicitada){
         }
     }
     generacion++;
-    arbolMundo->imprimirArbol(); //Prueba
+    //arbolMundo->imprimirArbol(); //Prueba
 
     for(int i = 0; i<9; i++){
         qDebug() << "       Rango "+QString::number(i);
@@ -64,12 +64,8 @@ void Mundo::crearPoblacion(int cantSolicitada){
         }
     }
 
-    //Prueba de obtener persona random
-    qDebug() << "Prueba de personas Random";
-    for(int k=0; k<10; k++){
-        Persona *pn= getPersonaRandom();
-        qDebug().noquote() << pn->nombre + "\n";
-    }
+    qDebug() << "Termino de crear poblacion";
+
 }
 
 QString crearListaAmigosTxt(Persona * persona){
@@ -127,6 +123,7 @@ void Mundo::crearPersona(){
     nuevaPersona->fechaNacimiento = new FechaNacimiento();
     nuevaPersona->edad = longevidad->obtenerEdad(nuevaPersona);
     nuevaPersona->deportes = deportes->generarDeportes(nuevaPersona);
+    nuevaPersona->ctdEjercicioxSemana = deportes->generarVecesxSemana();
     hacerBuenasAcciones(nuevaPersona);
     hacerlesPecar(nuevaPersona);
 
@@ -149,8 +146,15 @@ void Mundo::asignarFamilia(Persona* persona){
     if(persona->estadoMarital == "Solter@") return;
 
     Persona * pareja = getPersonaRandom();
+    int i = 0;
     while((pareja->pareja != nullptr || pareja->genero == persona->genero) || (!longevidad->validarEdadPareja(persona, pareja))){
+        if(i >= listaPersonasTotales->largo){
+            persona->estadoMarital = "Solter@";
+            break;
+        }
+        qDebug() << "No es digno";
         pareja = getPersonaRandom();
+        i++;
     }
 
     persona->pareja = pareja;
@@ -164,6 +168,7 @@ void Mundo::asignarFamilia(Persona* persona){
 
     int cont = 0, contMax = 0;
     while(cont<cantHijos){
+        qDebug() << "Cantidad de hijos";
         //Preguntamos primero por verificar para no hacer las otras preguntas
         if(verificarValidezHijos(persona,tmp) && (persona->pais  == tmp->pais || persona->pareja->pais == tmp->pais)  &&
                 (persona->apellido == tmp->apellido ||  persona->pareja->apellido == tmp->apellido)){
@@ -219,6 +224,7 @@ void Mundo::asignarAmigos(Persona* persona){
 
     int cont = 0;
     while(cont<cantAmigos){
+        qDebug() << "Asignando amigos";
         if(!persona->amigos->contains(extrano)){
             if(persona->pais  == extrano->pais){
                 persona->amigos->append(extrano);

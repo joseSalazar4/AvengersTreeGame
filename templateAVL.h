@@ -87,9 +87,9 @@ private:
      }
     void * aplastarArbolPrivate(Nodo<T> *rootN)  //Genera una lista del arbol
     {
-        if(root != nullptr)
+        if(rootN != nullptr)
         {
-            qDebug() << rootN->dato << "";
+            qDebug() << rootN->dato->ID << " ";
             listaArbol->append(rootN);
             preOrder(rootN->left);
             preOrder(rootN->right);
