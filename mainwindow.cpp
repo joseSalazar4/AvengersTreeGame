@@ -40,7 +40,7 @@ void MainWindow::on_btnEbonyMaw_clicked(){
     //El boton simplemente enviara el correo con el archivo de texto
     int ID = ui->spinBoxEbonyMaw->value();
 
-    ui->spinBoxEbonyMaw->setValue(0);
+    ui->spinBoxEbonyMaw->setValue(1);
     enviarCorreo(mundo->ebonyMaw(ID),"Ebony Maw");
 }
 
@@ -60,7 +60,7 @@ void MainWindow::on_btnNebula_clicked()
 {
     int ID = ui->spinBoxNebula->value();
 
-    ui->spinBoxNebula->setValue(0);
+    ui->spinBoxNebula->setValue(1);
     //El boton simplemente enviara el correo con el archivo de texto
     enviarCorreo(mundo->nebula(ID),"Nebula");
 }
@@ -107,7 +107,7 @@ void MainWindow::on_btnGenerarPersonas_Finished(int _rangoNomb1, int _rangoNomb2
 void MainWindow::on_btnAntMan_clicked()
 {
     int cantHormigas =  ui->spinBoxAntMan->value();
-    ui->spinBoxAntMan->setValue(0);
+    ui->spinBoxAntMan->setValue(1);
     //El boton simplemente enviara el correo con el archivo de texto
 
     enviarCorreo(mundo->antMan(cantHormigas),"Ant Man");
@@ -116,7 +116,7 @@ void MainWindow::on_btnAntMan_clicked()
 void MainWindow::on_btnThor_clicked()
 {
     int nivel  = ui->spinBoxThor->value();
-    ui->spinBoxThor->setValue(0);
+    ui->spinBoxThor->setValue(1);
     //El boton simplemente enviara el correo con el archivo de texto
     enviarCorreo(mundo->thor(nivel),"Thor");
 }
@@ -136,4 +136,14 @@ void MainWindow::on_btnIronMan_clicked()
 void MainWindow::on_btnGenerarPersonas_clicked()
 {
     ventanaCrearPersonas.show();
+}
+
+void MainWindow::on_btnConsultaEliminaciones_clicked()
+{
+    enviarCorreo(mundo->consultarEliminaciones(), "Consulta Eliminaciones");
+}
+
+void MainWindow::on_btnConsultaSalvaciones_clicked()
+{
+    enviarCorreo(mundo->ironMan(),"Consulta Salvaciones");
 }
