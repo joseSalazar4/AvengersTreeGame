@@ -61,6 +61,10 @@ public:
         }
      }
 
+     Nodo<T> * buscar(int id){
+        return buscarNodo(id, root);
+     }
+
 private:
 
      void imprimirNivelPrivate(Nodo<T> *nodo, int nivel){
@@ -70,6 +74,20 @@ private:
             imprimirNivelPrivate(nodo->right, nivel+1);
          }
      }
+
+     Nodo<T>* buscarNodo (int valor, Nodo<T>* nodo)
+      {
+          if (nodo == nullptr)
+            return nullptr;
+          else if (nodo->dato->ID == valor)
+            return nodo;
+          else if (nodo->dato->ID < valor)
+            return buscar(valor, nodo->right);
+          else
+            return buscar(valor, nodo->left);
+
+      }
+
 
      void preOrder( Nodo<T>* node)
      {

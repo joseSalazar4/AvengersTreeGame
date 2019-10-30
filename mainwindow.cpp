@@ -17,7 +17,6 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::enviarCorreo(QString nombre,QString nombreCaracter){
-
     QList<QString> archivos = {nombre};
     Smtp* smtp = new Smtp("mikomeka1@gmail.com", "mikomeka11", "smtp.gmail.com", 465);
     connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
