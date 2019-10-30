@@ -18,19 +18,22 @@ struct Persona {
     int edad, ctdEjercicioxSemana, pecados[6], buenasAcciones[6], pecadosTotales, buenasAccionesTotales;
 
     Persona(){
+
+        vivo = true;
         ID = nombre = apellido = genero = creencia =
         profesion = estadoMarital = continente = pais = "";
 
-        deportes = paisesVisitados = nullptr;
         fechaNacimiento = nullptr;
-        edad = ctdEjercicioxSemana = pecadosTotales =buenasAccionesTotales = 0;
-
         hijos = new QList<Persona*>;
         amigos = new QList<Persona*>;
-        paisesVisitados = new QList<QString>;
+        edad = ctdEjercicioxSemana = 0;
         padre = madre = pareja = nullptr;
+        deportes = paisesVisitados = nullptr;
+        paisesVisitados = new QList<QString>;
 
-        vivo = true;
+        for(int i = 0; i<7;i++) pecados[i] = 0;
+        for(int i = 0; i<7;i++) buenasAcciones[i] = 0;
+
     }
 
 };

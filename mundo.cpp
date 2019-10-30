@@ -12,13 +12,22 @@ Mundo::Mundo()
     arbolMundo = new AVL<Persona>();
     listaPersonasTotales = new ListaDoble<Persona>();
 
-    //  continentes->append(*america);continentes->append(*asia);
-    //continentes->append(*africa);continentes->append(*europa);
-   // continentes->append(*oceania);
     rangoPaises1 = rangoPaises2 = rangoNombres1 = rangoNombres2
-            = rangoApellidos1 = rangoApellidos2 = rangoCreencias1
-            = rangoCreencias2 = rangoProfesiones1 = rangoProfesiones2 = 0;
-    //continentes->at(0);
+     = rangoApellidos1 = rangoApellidos2 = cantAsesinados
+     =rangoCreencias1 = rangoCreencias2 = cantSalvados
+     = rangoProfesiones1 = rangoProfesiones2 = 0;
+
+    salvacionesThor= new QList<QString>;
+    salvacionesAntMan= new QList<QString>;
+    salvacionesIronMan= new QList<QString>;
+    eliminacionesNebula= new QList<QString>;
+    salvacionesSpiderMan= new QList<QString>;
+    eliminacionesBlackD = new QList<QString>;
+    eliminacionesEbonyMaw= new QList<QString>;
+    eliminacionesMidnight= new QList<QString>;
+    eliminacionesCorvusGlaive= new QList<QString>;
+
+
     //El metodo lee el archivo, extrae y coloca directamente en los arrays la informacion
     leerArchivo(":/Archivos/Paises.txt",paises);
     leerArchivo(":/Archivos/Apellidos.txt",apellidos);
@@ -292,8 +301,8 @@ QString Mundo::crearTxtTiempo(){
 QString Mundo::crearLog(Persona *persona){
     QString tiempoMuerte = crearTxtTiempo(), logGenerado = "";
 
-    logGenerado+="\n\n"+tiempoMuerte+"ID:"+persona->ID+" Nombre: "+persona->nombre+
-            " Apellido: "+persona->apellido+" Pais: "+persona->pais+
+    logGenerado+="\n\n\n"+tiempoMuerte+"「ID:"+persona->ID+"」 「Nombre: "+persona->nombre+
+            "」 「Apellido: "+persona->apellido+"」 「Pais: "+persona->pais+"」"+
             crearListaAmigosTxt(persona)+crearListaFamiliaTxt(persona)+
             crearExperienciasTxt(persona);
 
@@ -367,12 +376,20 @@ void irANivel(Nodo<Persona> * root, int nivel){
 }
 
 
+//
+//
+//                                                           PERSONAJES:
+//                                                        HEROES Y VILLLANOS
+//
+
+
+
+
 //---------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------
 //----------------------------------------------------SUPER-HEROES-----------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------
-
 
 QString Mundo::thor(int nivel){
     Nodo<Persona> * root = arbolMundo->root;
@@ -433,16 +450,20 @@ QString Mundo::corvusGlaive(){
     QString textoLog = "",tiempoMuerte = crearTxtTiempo();
     QList<Persona*> * personasPecadoras = new QList<Persona*>;
     QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
-    int cantPorEliminar = arbolAplastado->length()*(5/100);
+
+    //Obtenemos el 5%
+    int cantPorEliminar = (arbolAplastado->length())*(0.05);
 
     for(int i =0; i<arbolAplastado->length();i++) heapPecados->insertarPrioridadMax(arbolAplastado->at(i)->dato);
     for(int i =0; i<cantPorEliminar;i++) personasPecadoras->append(heapPecados->eliminarPrioridadMax());
 
     for(int i =0; i<personasPecadoras->length();i++){
+        cantAsesinados++;
         personasPecadoras->at(i)->vivo = false;
         textoLog+=crearLog(personasPecadoras->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Corvus Glaive, por tener una cantidad total de pecados: "+QString::number(personasPecadoras->at(i)->pecadosTotales);
     }
     eliminacionesCorvusGlaive->append(textoLog);
+
     return escribirArchivo(textoLog.toStdString());
 }
 
@@ -500,14 +521,15 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
 
         QString pareja = "N/A";
         if (deportistas->at(i)->pareja) pareja = deportistas->at(i)->pareja->nombre;
-
+        cantAsesinados++;
         //GENERACION DE LOG
         textoLog+= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+
                 vecesQStr+" veces "+deporte;
 
         //HACER ESTO CON TODOS LOS CARACTERES
-        eliminacionesBlackD->append(textoLog);
+
     }
+    eliminacionesBlackD->append(textoLog);
 
     //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
     return escribirArchivo(textoLog.toStdString());
@@ -573,10 +595,6 @@ Persona* Mundo::getPersonaRandom(){
 QString Mundo::consultarSalvaciones(){
     QString consulta = "";
     QList<QList<QString>> * salvacionesHeroes = new QList<QList<QString>>;
-
-    int cantSalvados = salvacionesSpiderMan->length() + salvacionesIronMan->length()
-    + salvacionesThor->length()+ salvacionesAntMan->length();
-
     consulta+= "\nLa cantidad total de personas salavadas es: "+QString::number(cantSalvados)+"\n\n";
 
     salvacionesHeroes->append(*salvacionesThor);
@@ -598,10 +616,7 @@ QString Mundo::consultarEliminaciones(){
     QString consulta= "";
     QList<QList<QString>> * eliminacionesVillanos = new QList<QList<QString>>;
 
-    int cantSalvados = eliminacionesBlackD->length() + eliminacionesNebula->length()
-    + eliminacionesEbonyMaw->length()+ eliminacionesMidnight->length()+ eliminacionesCorvusGlaive->length();
-
-    consulta+= "\nLa cantidad total de personas salavadas es: "+QString::number(cantSalvados)+"\n\n";
+    consulta+= "\nLa cantidad total de personas asesinadas es: "+QString::number(cantAsesinados)+"\n\n";
     eliminacionesVillanos->append(*eliminacionesBlackD);
     eliminacionesVillanos->append(*eliminacionesNebula);
     eliminacionesVillanos->append(*eliminacionesMidnight);
