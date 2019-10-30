@@ -15,9 +15,21 @@ Mundo::Mundo()
     //continentes->append(*africa);continentes->append(*europa);
    // continentes->append(*oceania);
     rangoPaises1 = rangoPaises2 = rangoNombres1 = rangoNombres2
-            = rangoApellidos1 = rangoApellidos2 = rangoCreencias1
-            = rangoCreencias2 = rangoProfesiones1 = rangoProfesiones2 = 0;
-    //continentes->at(0);
+     = rangoApellidos1 = rangoApellidos2
+     =rangoCreencias1 = rangoCreencias2
+     = rangoProfesiones1 = rangoProfesiones2 = 0;
+
+    salvacionesThor= new QList<QString>;
+    salvacionesAntMan= new QList<QString>;
+    salvacionesIronMan= new QList<QString>;
+    eliminacionesNebula= new QList<QString>;
+    salvacionesSpiderMan= new QList<QString>;
+    eliminacionesBlackD = new QList<QString>;
+    eliminacionesEbonyMaw= new QList<QString>;
+    eliminacionesMidnight= new QList<QString>;
+    eliminacionesCorvusGlaive= new QList<QString>;
+
+
     //El metodo lee el archivo, extrae y coloca directamente en los arrays la informacion
     leerArchivo(":/Archivos/Paises.txt",paises);
     leerArchivo(":/Archivos/Apellidos.txt",apellidos);
@@ -34,7 +46,6 @@ void Mundo::encontrarContinente(Persona * persona){
 }
 
 void Mundo::hacerlesPecar(Persona* persona){
-    qDebug()<< "PEcados personas";
     persona->pecadosTotales = 0;
     for(int j = 0; j<7;j++){
         persona->pecados[j]+= QRandomGenerator::global()->bounded(1,100);
@@ -409,7 +420,7 @@ QString Mundo::corvusGlaive(){
     QString textoLog = "",tiempoMuerte = crearTxtTiempo();
     QList<Persona*> * personasPecadoras = new QList<Persona*>;
     QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
-    int cantPorEliminar = arbolAplastado->length()*(5/100);
+    int cantPorEliminar = (arbolAplastado->length())*(5/100);
 
     for(int i =0; i<arbolAplastado->length();i++) heapPecados->insertar(arbolAplastado->at(i)->dato);
     for(int i =0; i<cantPorEliminar;i++) personasPecadoras->append(heapPecados->eliminar());
