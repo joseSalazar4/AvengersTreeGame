@@ -49,6 +49,10 @@ private slots:
     void on_btnGenerarPersonas_Finished(int,int,int,int,int,int,int,int,int,int,int);
 
 
+    void on_btnConsultaEliminaciones_clicked();
+
+    void on_btnConsultaSalvaciones_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
