@@ -20,11 +20,13 @@ public:
         index++;
     }
 
-    void eliminar(){
+    Persona* eliminar(){
         Persona* ultimoElemento = heap->at(index-1);
+        Persona* eliminado = heap->at(0);
         heap->replace(0, ultimoElemento);
         index--;
         algoritmoEliminar(index, 0);
+        return eliminado;
     }
 
     void imprimir(){
@@ -32,6 +34,7 @@ public:
             qDebug() << QString::number(heap->at(i)->pecadosTotales);
         }
     }
+
 private:
     void algoritmoEliminar(int n, int i){
         int largest = i; // Initialize largest as root
