@@ -407,16 +407,17 @@ QString Mundo::nebula(int IDCulpable){
 
 QString Mundo::corvusGlaive(){
     QString textoLog = "",tiempoMuerte = crearTxtTiempo();
+    QList<Persona*> * personasPecadoras = new QList<Persona*>;
     QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
     int cantPorEliminar = arbolAplastado->length()*(5/100);
 
     for(int i =0; i<arbolAplastado->length();i++) heapPecados->insertar(arbolAplastado->at(i)->dato);
-    for(int i =0; i<cantPorEliminar;i++) heapPecados->eliminar();// = QList<Persona> donde metemos y luego recorremos y metemos en eliminaciones y  es mas facil hacer el log
+    for(int i =0; i<cantPorEliminar;i++) personasPecadoras->append(heapPecados->eliminar());
 
 
-    for(int i =0; i<listaGenteEliminada->length();i++){
-
-        textoLog+=crearLog(listGenteEliminada->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por tener una cantidad total de pecados: "+;
+    for(int i =0; i<personasPecadoras->length();i++){
+        personasPecadoras->at(i)->vivo = false;
+        textoLog+=crearLog(personasPecadoras->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Corvus Glaive, por tener una cantidad total de pecados: "+QString::number(personasPecadoras->at(i)->pecadosTotales);
     }
     eliminacionesCorvusGlaive->append(textoLog);
     return escribirArchivo(textoLog.toStdString());
@@ -438,12 +439,12 @@ QString Mundo::ebonyMaw(int IDCulpable){
     Persona * victima = new  Persona();
     QString textoLog = "", tiempoMuerte = crearTxtTiempo(), pareja = "N/A";
 
-    ->vivo = false;
+    //->vivo = false;
 
-    if (deportistas->at(i)->pareja) pareja = deportistas->at(i)->pareja->nombre;
+    //if (deportistas->at(i)->pareja) pareja = deportistas->at(i)->pareja->nombre;
 
     //GENERACION DE LOG
-    textoLog+= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Ebony Maw por ser familia de la persona con ID: "+
+    //textoLog+= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Ebony Maw por ser familia de la persona con ID: "+
             QString::number(IDCulpable);
 
 
