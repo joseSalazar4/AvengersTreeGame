@@ -560,10 +560,6 @@ Persona* Mundo::getPersonaRandom(){
 QString Mundo::consultarSalvaciones(){
     QString consulta = "";
     QList<QList<QString>> * salvacionesHeroes = new QList<QList<QString>>;
-
-    int cantSalvados = salvacionesSpiderMan->length() + salvacionesIronMan->length()
-    + salvacionesThor->length()+ salvacionesAntMan->length();
-
     consulta+= "\nLa cantidad total de personas salavadas es: "+QString::number(cantSalvados)+"\n\n";
 
     salvacionesHeroes->append(*salvacionesThor);
