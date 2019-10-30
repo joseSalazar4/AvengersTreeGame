@@ -42,7 +42,6 @@ public:
         qDebug() << "Altura: " + QString::number(root->height);
         qDebug() << "Cantidad: " + QString::number(this->cantidadPersonas);
         imprimirNiveles();
-
     }
 
      QList<Nodo<T>*> * aplastarArbol(){
@@ -61,8 +60,13 @@ public:
         }
      }
 
-     Nodo<T> * buscar(int id){
+     Nodo<T> * buscar(QString id){
         return buscarNodo(id, root);
+     }
+
+     bool estaEnElArbol(QString id){
+         if(buscarNodo(id, root) == nullptr) return false;
+         return true;
      }
 
 private:
@@ -75,16 +79,16 @@ private:
          }
      }
 
-     Nodo<T>* buscarNodo (int valor, Nodo<T>* nodo)
+     Nodo<T>* buscarNodo (QString valor, Nodo<T>* nodo)
       {
           if (nodo == nullptr)
             return nullptr;
           else if (nodo->dato->ID == valor)
             return nodo;
           else if (nodo->dato->ID < valor)
-            return buscar(valor, nodo->right);
+            return buscarNodo(valor, nodo->right);
           else
-            return buscar(valor, nodo->left);
+            return buscarNodo(valor, nodo->left);
 
       }
 
@@ -107,7 +111,6 @@ private:
     {
         if(rootN != nullptr)
         {
-            qDebug() << rootN->dato->ID << " ";
             listaArbol->append(rootN);
             aplastarArbolPrivate(rootN->left);
             aplastarArbolPrivate(rootN->right);
