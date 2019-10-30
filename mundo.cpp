@@ -452,7 +452,7 @@ QString Mundo::corvusGlaive(){
     QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
 
     //Obtenemos el 5%
-    int cantPorEliminar = (arbolAplastado->length())*(0.05);
+    int cantPorEliminar = int((arbolAplastado->length())*(0.05));
 
     for(int i =0; i<arbolAplastado->length();i++) heapPecados->insertarPrioridadMax(arbolAplastado->at(i)->dato);
     for(int i =0; i<cantPorEliminar;i++) personasPecadoras->append(heapPecados->eliminarPrioridadMax());
@@ -472,11 +472,18 @@ QString Mundo::midnight(){
     QString textoLog = "",tiempoMuerte = crearTxtTiempo();
     QList<Persona*> * personasNoBuenas = new QList<Persona*>; //No se me ocurrio un mejor nombre \_°-°_/
     QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
-    int cantPorEliminar = arbolAplastado->length()*(5/100);
+
+    int cantPorEliminar = int((arbolAplastado->length())*(0.05));
 
     for(int i =0; i<arbolAplastado->length();i++) heapBuenasAcciones->insertarPrioridadMin(arbolAplastado->at(i)->dato);
     for(int i =0; i<cantPorEliminar;i++) personasNoBuenas->append(heapBuenasAcciones->eliminarPrioridadMin());
 
+    for(int i =0; i<personasNoBuenas->length();i++){
+        cantAsesinados++;
+        personasNoBuenas->at(i)->vivo = false;
+        textoLog+=crearLog(personasNoBuenas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasNoBuenas->at(i)->buenasAccionesTotales);
+    }
+    qDebug() << textoLog;
     eliminacionesMidnight->append(textoLog);
     return escribirArchivo(textoLog.toStdString());
 }
