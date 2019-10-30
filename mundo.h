@@ -38,8 +38,8 @@ public:
     paises[99],creencias[13], profesiones[55];
 
     int rangoNombres1, rangoNombres2,  rangoApellidos1, rangoApellidos2,rangoProfesiones1,
-    rangoProfesiones2, rangoCreencias1, rangoCreencias2,
-    rangoPaises1, rangoPaises2, generacion;
+    rangoProfesiones2, rangoCreencias1, rangoCreencias2, cantSalvados,
+    rangoPaises1, rangoPaises2, generacion, cantAsesinados;
 
     Mundo();
 
