@@ -288,8 +288,8 @@ QString Mundo::crearTxtTiempo(){
 QString Mundo::crearLog(Persona *persona){
     QString tiempoMuerte = crearTxtTiempo(), logGenerado = "";
 
-    logGenerado+="\n\n"+tiempoMuerte+"ID:"+persona->ID+" Nombre: "+persona->nombre+
-            " Apellido: "+persona->apellido+" Pais: "+persona->pais+
+    logGenerado+="\n\n\n"+tiempoMuerte+"「ID:"+persona->ID+"」 「Nombre: "+persona->nombre+
+            "」 「Apellido: "+persona->apellido+"」 「Pais: "+persona->pais+"」"+
             crearListaAmigosTxt(persona)+crearListaFamiliaTxt(persona)+
             crearExperienciasTxt(persona);
 
@@ -360,7 +360,7 @@ void irANivel(Nodo<Persona> * root, int nivel){
 //
 //
 //                                                           PERSONAJES:
-//
+//                                                        HEROES Y VILLLANOS
 //
 
 
@@ -420,7 +420,7 @@ QString Mundo::corvusGlaive(){
     QString textoLog = "",tiempoMuerte = crearTxtTiempo();
     QList<Persona*> * personasPecadoras = new QList<Persona*>;
     QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
-    int cantPorEliminar = (arbolAplastado->length())*(5/100);
+    int cantPorEliminar = (arbolAplastado->length())*(0.05);
 
     for(int i =0; i<arbolAplastado->length();i++) heapPecados->insertar(arbolAplastado->at(i)->dato);
     for(int i =0; i<cantPorEliminar;i++) personasPecadoras->append(heapPecados->eliminar());
@@ -431,6 +431,7 @@ QString Mundo::corvusGlaive(){
         textoLog+=crearLog(personasPecadoras->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Corvus Glaive, por tener una cantidad total de pecados: "+QString::number(personasPecadoras->at(i)->pecadosTotales);
     }
     eliminacionesCorvusGlaive->append(textoLog);
+
     return escribirArchivo(textoLog.toStdString());
 }
 
