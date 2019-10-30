@@ -636,7 +636,7 @@ QString Mundo::consultarEliminaciones(){
     eliminacionesVillanos->append(*eliminacionesCorvusGlaive);
 
     //ELIMINAR
-    for(int i = 0; i <eliminacionesVillanos->length();i++){
+    for(int i = 0; i <5;i++){
         consulta+= "ELIMINACIONES HECHAS POR: "+nombresVillanos->at(i);
         for(int j = 0 ; i<eliminacionesVillanos->at(i).length();i++){
             consulta+=eliminacionesVillanos->at(i).at(j);
