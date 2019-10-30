@@ -6,10 +6,10 @@ Mundo::Mundo()
 {
     //Nulos y ceros
     generacion = 0;
-    arbolMundo = new AVL<Persona>();
-    listaPersonasTotales = new ListaDoble<Persona>();
     heapPecados = new Heap();
     heapBuenasAcciones = new Heap();
+    arbolMundo = new AVL<Persona>();
+    listaPersonasTotales = new ListaDoble<Persona>();
 
     //  continentes->append(*america);continentes->append(*asia);
     //continentes->append(*africa);continentes->append(*europa);
@@ -346,16 +346,22 @@ void irANivel(Nodo<Persona> * root, int nivel){
 }
 
 
+//
+//
+//                                                           PERSONAJES:
+//
+//
 
 
-//PERSONAJES:
 
 //Heroes:
 QString Mundo::thor(int nivel){
     Nodo<Persona> * root = arbolMundo->root;
 
+    QString textoLog = "",tiempoSalvacion = crearTxtTiempo();
 
-    QString textoLog = "";
+
+    salvacionesThor->append(textoLog);
     return   escribirArchivo(textoLog.toStdString());
 
 }
@@ -363,9 +369,8 @@ QString Mundo::thor(int nivel){
 
 QString Mundo::antMan(int cantHormigas){
 
-
-
-    QString textoLog = "";
+    QString textoLog = "",tiempoSalvacion = crearTxtTiempo();
+    salvacionesAntMan->append(textoLog);
 
     return escribirArchivo(textoLog.toStdString());
 }
@@ -374,51 +379,75 @@ QString Mundo::ironMan(){
     //Recorre el arbol, pregunta si ya pasó por ese nodo. Si no, hace random y depende del resultado salva ese nodo y lo pone true.
     //Al terminar el proceso, restaura los valores de los nodos a false.
 
+    QString textoLog = "",tiempoSalvacion = crearTxtTiempo();
+    salvacionesIronMan->append(textoLog);
 
-    QString textoLog = "";
-    //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
+
     return escribirArchivo(textoLog.toStdString());
 }
 
 QString Mundo::spiderMan(){
 
-    QString textoLog = "";
-    //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
+    QString textoLog = "",tiempoSalvacion = crearTxtTiempo();
+
+    salvacionesSpiderMan->append(textoLog);
     return escribirArchivo(textoLog.toStdString());
 }
 
 QString Mundo::nebula(int IDCulpable){
     Persona * culpable = listaPersonasTotales->buscar(IDCulpable);
-    QString textoLog = "";
+    QString textoLog = "",tiempoMuerte = crearTxtTiempo();
     //maybe llamar a un metodo secundario
 
 
-
+    eliminacionesNebula->append(textoLog);
     return escribirArchivo(textoLog.toStdString());
 }
 
 
+QString Mundo::corvusGlaive(){
+    QString textoLog = "",tiempoMuerte = crearTxtTiempo();
+    QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
+    int cantPorEliminar = arbolAplastado->length()*(5/100);
+
+    for(int i =0; i<arbolAplastado->length();i++) heapPecados->insertar(arbolAplastado->at(i)->dato);
+    for(int i =0; i<cantPorEliminar;i++) heapPecados->eliminar();// = QList<Persona> donde metemos y luego recorremos y metemos en eliminaciones y  es mas facil hacer el log
+
+
+    for(int i =0; i<listaGenteEliminada->length();i++){
+
+        textoLog+=crearLog(listGenteEliminada->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por tener una cantidad total de pecados: "+;
+    }
+    eliminacionesCorvusGlaive->append(textoLog);
+    return escribirArchivo(textoLog.toStdString());
+}
+
 QString Mundo::midnight(){
 
-    QString textoLog = "";
-    //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
+    QString textoLog = "",tiempoMuerte = crearTxtTiempo();
+    QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
+
+    for(int i =0; i<arbolAplastado->length();i++) heapPecados->insertar(arbolAplastado->at(i)->dato);
+
+    heapBuenasAcciones;
+    eliminacionesMidnight->append(textoLog);
     return escribirArchivo(textoLog.toStdString());
 }
 
 QString Mundo::ebonyMaw(int IDCulpable){
-    Persona * victima = arbolMundo->buscarArbol(IDCulpable);
+    Persona * victima = new  Persona();
     QString textoLog = "", tiempoMuerte = crearTxtTiempo(), pareja = "N/A";
 
-        deportistas->at(i)->vivo = false;
+    ->vivo = false;
 
-        if (deportistas->at(i)->pareja) pareja = deportistas->at(i)->pareja->nombre;
+    if (deportistas->at(i)->pareja) pareja = deportistas->at(i)->pareja->nombre;
 
-        //GENERACION DE LOG
-        textoLog+= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Ebony Maw por ser familia de la persona con ID: "+
-                QString::number(IDCulpable);
+    //GENERACION DE LOG
+    textoLog+= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Ebony Maw por ser familia de la persona con ID: "+
+            QString::number(IDCulpable);
 
 
-
+    eliminacionesEbonyMaw->append(textoLog);
     //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
     return escribirArchivo(textoLog.toStdString());
 
@@ -449,20 +478,12 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
         //GENERACION DE LOG
         textoLog+= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+
                 vecesQStr+" veces "+deporte;
+
+        //HACER ESTO CON TODOS LOS CARACTERES
+        eliminacionesBlackD->append(textoLog);
     }
 
     //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
-    return escribirArchivo(textoLog.toStdString());
-}
-
-QString Mundo::corvusGlaive(){
-    QString textoLog = "";
-    QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
-    int heapPrioridad[arbolAplastado->length()], cantPorEliminar = arbolAplastado->length()*(5/100);
-
-    for(int i= 0 ; i<arbolAplastado->length();i++) heapPrioridad[i] = arbolAplastado->at(i)->dato->ID.toInt();
-    //eliminarDeHeap(cantPorEliminar);
-
     return escribirArchivo(textoLog.toStdString());
 }
 
