@@ -8,6 +8,8 @@ Mundo::Mundo()
     generacion = 0;
     arbolMundo = new AVL<Persona>();
     listaPersonasTotales = new ListaDoble<Persona>();
+    heapPecados = new Heap();
+    heapBuenasAcciones = new Heap();
 
     //  continentes->append(*america);continentes->append(*asia);
     //continentes->append(*africa);continentes->append(*europa);
@@ -32,11 +34,15 @@ void Mundo::encontrarContinente(Persona * persona){
 }
 
 void Mundo::hacerlesPecar(Persona* persona){
+    qDebug()<< "PEcados personas";
     persona->pecadosTotales = 0;
     for(int j = 0; j<7;j++){
         persona->pecados[j]+= QRandomGenerator::global()->bounded(1,100);
         persona->pecadosTotales+= persona->pecados[j];
+
     }
+
+    qDebug() << QString::number(persona->pecadosTotales);
 }
 
 //Tnto el metodo de arriba como el de abajo en window.cpp pero con un FOR
@@ -89,6 +95,10 @@ void Mundo::crearPoblacion(int cantSolicitada){
             qDebug().noquote() << p->nombre + ": "+ QString::number(p->edad) + "\n";
         }
     }
+
+    //Prueba para el heap
+    qDebug() <<"PRUEBA DEL HEAPPP´´";
+    heapPecados->imprimir();
 }
 
 QString crearListaAmigosTxt(Persona * persona){
@@ -153,6 +163,7 @@ void Mundo::crearPersona(){
     listaPersonasTotales->insertar(nuevaPersona);
     //Insertar en AVL Para prueba
     arbolMundo->insertar(nuevaPersona);
+    heapPecados->insertar(nuevaPersona);
     qDebug() << "Nueva Persona";
 
 }

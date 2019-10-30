@@ -13,6 +13,7 @@
 #include "registroIDs.h"
 #include "templateAVL.h"
 #include "templateLista.h"
+#include "Heap.h"
 //Pecados
 //NoPecados (BuenasAcciones)
 
@@ -22,6 +23,8 @@ public:
     AVL<Persona> * arbolMundo;
     Deportes * deportes = new Deportes();
     ListaDoble<Persona> * listaPersonasTotales;
+    Heap * heapPecados;
+    Heap * heapBuenasAcciones;
     Longevidad * longevidad = new Longevidad();
     RegistroIds * registroIds = new RegistroIds();
     QList<QString> * asia, *america,* africa, *oceania, *europa;

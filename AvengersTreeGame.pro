@@ -17,6 +17,7 @@ SOURCES += \
 HEADERS += \
     Deportes.h \
     FechaNacimiento.h \
+    Heap.h \
     Longevidad.h \
     MundoThanos.h \
     Persona.h \
