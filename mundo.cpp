@@ -492,13 +492,12 @@ QString Mundo::ebonyMaw(int IDCulpable){
     Persona * victima = new  Persona();
     QString textoLog = "", tiempoMuerte = crearTxtTiempo(), pareja = "N/A";
 
+    QList<Persona*> * familiaresSalados = new QList<Persona*>;
+
+
     //->vivo = false;
-
-    //if (deportistas->at(i)->pareja) pareja = deportistas->at(i)->pareja->nombre;
-
-    //GENERACION DE LOG
     //textoLog+= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Ebony Maw por ser familia de la persona con ID: "+
-            QString::number(IDCulpable);
+    QString::number(IDCulpable);
 
 
     eliminacionesEbonyMaw->append(textoLog);
@@ -622,7 +621,13 @@ QString Mundo::consultarSalvaciones(){
 QString Mundo::consultarEliminaciones(){
     QString consulta= "";
     QList<QList<QString>> * eliminacionesVillanos = new QList<QList<QString>>;
+    QList<QString> * nombresVillanos = new QList<QString>;
 
+    nombresVillanos->append("Black Dwarf");
+    nombresVillanos->append("Nebula");
+    nombresVillanos->append("Midnight");
+    nombresVillanos->append("EbonyMaw");
+    nombresVillanos->append("CorvusGlaive");
     consulta+= "\nLa cantidad total de personas asesinadas es: "+QString::number(cantAsesinados)+"\n\n";
     eliminacionesVillanos->append(*eliminacionesBlackD);
     eliminacionesVillanos->append(*eliminacionesNebula);
@@ -630,9 +635,9 @@ QString Mundo::consultarEliminaciones(){
     eliminacionesVillanos->append(*eliminacionesEbonyMaw);
     eliminacionesVillanos->append(*eliminacionesCorvusGlaive);
 
-
     //ELIMINAR
     for(int i = 0; i <eliminacionesVillanos->length();i++){
+        consulta+= "ELIMINACIONES HECHAS POR: "+nombresVillanos->at(i);
         for(int j = 0 ; i<eliminacionesVillanos->at(i).length();i++){
             consulta+=eliminacionesVillanos->at(i).at(j);
         }
