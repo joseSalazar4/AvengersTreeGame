@@ -80,7 +80,7 @@ private:
      }
 
      Nodo<T>* buscarNodo (QString valor, Nodo<T>* nodo)
-      {
+     {
           if (nodo == nullptr)
             return nullptr;
           else if (nodo->dato->ID == valor)

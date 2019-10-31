@@ -111,5 +111,21 @@ template <typename T> struct ListaDoble{
        }
    }
 
+   NodoDoble<T*> * atNodo(int index){
+       if(estaVacio() || index >= largo || index < 0){
+           qDebug() << "index out of bounds" <<endl;
+       }
+       else{
+           NodoDoble<T> * temp = primerNodo;
+           while(index != 0){
+               temp = temp->siguiente;
+               index--;
+           }
+           return temp;
+       }
+   }
+
+
+
 };
 #endif // TEMPLATELISTA_H

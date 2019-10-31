@@ -11,6 +11,7 @@ Mundo::Mundo()
     heapBuenasAcciones = new Heap();
     arbolMundo = new AVL<Persona>();
     listaPersonasTotales = new ListaDoble<Persona>();
+    Thanos = new MundoThanos();
 
     rangoPaises1 = rangoPaises2 = rangoNombres1 = rangoNombres2
      = rangoApellidos1 = rangoApellidos2 = cantAsesinados
@@ -159,6 +160,10 @@ void Mundo::crearPersona(){
     //Insertar en AVL Para prueba
     arbolMundo->insertar(nuevaPersona);
     qDebug()<<nuevaPersona->nombre+"\n";
+
+    int ibnp = Thanos->IBNP(nuevaPersona);
+    qDebug() << "IBNP: "+QString::number(ibnp);
+
 }
 
 QString crearListaAmigosTxt(Persona * persona){
@@ -273,7 +278,6 @@ bool Mundo::verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHij
     for(int i = 0;i<9;i++){ //recorrer rango etario y revisar si es muy joven o  muy viejo para ser su hijo
         if(longevidad->tablaRangoEtario[i]->contains(supuestoHijo))rangoHijo = i;
     }
-
 
     for(int i = 0;i<9;i++){ //recorrer rango etario y revisar si es muy joven o  muy viejo para ser su hijo
         if(longevidad->tablaRangoEtario[i]->contains(supuestoPadre))rangoPadre = i;
@@ -603,9 +607,9 @@ int Mundo::generateRandom(int min, int max){
 
 }
 
-Persona* Mundo::getPersonaRandom(){
+NodoDoble<Persona*> * Mundo::getPersonaRandom(){
     int index = generateRandom(0, listaPersonasTotales->largo-1);
-    return listaPersonasTotales->at(index);
+    return listaPersonasTotales->atNodo(index);
 }
 
 QString Mundo::consultarSalvaciones(){

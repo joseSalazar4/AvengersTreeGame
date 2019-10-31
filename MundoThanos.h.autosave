@@ -4,6 +4,7 @@
 #include "Persona.h"
 struct MundoThanos{
     QList<Persona*> * mundo[54][9];
+    int promedio;
 
 public:
     MundoThanos(){
@@ -17,14 +18,21 @@ public:
 private:
     int obtenerIBNP(Persona * persona){
         int ibnp = IBNP(persona);
-    }
-    
-    //IBNP = Indice de buenas personas. >:v
-    int IBNP(Persona * persona){
-        return     (persona->pecadosTotales - persona->buenasAccionesTotales)
-                   + persona->paisesVisitados->size() + persona->ctdEjercicioxSemana/persona->deportes->size()
-                   - persona->hijos->size() + persona->amigos->size() - persona->edad;
+        int edad = persona->edad;
 
+
+    }
+
+public:
+
+    //IBNP = Indice de buenas personas.
+    int IBNP(Persona * persona){
+        int b =     (persona->pecadosTotales - persona->buenasAccionesTotales)
+                   + persona->paisesVisitados->size() + persona->ctdEjercicioxSemana/persona->deportes->size()
+                   - persona->hijos->size() + persona->amigos->size() - persona->edad + 500;
+        
+        promedio += b;
+        return b;
     }
 
 
