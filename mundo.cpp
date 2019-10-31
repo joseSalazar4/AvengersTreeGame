@@ -130,7 +130,7 @@ void Mundo::crearPersona(){
     Persona * nuevaPersona = new Persona();
 
     //Genero
-    if(QRandomGenerator::global()->bounded(0,1) == 0) nuevaPersona->genero = "mujer";
+    if(QRandomGenerator::global()->bounded(0,2) == 0) nuevaPersona->genero = "mujer";
     else nuevaPersona->genero = "hombre";
 
     //IDs
@@ -468,7 +468,6 @@ QString Mundo::corvusGlaive(){
 }
 
 QString Mundo::midnight(){
-
     QString textoLog = "",tiempoMuerte = crearTxtTiempo();
     QList<Persona*> * personasNoBuenas = new QList<Persona*>; //No se me ocurrio un mejor nombre \_°-°_/
     QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
