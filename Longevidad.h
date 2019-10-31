@@ -28,7 +28,6 @@ public:
         return false;
     }
 
-private:
 
 int fHash(int edad){
     if(edad >= 0 && edad <= 1) return 0;
@@ -42,6 +41,7 @@ int fHash(int edad){
     else return 8;
 }
 
+private:
 void agregarARangoEtario(Persona *persona, int edad){
     int index = fHash(edad);
     tablaRangoEtario[index]->append(persona);
