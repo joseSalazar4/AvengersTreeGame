@@ -18,15 +18,13 @@ public:
         int edad = 2019 - persona->fechaNacimiento->anno;
         agregarARangoEtario(persona, edad);
         return edad;
-}
-
+    }
 
      bool validarEdadPareja(Persona* p, Persona*pareja){
         int rangoP = fHash(p->edad);
         int rangoPareja = fHash(pareja->edad);
 
         if(rangoPareja == rangoP || rangoPareja+1 == rangoP ||rangoPareja-1 == rangoP) return true;
-
         return false;
     }
 

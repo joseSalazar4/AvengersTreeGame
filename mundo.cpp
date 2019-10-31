@@ -481,7 +481,6 @@ QString Mundo::corvusGlaive(){
 }
 
 QString Mundo::midnight(){
-
     QString textoLog = "",tiempoMuerte = crearTxtTiempo();
     QList<Persona*> * personasNoBuenas = new QList<Persona*>; //No se me ocurrio un mejor nombre \_°-°_/
     QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
