@@ -52,7 +52,10 @@ public:
     QString spiderMan();
 
     //Villanos
-    QString thanos();
+    QString thanosAnnoYNivel(int anno, int nivel);
+    QString thanosNivel(int nivel);
+    QString thanosAnno(int anno);
+
     QString midnight();
     QString nebula(int);
     QString ebonyMaw(int);

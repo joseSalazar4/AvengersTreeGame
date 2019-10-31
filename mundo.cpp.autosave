@@ -384,7 +384,8 @@ void irANivel(Nodo<Persona> * root, int nivel){
 //---------------------------------------------------------------------------------------------------------------------------------
 
 QString Mundo::thanosAnnoYNivel(int anno, int nivel){
-
+    QList<Persona*> * eliminados = Thanos->matarPorAnnoYNivel(anno, nivel);
+        
 }
 
 
