@@ -97,7 +97,7 @@ void Mundo::crearPoblacion(int cantSolicitada){
 
     //INSERTAR PERSONAS DEL ARBOL
     //if(generacion!=0) arbolMundo->;
-    arbolMundo = new AVL<Persona>;
+    arbolMundo = new AVL<Persona>();
     int cantidadTotal = listaPersonasTotales->largo;
     int cantidadParaArbol = cantidadTotal/100;
     int ctdElegidos = 0;
@@ -107,7 +107,6 @@ void Mundo::crearPoblacion(int cantSolicitada){
 
     int index;
     qDebug() << "Cantidada total: " + QString::number(cantidadTotal);
-
     qDebug() << "Cantidada para arbol: " + QString::number(ctdElegidos);
 
     Persona * p;
