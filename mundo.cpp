@@ -162,32 +162,22 @@ void Mundo::crearPersona(){
 }
 
 QString crearListaAmigosTxt(Persona * persona){
-    //EL if dentro del for es para que en el ultimo elemento no le meta una coma.
     QString listaTxt = "\nAmigos [ ";
     for(int i = 0 ; i<persona->amigos->length();i++){
         listaTxt+=persona->amigos->at(i)->ID+"--";
-        if((i+1) == persona->amigos->length()) {
-            listaTxt+=persona->amigos->at(i)->nombre;
-            return  listaTxt;
-        }
         listaTxt+=persona->amigos->at(i)->nombre+", ";
     }
-    listaTxt += " ]";
+        listaTxt+= " ]";
     return  listaTxt;
 }
 
 QString crearListaFamiliaTxt(Persona * persona){
-        //EL if dentro del for es para que en el ultimo elemento no le meta una coma.
     QString listaTxt = "\nFamilia [ ";
     for(int i = 0 ; i<persona->hijos->length();i++){
-        listaTxt+=persona->hijos->at(i)->ID+"--";
-        if((i+1) == persona->amigos->length()){
-            listaTxt+=persona->hijos->at(i)->nombre;
-            return listaTxt;
-        }
-        listaTxt+=persona->hijos->at(i)->nombre+", ";
+        listaTxt+=persona->hijos->at(i)->ID+"--"+persona->hijos->at(i)->nombre+"--"+persona->hijos->at(i)->apellido+", ";
     }
-    listaTxt += " ]";
+
+    listaTxt+= " ]";
     return  listaTxt;
 }
 
@@ -195,13 +185,11 @@ QString crearExperienciasTxt(Persona * persona){
 
     QString listaTxt = "\nExperiencias [ ";
     for(int i = 0 ; i<persona->paisesVisitados->length();i++){
-        if((i+1) == persona->paisesVisitados->length())  {
-            listaTxt+=persona->paisesVisitados->at(i);
-            return listaTxt;
-        }
-        listaTxt+=persona->paisesVisitados->at(i)+", ";
+
+            listaTxt+=persona->paisesVisitados->at(i)+", ";
+
     }
-    listaTxt += " ]";
+    listaTxt+= " ]";
     return  listaTxt;
 }
 
@@ -242,7 +230,7 @@ void Mundo::asignarFamilia(Persona* persona){
     while(cont<cantHijos){
         //Preguntamos primero por verificar para no hacer las otras preguntas
         if(verificarValidezHijos(persona,tmp->dato) && (persona->pais  == tmp->dato->pais || persona->pareja->pais == tmp->dato->pais)  &&
-                (persona->apellido == tmp->dato->apellido ||  persona->pareja->apellido == tmp->dato->apellido)){
+                (persona->apellido == tmp->dato->apellido ||  persona->pareja->apellido == tmp->dato->apellido) && persona->ID != tmp->dato->ID){
             tmp->dato->hijos->append(tmp->dato);
             cont++;
         }
@@ -269,7 +257,7 @@ bool Mundo::verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHij
     for(int i = 0;i<supuestoHijo->hijos->length();i++){
         if(supuestoPadre == supuestoHijo->hijos->at(i)) esDigno = false;
     }
-    if(!esDigno) return esDigno;
+    if(!(!esDigno) || supuestoHijo->ID == supuestoPadre->ID) return false;
     esDigno = false;
 
     rangoPadre = longevidad->fHash(supuestoPadre->edad);
@@ -280,7 +268,7 @@ bool Mundo::verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHij
     else if(rangoPadre ==7 && (rangoHijo == 4|| rangoHijo == 5|| rangoHijo == 6 ))return esDigno = true;
     else if(rangoPadre ==8 && (rangoHijo == 6|| rangoHijo == 7))return esDigno = true;
 
-    if(esDigno) qDebug()<<"SI ES DIGNO DE SER SU HIJO";
+    if(esDigno) qDebug()<<"\n\n\n\n\n\n\n\nSI ES DIGNO DE SER SU HIJO";
     return esDigno;
 }
 
@@ -534,8 +522,8 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
 
         textoLog+= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+
                 vecesQStr+" veces "+deporte;
-
     }
+    qDebug()<<cantAsesinados++;
     eliminacionesBlackD->append(textoLog);
 
     //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
