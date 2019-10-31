@@ -14,6 +14,7 @@
 #include "templateAVL.h"
 #include "templateLista.h"
 #include "Heap.h"
+#include "MundoThanos.h"
 //Pecados
 //NoPecados (BuenasAcciones)
 
@@ -28,6 +29,7 @@ public:
     Longevidad * longevidad = new Longevidad();
     RegistroIds * registroIds = new RegistroIds();
     QList<QList<QString>> * continentes = new QList<QList<QString>>();
+    MundoThanos * Thanos;
 
     QList<QString> * asia, *america,* africa, *oceania, *europa, * listaEliminados,
     * eliminacionesNebula,* eliminacionesCorvusGlaive,*eliminacionesBlackD,
@@ -84,7 +86,7 @@ public:
 
 
     //Devuelve una persona Random de la lista Principal
-    Persona* getPersonaRandom();
+    NodoDoble<Persona*> * getPersonaRandom();
     int generateRandom(int min, int max);
 
 };
