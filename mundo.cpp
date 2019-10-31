@@ -292,10 +292,11 @@ QString Mundo::crearTxtTiempo(){
 }
 
 QString Mundo::crearLog(Persona *persona){
-    QString tiempoMuerte = crearTxtTiempo(), logGenerado = "";
+    QString tiempoMuerte = crearTxtTiempo(), logGenerado = "", pareja="";
+    if(persona->pareja) pareja = " Nombre: "+persona->pareja->nombre+" Apellido: "+persona->pareja->apellido;
 
     logGenerado+="\n\n\n"+tiempoMuerte+"「ID:"+persona->ID+"」 「Nombre: "+persona->nombre+
-            "」 「Apellido: "+persona->apellido+"」 「Pais: "+persona->pais+"」"+
+            "」 「Apellido: "+persona->apellido+"」 「Pais: "+persona->pais+"」"+" Pareja: "+pareja+
             crearListaAmigosTxt(persona)+crearListaFamiliaTxt(persona)+
             crearExperienciasTxt(persona);
 
@@ -531,8 +532,8 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
         textoLog+= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+
                 vecesQStr+" veces "+deporte;
     }
-    qDebug()<<cantAsesinados++;
     eliminacionesBlackD->append(textoLog);
+
 
     //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
     return escribirArchivo(textoLog.toStdString());
