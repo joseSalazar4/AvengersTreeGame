@@ -171,7 +171,7 @@ void MainWindow::on_btnThanos_clicked()
 void MainWindow::on_btnConsultaID_clicked()
 {
     ui->spinBoxConsultaID->value();
-    enviarCorreo(mundo->consultarHumanoID(),"Consulta de "+QString::number(ui->spinBoxConsultaID->value()));
+    enviarCorreo(mundo->consultarHumanoID(QString::number(ui->spinBoxConsultaID->value())),"Consulta de "+QString::number(ui->spinBoxConsultaID->value()));
 }
 
 void MainWindow::on_btnConsultaHumanosTotalidadVivoMuerto_clicked()
@@ -182,17 +182,17 @@ void MainWindow::on_btnConsultaHumanosTotalidadVivoMuerto_clicked()
 void MainWindow::on_btnConsultaAmigosCadenaID_clicked()
 {
     ui->spinBoxAmigosAmigosID->value();
-    enviarCorreo(mundo->consultarAmigosAmigos(),"Consulta de Amigos en cadena del ID: "+QString::number(ui->spinBoxAmigosAmigosID->value()));
+    enviarCorreo(mundo->consultarAmigosAmigos(QString::number(ui->spinBoxAmigosAmigosID->value())),"Consulta de Amigos en cadena del ID: "+QString::number(ui->spinBoxAmigosAmigosID->value()));
 }
 
 void MainWindow::on_btnConsultaFamiliaID_clicked()
 {
     ui->spinBoxFamiliaID->value();
-    enviarCorreo(mundo->consultarFamiliaID(),"Consulta de Familia segun ID"+QString::number(ui->spinBoxFamiliaID->value()));
+    enviarCorreo(mundo->consultarFamiliaID(QString::number(ui->spinBoxFamiliaID->value())),"Consulta de Familia segun ID"+QString::number(ui->spinBoxFamiliaID->value()));
 }
 
 void MainWindow::on_btnConsultaDeportes_clicked()
 {
     ui->comboBoxDeportesConsulta->currentText();
-    enviarCorreo(mundo->consultarDeporte(),"Consulta del deporte: "+ui->comboBoxDeportesConsulta->currentText());
+    enviarCorreo(mundo->consultarDeporte(ui->comboBoxDeportesConsulta->currentText()),"Consulta del deporte: "+ui->comboBoxDeportesConsulta->currentText());
 }
