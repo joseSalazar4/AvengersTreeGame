@@ -50,6 +50,7 @@ void Mundo::hacerlesPecar(Persona* persona){
         persona->pecadosTotales+= persona->pecados[j];
 
     }
+    qDebug()<<persona->pecadosTotales;
 }
 
 //Tnto el metodo de arriba como el de abajo en window.cpp pero con un FOR
@@ -157,7 +158,7 @@ void Mundo::crearPersona(){
     listaPersonasTotales->insertar(nuevaPersona);
     //Insertar en AVL Para prueba
     arbolMundo->insertar(nuevaPersona);
-
+    qDebug()<<nuevaPersona->nombre+"\n";
 }
 
 QString crearListaAmigosTxt(Persona * persona){
@@ -217,17 +218,18 @@ void Mundo::asignarFamilia(Persona* persona){
 
     Persona * pareja = getPersonaRandom();
     int i = 0;
-    while((pareja->pareja != nullptr || pareja->genero == persona->genero || (!longevidad->validarEdadPareja(persona, pareja)))){
+    while((pareja->pareja != nullptr || pareja->genero == persona->genero )){//|| (!longevidad->validarEdadPareja(persona, pareja)))){
         if(i >= 1000){
             persona->estadoMarital = "Solter@";
+            qDebug()<<"NO ENCONTRE PAREJA";
             return;
         }
-        qDebug() << "No es digno";
+
         pareja = getPersonaRandom();
         i++;
     }
-
     persona->pareja = pareja;
+    qDebug()<<"ENCONTRE PAREJA";
 
     //Si no tiene mas de 20 no es Joven y no puede tener hijos
     if(persona->edad< 20) return;
@@ -328,15 +330,17 @@ void Mundo::asignarAmigos(Persona* persona){
     while(cont<cantAmigos){
         if(insistir > 100) return;
         insistir++;
-        qDebug() << "Asignando amigos";
         if(!persona->amigos->contains(extrano)){
             if(persona->pais  == extrano->pais){
                 persona->amigos->append(extrano);
+                qDebug() << "Asignando amigos";
                 cont++;
                 insistir = 0;
             }
             else if(QRandomGenerator::global()->bounded(1,100) <40){
                 persona->amigos->append(extrano);
+
+                qDebug() << "Asignando amigos";
                 cont++;
                 insistir = 0;
             }
@@ -620,7 +624,6 @@ QString Mundo::consultarSalvaciones(){
             consulta+=salvacionesHeroes->at(i).at(j);
         }
     }
-
 
     return escribirArchivo(consulta.toStdString());
 }
