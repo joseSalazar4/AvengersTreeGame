@@ -1,4 +1,5 @@
 #include <QDebug>
+#include "Persona.h"
 #ifndef TEMPLATEAVL_H
 #define TEMPLATEAVL_H
 // C++ program to insert a node in AVL tree
@@ -69,6 +70,14 @@ public:
          return true;
      }
 
+     //Retorna una lista con todas las personas de un nivel solicitado.
+     QList<Persona*>* buscarEnNivel(int nivel){
+         if(nivel > root->height-1) return nullptr;
+         QList<Persona*> * listaDelNivel = new QList<Persona*>();
+         recorrerNivel(root, 0, listaDelNivel, nivel);
+         return listaDelNivel;
+     }
+
 private:
 
      void imprimirNivelPrivate(Nodo<T> *nodo, int nivel){
@@ -76,6 +85,14 @@ private:
             niveles->replace(nivel, niveles->at(nivel) +" "+nodo->dato->ID);
             imprimirNivelPrivate(nodo->left, nivel+1);
             imprimirNivelPrivate(nodo->right, nivel+1);
+         }
+     }
+
+     void recorrerNivel(Nodo<T> * nodo, int nivelNodo, QList<Persona*> * lista, int nivelBuscado){
+         if(nodo!= nullptr){
+             if(nivelNodo == nivelBuscado) lista->append(nodo->dato);
+             recorrerNivel(nodo->left, nivelNodo+1, lista, nivelBuscado);
+             recorrerNivel(nodo->right, nivelNodo+1, lista, nivelBuscado);
          }
      }
 

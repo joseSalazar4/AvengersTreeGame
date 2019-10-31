@@ -3,16 +3,14 @@
 #include <QList>
 #include "Persona.h"
 struct MundoThanos{
-    QList<QList<Persona*>*> * mundo;
+    QList<Persona*> * mundo[65][10];
     int promedio;
 
 public:
     MundoThanos(){
         for(int i=0; i<65; i++){
-            QList<QList<Persona*>*>*lista = new QList<QList<Persona*>*>();
-            mundo[i] = *lista;
             for(int j=0; j<10; j++){
-                lista->append(new QList<Persona*>());
+                mundo[i][j] = new QList<Persona*>();
             }
         }
         promedio = 0;

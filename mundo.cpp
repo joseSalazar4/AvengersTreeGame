@@ -368,6 +368,20 @@ void irANivel(Nodo<Persona> * root, int nivel){
     }
 }
 
+QList<Persona*> * getFamiliaresDirectos(Persona* persona){
+    QList<Persona*> * familiares = new QList<Persona*>;
+    if(persona->padre) familiares->append(persona->padre);
+    if(persona->madre) familiares->append(persona->madre);
+    if(!persona->hijos->isEmpty()){
+        for(int i=0; i<persona->hijos->size(); i++)
+            familiares->append(persona->hijos->at(i));
+    }
+
+    return familiares;
+
+}
+
+
 
 //
 //
@@ -385,15 +399,19 @@ void irANivel(Nodo<Persona> * root, int nivel){
 //---------------------------------------------------------------------------------------------------------------------------------
 
 
-QString Mundo::thor(int nivel){
-    Nodo<Persona> * root = arbolMundo->root;
-
+QString Mundo::thor(int nivel){  
     QString textoLog = "",tiempoSalvacion = crearTxtTiempo();
+    //VALIDAR QUE EL NIVEL NO SEA MAYOR QUE LA ALTURA-1
+    QList<Persona*> * personasEnNivel = arbolMundo->buscarEnNivel(nivel);
+    for(int i=0; i<personasEnNivel->size(); i++){
+        Persona * persona = personasEnNivel->at(i);
+        QList<Persona*> * familiares = getFamiliaresDirectos(persona);
+    }
+
 
 
     salvacionesThor->append(textoLog);
     return   escribirArchivo(textoLog.toStdString());
-
 }
 
 QString Mundo::antMan(int cantHormigas){
