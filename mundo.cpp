@@ -406,16 +406,21 @@ QString Mundo::thor(int nivel){
     for(int i=0; i<personasEnNivel->size(); i++){
         Persona * persona = personasEnNivel->at(i);
         QList<Persona*> * familiares = getFamiliaresDirectos(persona);
+        for(int f=0; f<familiares->size(); f++){
+            Persona * familiar = familiares->at(f);
+            for(int a=0; a<familiar->amigos->size(); a++){
+                familiar->amigos->at(a)->vivo = true;
+                textoLog+=crearLog(familiar->amigos->at(a)) + "\nFue Salvado el "+tiempoSalvacion+" por el Dios del Trueno. Por ser amigo de: " + familiar->nombre + "y este familiar de: " + persona->nombre;
+            }
+        }
     }
 
-
-
     salvacionesThor->append(textoLog);
+    qDebug() << textoLog;
     return   escribirArchivo(textoLog.toStdString());
 }
 
 QString Mundo::antMan(int cantHormigas){
-
     QString textoLog = "",tiempoSalvacion = crearTxtTiempo();
     salvacionesAntMan->append(textoLog);
 
