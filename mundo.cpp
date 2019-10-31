@@ -51,7 +51,6 @@ void Mundo::hacerlesPecar(Persona* persona){
         persona->pecadosTotales+= persona->pecados[j];
 
     }
-    qDebug()<<persona->pecadosTotales;
 }
 
 //Tnto el metodo de arriba como el de abajo en window.cpp pero con un FOR
@@ -125,6 +124,8 @@ void Mundo::crearPoblacion(int cantSolicitada){
     qDebug() << "Repetidos: " + QString::number(repetido);
     qDebug() << "PROMEDIO: " + QString::number(Thanos->promedio / listaPersonasTotales->largo);
     generacion++;
+
+
 }
 
 void Mundo::crearPersona(){
@@ -158,6 +159,8 @@ void Mundo::crearPersona(){
     listaPersonasTotales->insertar(nuevaPersona);
     //Insertar en AVL Para prueba
     arbolMundo->insertar(nuevaPersona);
+
+    Thanos->IBNP(nuevaPersona);
 
 }
 
@@ -233,6 +236,7 @@ void Mundo::asignarFamilia(Persona* persona){
                 (persona->apellido == tmp->dato->apellido ||  persona->pareja->apellido == tmp->dato->apellido) && persona->ID != tmp->dato->ID){
             tmp->dato->hijos->append(tmp->dato);
             cont++;
+            qDebug()<<"METIENDO HIJOS";
         }
         //Si no hay suficientes personas con ese apellido podria enciclarse entonces que busque un maximo de 30 000 personas
         if(listaPersonasTotales->largo>80000){
