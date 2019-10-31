@@ -1,4 +1,4 @@
-#ifndef MUNDOTHANOS_H
+﻿#ifndef MUNDOTHANOS_H
 #define MUNDOTHANOS_H
 #include <QList>
 #include "Persona.h"
@@ -9,10 +9,10 @@ struct MundoThanos{
 public:
     MundoThanos(){
         for(int i=0; i<65; i++){
-            mundo->append(new QList<Persona*>());
+            QList<QList<Persona*>*>*lista = new QList<QList<Persona*>*>();
+            mundo[i] = *lista;
             for(int j=0; j<10; j++){
-                mundo[i].append(new QList<Persona*>());  //new QList<Persona*>;
-
+                lista->append(new QList<Persona*>());
             }
         }
         promedio = 0;
@@ -22,10 +22,6 @@ public:
         int ibnp = IBNP(persona);
         int i = persona->edad;
         int j = obtenerIndice(ibnp);
-        if(mundo[i][j] == nullptr){
-            mundo[i][j] = new QList<Persona*>;
-        }
-
         mundo[i][j]->append(persona);
     }
 
@@ -68,7 +64,6 @@ public:
         return nullptr;
     }
 
-
     //IBNP = Indice de buenas personas.
     int IBNP(Persona * persona){
         int b =     (persona->pecadosTotales - persona->buenasAccionesTotales)
@@ -92,10 +87,6 @@ public:
         else return 9;
 
     }
-
-
-
-
 };
 
 #endif // MUNDOTHANOS_H
