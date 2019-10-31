@@ -18,7 +18,8 @@ private:
     int obtenerIBNP(Persona * persona){
         int ibnp = IBNP(persona);
     }
-
+    
+    //IBNP = Indice de buenas personas. >:v
     int IBNP(Persona * persona){
         return     (persona->pecadosTotales - persona->buenasAccionesTotales)
                    + persona->paisesVisitados->size() + persona->ctdEjercicioxSemana/persona->deportes->size()
