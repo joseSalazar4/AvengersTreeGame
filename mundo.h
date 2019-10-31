@@ -98,6 +98,7 @@ public:
     //Devuelve una persona Random de la lista Principal
     int generateRandom(int min, int max);
     NodoDoble<Persona> * getPersonaRandom();
+    QString thanosLogKill(QList<Persona*> *, QString m, int , int);
 
 };
 

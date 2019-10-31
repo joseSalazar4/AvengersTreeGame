@@ -9,11 +9,11 @@
 #include <QList>
 
 struct Persona {
-    QList<QString> * deportes, *paisesVisitados , *logMuerte, *logSalvacion;
     bool vivo;
     Persona *padre, *madre, *pareja;
     FechaNacimiento * fechaNacimiento;
     QList<Persona*> * hijos, * amigos;
+    QList<QString> * deportes, *paisesVisitados , *logMuerte, *logSalvacion;
     QString ID, nombre, apellido, genero, creencia,profesion,estadoMarital, continente, pais;
     int edad, ctdEjercicioxSemana, pecados[6], buenasAcciones[6], pecadosTotales, buenasAccionesTotales;
 

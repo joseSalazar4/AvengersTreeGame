@@ -467,8 +467,6 @@ QString Mundo::thanosAnnoYNivel(int anno, int nivel){
 
 //Murio por ser del nivel (nivel)
 QString Mundo::thanosNivel(int nivel){
-    QString textoLog = "", tiempoMuerte = crearTxtTiempo();
-
     thanosCrearHashTable();
     QList<Persona*> * sacrificados = new QList<Persona*>();
     QList<QList<Persona*>*>*eliminados = Thanos->matarPorNivel(nivel);
@@ -478,11 +476,26 @@ QString Mundo::thanosNivel(int nivel){
                 sacrificados->append(eliminados->at(i)->at(j));
             }
         }
-        for(int i = 0 ;i<sacrificados->length() ;i++){
-            sacrificados->at(i);
-        }
+        PONER LO DE ABAJO EN LOS OTROS Y CAMBIAR LOS FOR
+        return thanosLogKill(sacrificados, "1", nivel, -1);
     }
-     return "No deberia haber pasado esto";
+    return  "ERROR en thanos " ;
+}
+
+QString Mundo::thanosLogKill(QList<Persona*> * sacrificados, QString razonMuerte, int nivel, int anno){
+    QString textoLog = "", tiempoMuerte = crearTxtTiempo();
+    //Nivel es 1 anno es 2 y ambos seria LA NUMERO 3
+    if(razonMuerte == "1") razonMuerte = "pertenecer al nivel: "+QString::number(nivel);
+    else if(razonMuerte == "2") razonMuerte = "pertenecer al anno: "+QString::number(anno);
+    else razonMuerte = "pertener al nivel: "+QString::number(nivel)+" y ser del anno"+QString::number(anno);
+
+    for(int i = 0 ; i<sacrificados->length();i++){
+        cantAsesinados++;
+        sacrificados->at(i)->vivo = false;
+        textoLog += crearLog(sacrificados->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Thanos, el increible guerrero, por "+razonMuerte;
+        sacrificados->at(i)->logMuerte->append(textoLog);
+    }
+    return textoLog;
 }
 
 //Murio por haber nacido en al año (anno)
