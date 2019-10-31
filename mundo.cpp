@@ -165,7 +165,10 @@ QString crearListaAmigosTxt(Persona * persona){
     QString listaTxt = "\nAmigos [ ";
     for(int i = 0 ; i<persona->amigos->length();i++){
         listaTxt+=persona->amigos->at(i)->ID+"--";
-        if((i+1) == persona->amigos->length()) listaTxt+=persona->amigos->at(i)->nombre;
+        if((i+1) == persona->amigos->length()) {
+            listaTxt+=persona->amigos->at(i)->nombre;
+            return  listaTxt;
+        }
         listaTxt+=persona->amigos->at(i)->nombre+", ";
     }
     listaTxt += " ]";
@@ -177,7 +180,10 @@ QString crearListaFamiliaTxt(Persona * persona){
     QString listaTxt = "\nFamilia [ ";
     for(int i = 0 ; i<persona->hijos->length();i++){
         listaTxt+=persona->hijos->at(i)->ID+"--";
-        if((i+1) == persona->amigos->length()) listaTxt+=persona->hijos->at(i)->nombre;
+        if((i+1) == persona->amigos->length()){
+            listaTxt+=persona->hijos->at(i)->nombre;
+            return listaTxt;
+        }
         listaTxt+=persona->hijos->at(i)->nombre+", ";
     }
     listaTxt += " ]";
@@ -188,7 +194,10 @@ QString crearExperienciasTxt(Persona * persona){
 
     QString listaTxt = "\nExperiencias [ ";
     for(int i = 0 ; i<persona->paisesVisitados->length();i++){
-        if((i+1) == persona->paisesVisitados->length())  listaTxt+=persona->paisesVisitados->at(i);
+        if((i+1) == persona->paisesVisitados->length())  {
+            listaTxt+=persona->paisesVisitados->at(i);
+            return listaTxt;
+        }
         listaTxt+=persona->paisesVisitados->at(i)+", ";
     }
     listaTxt += " ]";
@@ -431,7 +440,7 @@ QString Mundo::spiderMan(){
 
 //---------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------
-//---------------------------------------------------VILLANOS >:v-----------------------------------------------------------------
+//---------------------------------------------------VILLANOS-----------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------
 
@@ -528,11 +537,9 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
         QString pareja = "N/A";
         if (deportistas->at(i)->pareja) pareja = deportistas->at(i)->pareja->nombre;
         cantAsesinados++;
-        //GENERACION DE LOG
+
         textoLog+= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+
                 vecesQStr+" veces "+deporte;
-
-        //HACER ESTO CON TODOS LOS CARACTERES
 
     }
     eliminacionesBlackD->append(textoLog);
@@ -637,8 +644,9 @@ QString Mundo::consultarEliminaciones(){
 
     //ELIMINAR
     for(int i = 0; i <5;i++){
-        consulta+= "ELIMINACIONES HECHAS POR: "+nombresVillanos->at(i);
-        for(int j = 0 ; i<eliminacionesVillanos->at(i).length();i++){
+        consulta+= "\n\nELIMINACIONES HECHAS POR: "+nombresVillanos->at(i);
+
+        for(int j = 0 ; i<(eliminacionesVillanos->at(i).length()+1);i++){
             consulta+=eliminacionesVillanos->at(i).at(j);
         }
     }
