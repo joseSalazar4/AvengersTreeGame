@@ -411,6 +411,7 @@ QString Mundo::thor(int nivel){
             for(int a=0; a<familiar->amigos->size(); a++){
                 familiar->amigos->at(a)->vivo = true;
                 textoLog+=crearLog(familiar->amigos->at(a)) + "\nFue Salvado el "+tiempoSalvacion+" Por el Dios del Trueno. Por ser amigo de " + familiar->nombre + ".Y este familiar de " + persona->nombre;
+                persona->logSalvacion->append(textoLog);
                 qDebug().noquote() << textoLog;
             }
         }
@@ -423,7 +424,6 @@ QString Mundo::thor(int nivel){
 QString Mundo::antMan(int cantHormigas){
     QString textoLog = "",tiempoSalvacion = crearTxtTiempo();
     salvacionesAntMan->append(textoLog);
-
     return escribirArchivo(textoLog.toStdString());
 }
 
