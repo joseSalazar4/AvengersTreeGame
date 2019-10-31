@@ -410,13 +410,13 @@ QString Mundo::thor(int nivel){
             Persona * familiar = familiares->at(f);
             for(int a=0; a<familiar->amigos->size(); a++){
                 familiar->amigos->at(a)->vivo = true;
-                textoLog+=crearLog(familiar->amigos->at(a)) + "\nFue Salvado el "+tiempoSalvacion+" por el Dios del Trueno. Por ser amigo de: " + familiar->nombre + "y este familiar de: " + persona->nombre;
+                textoLog+=crearLog(familiar->amigos->at(a)) + "\nFue Salvado el "+tiempoSalvacion+" Por el Dios del Trueno. Por ser amigo de " + familiar->nombre + ".Y este familiar de " + persona->nombre;
+                qDebug().noquote() << textoLog;
             }
         }
     }
 
     salvacionesThor->append(textoLog);
-    qDebug() << textoLog;
     return   escribirArchivo(textoLog.toStdString());
 }
 
