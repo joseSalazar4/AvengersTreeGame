@@ -170,20 +170,23 @@ void MainWindow::on_btnThanos_clicked()
 
 void MainWindow::on_btnConsultaID_clicked()
 {
-
+    ui->spinBoxConsultaID->value();
+    enviarCorreo(,"Consulta de ");
 }
 
 void MainWindow::on_btnConsultaHumanosTotalidadVivoMuerto_clicked()
 {
-
+    enviarCorreo(,"Consulta de ");
 }
 
 void MainWindow::on_btnConsultaAmigosCadenaID_clicked()
 {
-
+    ui->spinBoxAmigosAmigosID->value();
+    enviarCorreo(,"Consulta de ");
 }
 
 void MainWindow::on_btnConsultaFamiliaID_clicked()
 {
-
+    ui->spinBoxFamiliaID->value();
+    enviarCorreo(,"Consulta de ");
 }

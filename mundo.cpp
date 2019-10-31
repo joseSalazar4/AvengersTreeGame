@@ -647,3 +647,29 @@ QString Mundo::consultarEliminaciones(){
     }
     return escribirArchivo(consulta.toStdString());
 }
+
+//VIVOS MUERTOS Y ELIMINADOS
+QString consultarEstadosHumanos(){
+
+}
+
+//EN CADENA PA BAJO
+QString consultarAmigosAmigos(){
+
+}
+
+//Un deporte en especifico
+QString consultarDeporte(){
+
+}
+
+
+//Info de la familia segun ID
+QString consultarFamiliaID(){
+
+}
+
+//Devolver toda la info de un humano segun ID
+QString consultarHumanoID(){
+
+}
