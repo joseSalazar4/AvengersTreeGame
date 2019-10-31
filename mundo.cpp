@@ -150,7 +150,7 @@ void Mundo::crearPersona(){
     nuevaPersona->fechaNacimiento = new FechaNacimiento();
     nuevaPersona->edad = longevidad->obtenerEdad(nuevaPersona);
     nuevaPersona->deportes = deportes->generarDeportes(nuevaPersona);
-    /agregar Esta Persnaa a cada deportes  pra el mtdo conslta y asi solo buscar un deporte
+    //agregar Esta Persnaa a cada deportes  pra el mtdo conslta y asi solo buscar un deporte
     nuevaPersona->ctdEjercicioxSemana = deportes->generarVecesxSemana();
     hacerBuenasAcciones(nuevaPersona);
     vivirExperiencias(nuevaPersona);
@@ -718,10 +718,9 @@ QString Mundo::consultarAmigosAmigos(QString ID){
 //Un deporte en especifico
 QString Mundo::consultarDeporte(QString deporte){
     QString textoConsulta = "";
-    ESTO DEBEMOS USARLO PARA NO RECORRER TODO EN CREARPERSON()0 deportes->deportes->at(0)->at()
+    //ESTO DEBEMOS USARLO PARA NO RECORRER TODO EN CREARPERSON()0 deportes->deportes->at(0)->at()
     return escribirArchivo(textoConsulta.toStdString());
 }
-
 
 //Info de la familia segun ID
 QString Mundo::consultarFamiliaID(QString ID){
