@@ -96,7 +96,7 @@ void Mundo::crearPoblacion(int cantSolicitada){
 
 
     //INSERTAR PERSONAS DEL ARBOL
-    if(generacion!=0) delete(arbolMundo);
+    //if(generacion!=0) arbolMundo->;
     arbolMundo = new AVL<Persona>;
     int cantidadTotal = listaPersonasTotales->largo;
     int cantidadParaArbol = cantidadTotal/100;
