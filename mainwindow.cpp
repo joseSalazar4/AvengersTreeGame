@@ -167,3 +167,23 @@ void MainWindow::on_btnThanos_clicked()
 
     }
 }
+
+void MainWindow::on_btnConsultaID_clicked()
+{
+
+}
+
+void MainWindow::on_btnConsultaHumanosTotalidadVivoMuerto_clicked()
+{
+
+}
+
+void MainWindow::on_btnConsultaAmigosCadenaID_clicked()
+{
+
+}
+
+void MainWindow::on_btnConsultaFamiliaID_clicked()
+{
+
+}

@@ -18,15 +18,15 @@ Mundo::Mundo()
      =rangoCreencias1 = rangoCreencias2 = cantSalvados
      = rangoProfesiones1 = rangoProfesiones2 = 0;
 
-    salvacionesThor= new QList<QString>;
-    salvacionesAntMan= new QList<QString>;
-    salvacionesIronMan= new QList<QString>;
-    eliminacionesNebula= new QList<QString>;
-    salvacionesSpiderMan= new QList<QString>;
-    eliminacionesBlackD = new QList<QString>;
-    eliminacionesEbonyMaw= new QList<QString>;
-    eliminacionesMidnight= new QList<QString>;
-    eliminacionesCorvusGlaive= new QList<QString>;
+    salvacionesThor= new QList<QString>();
+    salvacionesAntMan= new QList<QString>();
+    salvacionesIronMan= new QList<QString>();
+    eliminacionesNebula= new QList<QString>();
+    salvacionesSpiderMan= new QList<QString>();
+    eliminacionesBlackD = new QList<QString>();
+    eliminacionesEbonyMaw= new QList<QString>();
+    eliminacionesMidnight= new QList<QString>();
+    eliminacionesCorvusGlaive= new QList<QString>();
 
 
     //El metodo lee el archivo, extrae y coloca directamente en los arrays la informacion
@@ -69,7 +69,7 @@ void Mundo::vivirExperiencias(Persona * persona){
     else if(cantExperiencias <55) cantPaises= QRandomGenerator::global()->bounded(2,10);
     else if(cantExperiencias <75) cantPaises= QRandomGenerator::global()->bounded(10,15);
     else if(cantExperiencias <90) cantPaises= QRandomGenerator::global()->bounded(16,25);
-    else cantPaises= cantPaises = QRandomGenerator::global()->bounded(25,100);
+    else cantPaises= QRandomGenerator::global()->bounded(25,100);
 
 
     for(int i = 0; i<cantPaises;i++){
@@ -441,7 +441,7 @@ QString Mundo::nebula(int IDCulpable){
 
 QString Mundo::corvusGlaive(){
     QString textoLog = "",tiempoMuerte = crearTxtTiempo();
-    QList<Persona*> * personasPecadoras = new QList<Persona*>;
+    QList<Persona*> * personasPecadoras = new QList<Persona*>();
     QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
 
     //Obtenemos el 5%
@@ -467,7 +467,7 @@ QString Mundo::corvusGlaive(){
 
 QString Mundo::midnight(){
     QString textoLog = "",tiempoMuerte = crearTxtTiempo();
-    QList<Persona*> * personasNoBuenas = new QList<Persona*>; //No se me ocurrio un mejor nombre \_°-°_/
+    QList<Persona*> * personasNoBuenas = new QList<Persona*>(); //No se me ocurrio un mejor nombre \_°-°_/
     QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
 
     int cantPorEliminar = int((arbolAplastado->length())*(0.05));
@@ -492,7 +492,7 @@ QString Mundo::ebonyMaw(int IDCulpable){
     Persona * victima = new  Persona();
     QString textoLog = "", tiempoMuerte = crearTxtTiempo(), pareja = "N/A";
 
-    QList<Persona*> * familiaresSalados = new QList<Persona*>;
+    QList<Persona> * familiaresSalados = new QList<Persona>();
 
 
     //->vivo = false;
@@ -598,7 +598,12 @@ NodoDoble<Persona> * Mundo::getPersonaRandom(){
 
 QString Mundo::consultarSalvaciones(){
     QString consulta = "";
-    QList<QList<QString>> * salvacionesHeroes = new QList<QList<QString>>;
+    QList<QList<QString>> * salvacionesHeroes = new QList<QList<QString>>();
+    QList<QString> * nombresHeroes = new QList<QString>();
+    nombresHeroes->append("IronMan");
+    nombresHeroes->append("SpiderMan");
+    nombresHeroes->append("AntMan");
+    nombresHeroes->append("Thor");
     consulta+= "\nLa cantidad total de personas salavadas es: "+QString::number(cantSalvados)+"\n\n";
 
     salvacionesHeroes->append(*salvacionesThor);
@@ -607,6 +612,7 @@ QString Mundo::consultarSalvaciones(){
     salvacionesHeroes->append(*salvacionesSpiderMan);
 
     for(int i = 0; i <salvacionesHeroes->length();i++){
+        consulta+= "\n\nELIMINACIONES HECHAS POR: "+nombresHeroes->at(i);
         for(int j = 0 ; i<salvacionesHeroes->at(i).length();i++){
             consulta+=salvacionesHeroes->at(i).at(j);
         }
@@ -617,8 +623,8 @@ QString Mundo::consultarSalvaciones(){
 
 QString Mundo::consultarEliminaciones(){
     QString consulta= "";
-    QList<QList<QString>> * eliminacionesVillanos = new QList<QList<QString>>;
-    QList<QString> * nombresVillanos = new QList<QString>;
+    QList<QList<QString>> * eliminacionesVillanos = new QList<QList<QString>>();
+    QList<QString> * nombresVillanos = new QList<QString>();
 
     nombresVillanos->append("Black Dwarf");
     nombresVillanos->append("Nebula");
@@ -635,7 +641,6 @@ QString Mundo::consultarEliminaciones(){
     //ELIMINAR
     for(int i = 0; i <5;i++){
         consulta+= "\n\nELIMINACIONES HECHAS POR: "+nombresVillanos->at(i);
-
         for(int j = 0 ; i<(eliminacionesVillanos->at(i).length()+1);i++){
             consulta+=eliminacionesVillanos->at(i).at(j);
         }
