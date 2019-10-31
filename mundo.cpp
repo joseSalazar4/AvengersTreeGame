@@ -527,6 +527,7 @@ QString Mundo::corvusGlaive(){
         cantAsesinados++;
         personasPecadoras->at(i)->vivo = false;
         textoLog+=crearLog(personasPecadoras->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Corvus Glaive, por tener una cantidad total de pecados: "+QString::number(personasPecadoras->at(i)->pecadosTotales);
+        personasPecadoras->at(i)->logMuerte->append(textoLog);
     }
 
     cantAsesinados++;
@@ -552,6 +553,7 @@ QString Mundo::midnight(){
         cantAsesinados++;
         personasNoBuenas->at(i)->vivo = false;
         textoLog+=crearLog(personasNoBuenas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasNoBuenas->at(i)->buenasAccionesTotales);
+        personasNoBuenas->at(i)->logMuerte->append(textoLog);
     }
     cantAsesinados++;
     personasNoBuenas->at(0)->vivo = false;
@@ -604,6 +606,7 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
 
         textoLog+= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+
                 vecesQStr+" veces "+deporte;
+        deportistas->at(i)->logMuerte->append(textoLog);
     }
     eliminacionesBlackD->append(textoLog);
 
