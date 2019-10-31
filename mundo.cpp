@@ -456,13 +456,8 @@ QString Mundo::spiderMan(){
 QString Mundo::thanosAnnoYNivel(int anno, int nivel){
     thanosCrearHashTable();
     QList<Persona*> * eliminados = Thanos->matarPorAnnoYNivel(anno, nivel);
-    if(eliminados != nullptr){
-        for(int i=0; i<eliminados->size(); i++){
-            eliminados->at(i)->vivo = false;
-        }
-        return "No se como hacer los logs";
-    }
-    return "No deberia haber pasado esto";
+    if(eliminados != nullptr) return thanosLogKill(eliminados,"3",nivel,anno);
+    return "ERROR";
 }
 
 //Murio por ser del nivel (nivel)
@@ -476,7 +471,6 @@ QString Mundo::thanosNivel(int nivel){
                 sacrificados->append(eliminados->at(i)->at(j));
             }
         }
-        PONER LO DE ABAJO EN LOS OTROS Y CAMBIAR LOS FOR
         return thanosLogKill(sacrificados, "1", nivel, -1);
     }
     return  "ERROR en thanos " ;
@@ -504,13 +498,11 @@ QString Mundo::thanosAnno(int anno){
     QList<QList<Persona*>*>*eliminados = Thanos->matarPorAnno(anno);
     if(eliminados != nullptr){
         for(int i=0; i<eliminados->size(); i++){
-            for(int j=0; j<eliminados[i].size(); j++){
-                for(int k=0; k<eliminados[i][j]->size(); k++){
-                    eliminados[i][j]->at(k)->vivo = false;
-                }
+            for(int j=0; j<eliminados->at(i)->size(); j++){
+                sacrificados->append(eliminados->at(i)->at(j));
             }
         }
-        return "No se como hacer los logs";
+        return thanosLogKill(sacrificados, "1", -1, anno);
     }
      return "No deberia haber pasado esto";
 }
