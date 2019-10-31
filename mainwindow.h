@@ -63,6 +63,8 @@ private slots:
 
     void on_btnConsultaFamiliaID_clicked();
 
+    void on_btnConsultaDeportes_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

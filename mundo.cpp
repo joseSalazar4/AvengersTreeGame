@@ -649,27 +649,27 @@ QString Mundo::consultarEliminaciones(){
 }
 
 //VIVOS MUERTOS Y ELIMINADOS
-QString consultarEstadosHumanos(){
+QString Mundo::consultarEstadosHumanos(){
 
 }
 
 //EN CADENA PA BAJO
-QString consultarAmigosAmigos(){
+QString Mundo::consultarAmigosAmigos(){
 
 }
 
 //Un deporte en especifico
-QString consultarDeporte(){
+QString Mundo::consultarDeporte(){
 
 }
 
 
 //Info de la familia segun ID
-QString consultarFamiliaID(){
+QString Mundo::consultarFamiliaID(){
 
 }
 
 //Devolver toda la info de un humano segun ID
-QString consultarHumanoID(){
+QString Mundo::consultarHumanoID(){
 
 }

@@ -263,8 +263,8 @@
    <widget class="QPushButton" name="btnBuenasAcciones">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>500</y>
+      <x>540</x>
+      <y>640</y>
       <width>221</width>
       <height>31</height>
      </rect>
@@ -281,8 +281,8 @@
    <widget class="QPushButton" name="btnPecar">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>130</y>
+      <x>730</x>
+      <y>180</y>
       <width>131</width>
       <height>41</height>
      </rect>

@@ -70,25 +70,30 @@ public:
     void asignarFamilia(Persona*);
 
     //Archivos
+    QString crearTxtTiempo();
     QString crearLog(Persona *);
     QString escribirArchivo(std::string);
     void leerArchivo(QString nombreArchivo,QString datosRecolectados[]);
-    QString crearTxtTiempo();
 
     //Vida Personas
     bool existeAmigo(Persona *);
-    bool verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHijo);
     void vivirExperiencias(Persona *);
     void encontrarContinente(Persona *  );
+    bool verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHijo);
 
     //Consultas (Heroes y Villanos)
+    QString consultarDeporte();
+    QString consultarHumanoID();
+    QString consultarFamiliaID();
     QString consultarSalvaciones();
+    QString consultarAmigosAmigos();
     QString consultarEliminaciones();
+    QString consultarEstadosHumanos();
 
 
     //Devuelve una persona Random de la lista Principal
-    NodoDoble<Persona> * getPersonaRandom();
     int generateRandom(int min, int max);
+    NodoDoble<Persona> * getPersonaRandom();
 
 };
 
