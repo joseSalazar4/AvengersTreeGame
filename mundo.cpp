@@ -131,19 +131,19 @@ void Mundo::crearPersona(){
     Persona * nuevaPersona = new Persona();
 
     //Genero
-    if(QRandomGenerator::global()->bounded(0,1) == 0) nuevaPersona->genero = "mujer";
+    if(QRandomGenerator::global()->bounded(0,2) == 0) nuevaPersona->genero = "mujer";
     else nuevaPersona->genero = "hombre";
 
     //IDs
     nuevaPersona->ID = QString::number(registroIds->generarId());
 
     //Lectura de archivos
-    nuevaPersona->pais = paises[QRandomGenerator::global()->bounded(rangoPaises1,rangoPaises2)];
-    nuevaPersona->creencia = creencias[QRandomGenerator::global()->bounded(rangoCreencias1,rangoCreencias2)];
-    nuevaPersona->apellido = apellidos[QRandomGenerator::global()->bounded(rangoApellidos1,rangoApellidos2)];
-    nuevaPersona->profesion = profesiones[QRandomGenerator::global()->bounded(rangoProfesiones1,rangoProfesiones2)];
-    if(nuevaPersona->genero == "mujer") nuevaPersona->nombre = nombresMujeres[QRandomGenerator::global()->bounded(rangoNombres1,rangoNombres2)];
-    else nuevaPersona->nombre = nombresHombres[QRandomGenerator::global()->bounded(rangoNombres1,rangoNombres2)];
+    nuevaPersona->pais = paises[QRandomGenerator::global()->bounded(rangoPaises1,rangoPaises2+1)];
+    nuevaPersona->creencia = creencias[QRandomGenerator::global()->bounded(rangoCreencias1,rangoCreencias2+1)];
+    nuevaPersona->apellido = apellidos[QRandomGenerator::global()->bounded(rangoApellidos1,rangoApellidos2+1)];
+    nuevaPersona->profesion = profesiones[QRandomGenerator::global()->bounded(rangoProfesiones1,rangoProfesiones2+1)];
+    if(nuevaPersona->genero == "mujer") nuevaPersona->nombre = nombresMujeres[QRandomGenerator::global()->bounded(rangoNombres1,rangoNombres2+1)];
+    else nuevaPersona->nombre = nombresHombres[QRandomGenerator::global()->bounded(rangoNombres1,rangoNombres2+1)];
 
     //Acciones, edades y deportes
     nuevaPersona->fechaNacimiento = new FechaNacimiento();
@@ -207,7 +207,7 @@ QString crearExperienciasTxt(Persona * persona){
 
 void Mundo::asignarFamilia(Persona* persona){
     //Preguntar si estara soltero o en otro estado
-    int estadoMarit = QRandomGenerator::global()->bounded(0,2);
+    int estadoMarit = QRandomGenerator::global()->bounded(0,3);
 
     if(estadoMarit == 2) persona->estadoMarital = "Casad@";
     else if (estadoMarit == 1)persona->estadoMarital = "Separad@";
@@ -234,7 +234,7 @@ void Mundo::asignarFamilia(Persona* persona){
     //Si no tiene mas de 20 no es Joven y no puede tener hijos
     if(persona->edad< 20) return;
 
-    int cantHijos = QRandomGenerator::global()->bounded(0,4);
+    int cantHijos = QRandomGenerator::global()->bounded(0,5);
     Persona * tmp = getPersonaRandom();
     //agregarMetodo de moverse x nodos en la lista para seleccionar gente random
 
