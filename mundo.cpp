@@ -295,9 +295,12 @@ QString Mundo::crearLog(Persona *persona){
     QString tiempoMuerte = crearTxtTiempo(), logGenerado = "", pareja="";
     if(persona->pareja) pareja = " Nombre: "+persona->pareja->nombre+" Apellido: "+persona->pareja->apellido;
 
-    logGenerado+="\n\n\n"+tiempoMuerte+"「ID:"+persona->ID+"」 「Nombre: "+persona->nombre+
-            "」 「Apellido: "+persona->apellido+"」 「Pais: "+persona->pais+"」"+" Pareja: "+pareja+
-            crearListaAmigosTxt(persona)+crearListaFamiliaTxt(persona)+
+    logGenerado+="\n\n\n"+tiempoMuerte+"「ID: "+persona->ID+"」 「Nombre: "+persona->nombre+
+            "」 「Apellido: "+persona->apellido+"」 「Pais: "+persona->pais+"」"+" Pareja: "+pareja+"\nFecha de Nacimiento: "+
+            QString::number(persona->fechaNacimiento->dia)+"/"+QString::number(persona->fechaNacimiento->mes)+"/"
+            +QString::number(persona->fechaNacimiento->anno)+
+            crearListaAmigosTxt(persona)+
+            crearListaFamiliaTxt(persona)+
             crearExperienciasTxt(persona);
 
     return  logGenerado;
@@ -324,7 +327,6 @@ void Mundo::asignarAmigos(Persona* persona){
                 cont++;
                 insistir = 0;
             }
-
             else {
                 bool coinciden = false;
                 for(int i = 0;i<extrano->dato->amigos->length();i++){
@@ -348,23 +350,6 @@ void Mundo::asignarAmigos(Persona* persona){
 
         if(extrano->siguiente) extrano = extrano->siguiente;
         else extrano = listaPersonasTotales->primerNodo;
-    }
-}
-
-//METODO que permite irse a los nodos de un nivel.
-void irANivel(Nodo<Persona> * root, int nivel){
-    if (root == nullptr)
-        return;
-    if (nivel == 1) {
-        //Aqui salva a los amigs de la fam
-        root->dato->madre;
-        root->dato->padre;
-        root->dato->hijos;
-    }
-    else if (nivel > 1)
-    {
-        irANivel(root->left, nivel-1);
-        irANivel(root->right, nivel-1);
     }
 }
 
@@ -481,7 +466,7 @@ QString Mundo::thanosLogKill(QList<Persona*> * sacrificados, QString razonMuerte
     //Nivel es 1 anno es 2 y ambos seria LA NUMERO 3
     if(razonMuerte == "1") razonMuerte = "pertenecer al nivel: "+QString::number(nivel);
     else if(razonMuerte == "2") razonMuerte = "pertenecer al anno: "+QString::number(anno);
-    else razonMuerte = "pertener al nivel: "+QString::number(nivel)+" y ser del anno"+QString::number(anno);
+    else razonMuerte = "pertener al nivel: "+QString::number(nivel)+" y ser del anno: "+QString::number(anno);
 
     for(int i = 0 ; i<sacrificados->length();i++){
         cantAsesinados++;
@@ -489,12 +474,13 @@ QString Mundo::thanosLogKill(QList<Persona*> * sacrificados, QString razonMuerte
         textoLog += crearLog(sacrificados->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Thanos, el increible guerrero, por "+razonMuerte;
         sacrificados->at(i)->logMuerte->append(textoLog);
     }
-    return textoLog;
+    return escribirArchivo(textoLog.toStdString());
 }
 
 //Murio por haber nacido en al año (anno)
 QString Mundo::thanosAnno(int anno){
     thanosCrearHashTable();
+    QList<Persona*> * sacrificados = new QList<Persona*>();
     QList<QList<Persona*>*>*eliminados = Thanos->matarPorAnno(anno);
     if(eliminados != nullptr){
         for(int i=0; i<eliminados->size(); i++){
@@ -502,9 +488,9 @@ QString Mundo::thanosAnno(int anno){
                 sacrificados->append(eliminados->at(i)->at(j));
             }
         }
-        return thanosLogKill(sacrificados, "1", -1, anno);
+        return thanosLogKill(sacrificados, "2", -1, anno);
     }
-     return "No deberia haber pasado esto";
+    return "No deberia haber pasado esto";
 }
 
 void Mundo::thanosCrearHashTable(){

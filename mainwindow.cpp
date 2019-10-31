@@ -154,17 +154,21 @@ void MainWindow::on_btnThanos_clicked()
 {
     bool isNivel = ui->checkBoxNivelThanos->isChecked();
     bool isAnno = ui->checkBoxAnnoThanos->isChecked();
+
+    //Si ninguno ha sido seleccionado
+    if(!(isNivel || isAnno)) return;
+
     int nivel = ui->SpinBoxNivelThanos->value();
     int anno = ui->spinBoxAnnoThanos->value();
 
     if(isNivel && isAnno){ //Busca eliminar Año y Nivel
-        mundo->thanosAnnoYNivel(anno, nivel);
+        enviarCorreo(mundo->thanosAnnoYNivel(anno, nivel), "Thanos");
     }
     else if(isNivel && !isAnno){ //Busca eliminar solo el nivel
-        mundo->thanosNivel(nivel);
+        enviarCorreo(mundo->thanosNivel(nivel),"Thanos");
     }
     else if(isAnno && !isNivel){ //Busca eliminar solo el año
-        mundo->thanosAnno(anno);
+        enviarCorreo(mundo->thanosAnno(anno),"Thanos");
     }
 }
 
