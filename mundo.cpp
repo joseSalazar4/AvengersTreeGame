@@ -18,15 +18,15 @@ Mundo::Mundo()
      =rangoCreencias1 = rangoCreencias2 = cantSalvados
      = rangoProfesiones1 = rangoProfesiones2 = 0;
 
-    salvacionesThor= new QList<QString>;
-    salvacionesAntMan= new QList<QString>;
-    salvacionesIronMan= new QList<QString>;
-    eliminacionesNebula= new QList<QString>;
-    salvacionesSpiderMan= new QList<QString>;
-    eliminacionesBlackD = new QList<QString>;
-    eliminacionesEbonyMaw= new QList<QString>;
-    eliminacionesMidnight= new QList<QString>;
-    eliminacionesCorvusGlaive= new QList<QString>;
+    salvacionesThor= new QList<QString>();
+    salvacionesAntMan= new QList<QString>();
+    salvacionesIronMan= new QList<QString>();
+    eliminacionesNebula= new QList<QString>();
+    salvacionesSpiderMan= new QList<QString>();
+    eliminacionesBlackD = new QList<QString>();
+    eliminacionesEbonyMaw= new QList<QString>();
+    eliminacionesMidnight= new QList<QString>();
+    eliminacionesCorvusGlaive= new QList<QString>();
 
 
     //El metodo lee el archivo, extrae y coloca directamente en los arrays la informacion
@@ -70,7 +70,7 @@ void Mundo::vivirExperiencias(Persona * persona){
     else if(cantExperiencias <55) cantPaises= QRandomGenerator::global()->bounded(2,10);
     else if(cantExperiencias <75) cantPaises= QRandomGenerator::global()->bounded(10,15);
     else if(cantExperiencias <90) cantPaises= QRandomGenerator::global()->bounded(16,25);
-    else cantPaises= cantPaises = QRandomGenerator::global()->bounded(25,100);
+    else cantPaises= QRandomGenerator::global()->bounded(25,100);
 
 
     for(int i = 0; i<cantPaises;i++){
@@ -125,6 +125,7 @@ void Mundo::crearPoblacion(int cantSolicitada){
     qDebug() << "Repetidos: " + QString::number(repetido);
     qDebug() << "PROMEDIO: " + QString::number(Thanos->promedio / listaPersonasTotales->largo);
     generacion++;
+
 }
 
 void Mundo::crearPersona(){
@@ -149,6 +150,7 @@ void Mundo::crearPersona(){
     nuevaPersona->fechaNacimiento = new FechaNacimiento();
     nuevaPersona->edad = longevidad->obtenerEdad(nuevaPersona);
     nuevaPersona->deportes = deportes->generarDeportes(nuevaPersona);
+    /agregar Esta Persnaa a cada deportes  pra el mtdo conslta y asi solo buscar un deporte
     nuevaPersona->ctdEjercicioxSemana = deportes->generarVecesxSemana();
     hacerBuenasAcciones(nuevaPersona);
     vivirExperiencias(nuevaPersona);
@@ -206,14 +208,14 @@ void Mundo::asignarFamilia(Persona* persona){
 
     NodoDoble<Persona> * pareja = getPersonaRandom();
     int i = 0;
-    while((pareja->dato->pareja != nullptr || pareja->dato->genero == persona->genero )){//|| (!longevidad->validarEdadPareja(persona, pareja)))){
+    while( (pareja->dato->pareja != nullptr || pareja->dato->genero == persona->genero) ){//|| (!longevidad->validarEdadPareja(persona, pareja)))){
         if(i >= listaPersonasTotales->largo){
             persona->estadoMarital = "Solter@";
             qDebug()<<"NO ENCONTRE PAREJA";
             return;
         }
 
-        if(pareja->siguiente) pareja = pareja->siguiente;
+        if(pareja->siguiente!=nullptr) pareja = pareja->siguiente;
         else pareja = listaPersonasTotales->primerNodo;
         i++;
     }
@@ -229,13 +231,12 @@ void Mundo::asignarFamilia(Persona* persona){
     int cont = 0, contMax = 0;
     while(cont<cantHijos){
         //Preguntamos primero por verificar para no hacer las otras preguntas
-        if(verificarValidezHijos(persona,tmp->dato) && (persona->pais  == tmp->dato->pais || persona->pareja->pais == tmp->dato->pais)  &&
-                (persona->apellido == tmp->dato->apellido ||  persona->pareja->apellido == tmp->dato->apellido) && persona->ID != tmp->dato->ID){
-            tmp->dato->hijos->append(tmp->dato);
+        if( verificarValidezHijos(persona,tmp->dato) &&  ((persona->pais  == tmp->dato->pais || persona->pareja->pais == tmp->dato->pais)  || (persona->apellido == tmp->dato->apellido ||  persona->pareja->apellido == tmp->dato->apellido)) ){
+            persona->hijos->append(tmp->dato);
             cont++;
         }
         //Si no hay suficientes personas con ese apellido podria enciclarse entonces que busque un maximo de 30 000 personas
-        if(listaPersonasTotales->largo>80000){
+        if(listaPersonasTotales->largo>90000){
             if(contMax>(listaPersonasTotales->largo)/2) return;
         }
         if(contMax>listaPersonasTotales->largo) return;
@@ -254,10 +255,9 @@ bool Mundo::verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHij
 
     //Primero preguntamos si el padre no es ya hijo de su supuesto hijo
     bool esDigno = true;
-    for(int i = 0;i<supuestoHijo->hijos->length();i++){
-        if(supuestoPadre == supuestoHijo->hijos->at(i)) esDigno = false;
-    }
-    if(!(!esDigno) || supuestoHijo->ID == supuestoPadre->ID) return false;
+    for(int i = 0;i<supuestoHijo->hijos->length();i++) if(supuestoPadre == supuestoHijo->hijos->at(i)) esDigno = false;
+
+    if( (!esDigno) || supuestoHijo->ID == supuestoPadre->ID) return false;
     esDigno = false;
 
     rangoPadre = longevidad->fHash(supuestoPadre->edad);
@@ -267,8 +267,6 @@ bool Mundo::verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHij
     else if(rangoPadre ==6 && (rangoHijo == 0 || rangoHijo ==1 || rangoHijo == 2|| rangoHijo == 3 )) return esDigno = true;
     else if(rangoPadre ==7 && (rangoHijo == 4|| rangoHijo == 5|| rangoHijo == 6 ))return esDigno = true;
     else if(rangoPadre ==8 && (rangoHijo == 6|| rangoHijo == 7))return esDigno = true;
-
-    if(esDigno) qDebug()<<"\n\n\n\n\n\n\n\nSI ES DIGNO DE SER SU HIJO";
     return esDigno;
 }
 
@@ -294,10 +292,11 @@ QString Mundo::crearTxtTiempo(){
 }
 
 QString Mundo::crearLog(Persona *persona){
-    QString tiempoMuerte = crearTxtTiempo(), logGenerado = "";
+    QString tiempoMuerte = crearTxtTiempo(), logGenerado = "", pareja="";
+    if(persona->pareja) pareja = " Nombre: "+persona->pareja->nombre+" Apellido: "+persona->pareja->apellido;
 
     logGenerado+="\n\n\n"+tiempoMuerte+"「ID:"+persona->ID+"」 「Nombre: "+persona->nombre+
-            "」 「Apellido: "+persona->apellido+"」 「Pais: "+persona->pais+"」"+
+            "」 「Apellido: "+persona->apellido+"」 「Pais: "+persona->pais+"」"+" Pareja: "+pareja+
             crearListaAmigosTxt(persona)+crearListaFamiliaTxt(persona)+
             crearExperienciasTxt(persona);
 
@@ -306,21 +305,21 @@ QString Mundo::crearLog(Persona *persona){
 
 void Mundo::asignarAmigos(Persona* persona){
     int cantAmigos = QRandomGenerator::global()->bounded(0,51);
-    Persona * extrano = listaPersonasTotales->primerNodo->dato;
+    NodoDoble<Persona> * extrano = getPersonaRandom();
 
     int cont = 0;
     int insistir = 0;
     while(cont<cantAmigos){
-        if(insistir > 100) return;
+        if(insistir > listaPersonasTotales->largo/2) return;
         insistir++;
-        if(!persona->amigos->contains(extrano)){
-            if(persona->pais  == extrano->pais){
-                persona->amigos->append(extrano);
-                cont++;
+        if(!persona->amigos->contains(extrano->dato)){
+            if(persona->pais  == extrano->dato->pais){
+                persona->amigos->append(extrano->dato);
                 insistir = 0;
+                cont++;
             }
             else if(QRandomGenerator::global()->bounded(1,100) <40){
-                persona->amigos->append(extrano);
+                persona->amigos->append(extrano->dato);
 
                 cont++;
                 insistir = 0;
@@ -328,9 +327,9 @@ void Mundo::asignarAmigos(Persona* persona){
 
             else {
                 bool coinciden = false;
-                for(int i = 0;i<extrano->amigos->length();i++){
+                for(int i = 0;i<extrano->dato->amigos->length();i++){
                     for(int j = 0;j<persona->amigos->length();j++ ){
-                        if(persona->amigos->at(j) == extrano->amigos->at(i)){
+                        if(persona->amigos->at(j) == extrano->dato->amigos->at(i)){
                             coinciden = true;
                             return;
                         }
@@ -339,14 +338,16 @@ void Mundo::asignarAmigos(Persona* persona){
                 }
 
                 if(coinciden){
-                    persona->amigos->append(extrano);
+                    persona->amigos->append(extrano->dato);
                     cont++;
                     insistir = 0;
                     coinciden = false;
                 }
             }
         }
-        continue;
+
+        if(extrano->siguiente) extrano = extrano->siguiente;
+        else extrano = listaPersonasTotales->primerNodo;
     }
 }
 
@@ -495,7 +496,7 @@ QString Mundo::nebula(int IDCulpable){
 
 QString Mundo::corvusGlaive(){
     QString textoLog = "",tiempoMuerte = crearTxtTiempo();
-    QList<Persona*> * personasPecadoras = new QList<Persona*>;
+    QList<Persona*> * personasPecadoras = new QList<Persona*>();
     QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
 
     //Obtenemos el 5%
@@ -504,11 +505,16 @@ QString Mundo::corvusGlaive(){
     for(int i =0; i<arbolAplastado->length();i++) heapPecados->insertarPrioridadMax(arbolAplastado->at(i)->dato);
     for(int i =0; i<cantPorEliminar;i++) personasPecadoras->append(heapPecados->eliminarPrioridadMax());
 
-    for(int i =0; i<personasPecadoras->length();i++){
+    for(int i =1; i<personasPecadoras->length();i++){
         cantAsesinados++;
         personasPecadoras->at(i)->vivo = false;
         textoLog+=crearLog(personasPecadoras->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Corvus Glaive, por tener una cantidad total de pecados: "+QString::number(personasPecadoras->at(i)->pecadosTotales);
     }
+
+    cantAsesinados++;
+    personasPecadoras->at(0)->vivo = false;
+    textoLog+=crearLog(personasPecadoras->at(0))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasPecadoras->at(0)->buenasAccionesTotales);
+
     eliminacionesCorvusGlaive->append(textoLog);
 
     return escribirArchivo(textoLog.toStdString());
@@ -516,7 +522,7 @@ QString Mundo::corvusGlaive(){
 
 QString Mundo::midnight(){
     QString textoLog = "",tiempoMuerte = crearTxtTiempo();
-    QList<Persona*> * personasNoBuenas = new QList<Persona*>; //No se me ocurrio un mejor nombre \_°-°_/
+    QList<Persona*> * personasNoBuenas = new QList<Persona*>(); //No se me ocurrio un mejor nombre \_°-°_/
     QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
 
     int cantPorEliminar = int((arbolAplastado->length())*(0.05));
@@ -524,12 +530,15 @@ QString Mundo::midnight(){
     for(int i =0; i<arbolAplastado->length();i++) heapBuenasAcciones->insertarPrioridadMin(arbolAplastado->at(i)->dato);
     for(int i =0; i<cantPorEliminar;i++) personasNoBuenas->append(heapBuenasAcciones->eliminarPrioridadMin());
 
-    for(int i =0; i<personasNoBuenas->length();i++){
+    for(int i =1; i<personasNoBuenas->length();i++){
         cantAsesinados++;
         personasNoBuenas->at(i)->vivo = false;
         textoLog+=crearLog(personasNoBuenas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasNoBuenas->at(i)->buenasAccionesTotales);
     }
-    qDebug() << textoLog;
+    cantAsesinados++;
+    personasNoBuenas->at(0)->vivo = false;
+    textoLog+=crearLog(personasNoBuenas->at(0))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasNoBuenas->at(0)->buenasAccionesTotales);
+
     eliminacionesMidnight->append(textoLog);
     return escribirArchivo(textoLog.toStdString());
 }
@@ -538,7 +547,7 @@ QString Mundo::ebonyMaw(int IDCulpable){
     Persona * victima = new  Persona();
     QString textoLog = "", tiempoMuerte = crearTxtTiempo(), pareja = "N/A";
 
-    QList<Persona*> * familiaresSalados = new QList<Persona*>;
+    QList<Persona> * familiaresSalados = new QList<Persona>();
 
 
     //->vivo = false;
@@ -578,8 +587,8 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
         textoLog+= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+
                 vecesQStr+" veces "+deporte;
     }
-    qDebug()<<cantAsesinados++;
     eliminacionesBlackD->append(textoLog);
+
 
     //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
     return escribirArchivo(textoLog.toStdString());
@@ -644,7 +653,12 @@ NodoDoble<Persona> * Mundo::getPersonaRandom(){
 
 QString Mundo::consultarSalvaciones(){
     QString consulta = "";
-    QList<QList<QString>> * salvacionesHeroes = new QList<QList<QString>>;
+    QList<QList<QString>> * salvacionesHeroes = new QList<QList<QString>>();
+    QList<QString> * nombresHeroes = new QList<QString>();
+    nombresHeroes->append("IronMan");
+    nombresHeroes->append("SpiderMan");
+    nombresHeroes->append("AntMan");
+    nombresHeroes->append("Thor");
     consulta+= "\nLa cantidad total de personas salavadas es: "+QString::number(cantSalvados)+"\n\n";
 
     salvacionesHeroes->append(*salvacionesThor);
@@ -653,6 +667,7 @@ QString Mundo::consultarSalvaciones(){
     salvacionesHeroes->append(*salvacionesSpiderMan);
 
     for(int i = 0; i <salvacionesHeroes->length();i++){
+        consulta+= "\n\nELIMINACIONES HECHAS POR: "+nombresHeroes->at(i);
         for(int j = 0 ; i<salvacionesHeroes->at(i).length();i++){
             consulta+=salvacionesHeroes->at(i).at(j);
         }
@@ -663,8 +678,8 @@ QString Mundo::consultarSalvaciones(){
 
 QString Mundo::consultarEliminaciones(){
     QString consulta= "";
-    QList<QList<QString>> * eliminacionesVillanos = new QList<QList<QString>>;
-    QList<QString> * nombresVillanos = new QList<QString>;
+    QList<QList<QString>> * eliminacionesVillanos = new QList<QList<QString>>();
+    QList<QString> * nombresVillanos = new QList<QString>();
 
     nombresVillanos->append("Black Dwarf");
     nombresVillanos->append("Nebula");
@@ -681,10 +696,42 @@ QString Mundo::consultarEliminaciones(){
     //ELIMINAR
     for(int i = 0; i <5;i++){
         consulta+= "\n\nELIMINACIONES HECHAS POR: "+nombresVillanos->at(i);
-
         for(int j = 0 ; i<(eliminacionesVillanos->at(i).length()+1);i++){
             consulta+=eliminacionesVillanos->at(i).at(j);
         }
     }
     return escribirArchivo(consulta.toStdString());
+}
+
+//VIVOS MUERTOS Y ELIMINADOS
+QString Mundo::consultarEstadosHumanos(){
+    QString textoConsulta = "";
+    return escribirArchivo(textoConsulta.toStdString());
+}
+
+//EN CADENA PA BAJO
+QString Mundo::consultarAmigosAmigos(QString ID){
+    QString textoConsulta = "";
+    return escribirArchivo(textoConsulta.toStdString());
+}
+
+//Un deporte en especifico
+QString Mundo::consultarDeporte(QString deporte){
+    QString textoConsulta = "";
+    ESTO DEBEMOS USARLO PARA NO RECORRER TODO EN CREARPERSON()0 deportes->deportes->at(0)->at()
+    return escribirArchivo(textoConsulta.toStdString());
+}
+
+
+//Info de la familia segun ID
+QString Mundo::consultarFamiliaID(QString ID){
+    QString textoConsulta = "";
+    return escribirArchivo(textoConsulta.toStdString());
+}
+
+//Devolver toda la info de un humano segun ID
+QString Mundo::consultarHumanoID(QString ID){
+    QString textoConsulta = "";
+
+    return escribirArchivo(textoConsulta.toStdString());
 }

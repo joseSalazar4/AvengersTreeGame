@@ -55,6 +55,16 @@ private slots:
 
     void on_btnThanos_clicked();
 
+    void on_btnConsultaID_clicked();
+
+    void on_btnConsultaHumanosTotalidadVivoMuerto_clicked();
+
+    void on_btnConsultaAmigosCadenaID_clicked();
+
+    void on_btnConsultaFamiliaID_clicked();
+
+    void on_btnConsultaDeportes_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

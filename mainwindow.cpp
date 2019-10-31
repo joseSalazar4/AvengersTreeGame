@@ -147,7 +147,7 @@ void MainWindow::on_btnConsultaEliminaciones_clicked()
 
 void MainWindow::on_btnConsultaSalvaciones_clicked()
 {
-    enviarCorreo(mundo->ironMan(),"Consulta Salvaciones");
+    enviarCorreo(mundo->consultarSalvaciones(),"Consulta Salvaciones");
 }
 
 void MainWindow::on_btnThanos_clicked()
@@ -166,4 +166,33 @@ void MainWindow::on_btnThanos_clicked()
     else if(isAnno && !isNivel){ //Busca eliminar solo el año
         mundo->thanosAnno(anno);
     }
+}
+
+void MainWindow::on_btnConsultaID_clicked()
+{
+    ui->spinBoxConsultaID->value();
+    enviarCorreo(mundo->consultarHumanoID(),"Consulta de "+QString::number(ui->spinBoxConsultaID->value()));
+}
+
+void MainWindow::on_btnConsultaHumanosTotalidadVivoMuerto_clicked()
+{
+    enviarCorreo(mundo->consultarEstadosHumanos(),"Consulta de Cantidad de humanos vivos, eliminados, salvados.");
+}
+
+void MainWindow::on_btnConsultaAmigosCadenaID_clicked()
+{
+    ui->spinBoxAmigosAmigosID->value();
+    enviarCorreo(mundo->consultarAmigosAmigos(),"Consulta de Amigos en cadena del ID: "+QString::number(ui->spinBoxAmigosAmigosID->value()));
+}
+
+void MainWindow::on_btnConsultaFamiliaID_clicked()
+{
+    ui->spinBoxFamiliaID->value();
+    enviarCorreo(mundo->consultarFamiliaID(),"Consulta de Familia segun ID"+QString::number(ui->spinBoxFamiliaID->value()));
+}
+
+void MainWindow::on_btnConsultaDeportes_clicked()
+{
+    ui->comboBoxDeportesConsulta->currentText();
+    enviarCorreo(mundo->consultarDeporte(),"Consulta del deporte: "+ui->comboBoxDeportesConsulta->currentText());
 }
