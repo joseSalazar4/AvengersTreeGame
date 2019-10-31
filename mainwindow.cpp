@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     mundo = new Mundo();
     ventanaCrearPersonas.hide();
     ui->comboBoxDeportes->addItems(nombresDeportes);
+    ui->SpinBoxNivelThanos->setRange(0,9);
+    ui->spinBoxAnnoThanos->setRange(1954, 2019);
     connect(&ventanaCrearPersonas, SIGNAL(finalizo(int,int,int,int,int,int,int,int,int,int,int)), this, SLOT(on_btnGenerarPersonas_Finished(int,int,int,int,int,int,int,int,int,int, int)));
 }
 
@@ -146,4 +148,22 @@ void MainWindow::on_btnConsultaEliminaciones_clicked()
 void MainWindow::on_btnConsultaSalvaciones_clicked()
 {
     enviarCorreo(mundo->ironMan(),"Consulta Salvaciones");
+}
+
+void MainWindow::on_btnThanos_clicked()
+{
+    bool isNivel = ui->checkBoxNivelThanos->isChecked();
+    bool isAnno = ui->checkBoxAnnoThanos->isChecked();
+    int nivel = ui->SpinBoxNivelThanos->value();
+    int anno = ui->spinBoxAnnoThanos->value();
+
+    if(isNivel && isAnno){ //Busca eliminar Año y Nivel
+
+    }
+    else if(isNivel && !isAnno){ //Busca eliminar solo el nivel
+
+    }
+    else if(isAnno && !isNivel){ //Busca eliminar solo el año
+
+    }
 }

@@ -123,7 +123,7 @@ void Mundo::crearPoblacion(int cantSolicitada){
     }
 
     qDebug() << "Repetidos: " + QString::number(repetido);
-
+    qDebug() << "PROMEDIO: " + QString::number(Thanos->promedio / listaPersonasTotales->largo);
     generacion++;
 }
 
@@ -158,9 +158,6 @@ void Mundo::crearPersona(){
     listaPersonasTotales->insertar(nuevaPersona);
     //Insertar en AVL Para prueba
     arbolMundo->insertar(nuevaPersona);
-
-    int ibnp = Thanos->IBNP(nuevaPersona);
-    qDebug() << "IBNP: "+QString::number(ibnp);
 
 }
 

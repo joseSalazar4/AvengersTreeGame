@@ -52,6 +52,7 @@ public:
     QString spiderMan();
 
     //Villanos
+    QString thanos();
     QString midnight();
     QString nebula(int);
     QString ebonyMaw(int);
