@@ -462,17 +462,20 @@ QString Mundo::thanosAnnoYNivel(int anno, int nivel){
 
 //Murio por ser del nivel (nivel)
 QString Mundo::thanosNivel(int nivel){
+    QString textoLog = "", tiempoMuerte = crearTxtTiempo();
+
     thanosCrearHashTable();
+    QList<Persona*> * sacrificados = new QList<Persona*>();
     QList<QList<Persona*>*>*eliminados = Thanos->matarPorNivel(nivel);
     if(eliminados != nullptr){
         for(int i=0; i<eliminados->size(); i++){
-            for(int j=0; j<eliminados[i].size(); i++){
-                for(int k=0; k<eliminados[i][j]->size(); k++){
-                    eliminados[i][j]->at(k)->vivo = false;
-                }
+            for(int j=0; j<eliminados->at(i)->size(); j++){
+                sacrificados->append(eliminados->at(i)->at(j));
             }
         }
-        return "No se como hacer los logs";
+        for(int i = 0 ;i<sacrificados->length() ;i++){
+            sacrificados->at(i);
+        }
     }
      return "No deberia haber pasado esto";
 }
@@ -483,7 +486,7 @@ QString Mundo::thanosAnno(int anno){
     QList<QList<Persona*>*>*eliminados = Thanos->matarPorAnno(anno);
     if(eliminados != nullptr){
         for(int i=0; i<eliminados->size(); i++){
-            for(int j=0; j<eliminados[i].size(); i++){
+            for(int j=0; j<eliminados[i].size(); j++){
                 for(int k=0; k<eliminados[i][j]->size(); k++){
                     eliminados[i][j]->at(k)->vivo = false;
                 }

@@ -3,12 +3,13 @@
 #include <QList>
 #include "Persona.h"
 struct MundoThanos{
-    QList<Persona*> * mundo[65][10];
+    QList<Persona*> * mundo[66][10];
     int promedio;
 
 public:
     MundoThanos(){
-        for(int i=0; i<65; i++){
+        for(int i=0; i<66; i++){
+            *mundo[i] = new QList<Persona*>();
             for(int j=0; j<10; j++){
                 mundo[i][j] = new QList<Persona*>();
             }
@@ -43,7 +44,7 @@ public:
     QList<QList<Persona*>*> * matarPorNivel(int nivel){
         if(nivel <= 9 && nivel > 0){
             QList<QList<Persona*>*> * eliminadosXThanos = new QList<QList<Persona*>*>();
-            for(int i=0; i<65; i++)
+            for(int i=0; i<66; i++)
                 eliminadosXThanos->append(mundo[i][nivel]);
             return eliminadosXThanos;
         }
