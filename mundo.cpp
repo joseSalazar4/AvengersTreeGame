@@ -91,6 +91,7 @@ void Mundo::crearPoblacion(int cantSolicitada){
             asignarAmigos(tmp->dato);
             tmp = tmp->siguiente;
         }
+        qDebug()<<"Term";
     }
 
 
@@ -225,11 +226,14 @@ void Mundo::asignarFamilia(Persona* persona){
             return;
         }
 
-        pareja = getPersonaRandom();
+        if(pareja->siguiente){
+            pareja = pareja->siguiente;
+        }
+        pareja = listaPersonasTotales->primerNodo;
         i++;
     }
     persona->pareja = pareja;
-    qDebug()<<"ENCONTRE PAREJA";
+    //qDebug()<<"ENCONTRE PAREJA";
 
     //Si no tiene mas de 20 no es Joven y no puede tener hijos
     if(persona->edad< 20) return;
@@ -243,14 +247,20 @@ void Mundo::asignarFamilia(Persona* persona){
         //Preguntamos primero por verificar para no hacer las otras preguntas
         if(verificarValidezHijos(persona,tmp) && (persona->pais  == tmp->pais || persona->pareja->pais == tmp->pais)  &&
                 (persona->apellido == tmp->apellido ||  persona->pareja->apellido == tmp->apellido)){
-
-            tmp->amigos->append(tmp);
+            tmp->hijos->append(tmp);
             cont++;
         }
         //Si no hay suficientes personas con ese apellido podria enciclarse entonces que busque un maximo de 30 000 personas
-        if(contMax>30000) return;
+        if(listaPersonasTotales->largo>80000){
+            if(contMax>(listaPersonasTotales->largo)/2) return;
+        }
+        if(contMax>listaPersonasTotales->largo) return;
+
         contMax++;
-        tmp =  getPersonaRandom();
+        if(tmp->siguiente){
+            tmp = tmp->siguiente;
+        }
+        tmp = listaPersonasTotales->primerNodo;
     }
 }
 
@@ -265,22 +275,17 @@ bool Mundo::verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHij
         if(supuestoPadre == supuestoHijo->hijos->at(i)) esDigno = false;
     }
     if(!esDigno) return esDigno;
-
     esDigno = false;
-
-    //Revisar los rangos pero como?
 
     rangoPadre = longevidad->fHash(supuestoPadre->edad);
     rangoHijo = longevidad->fHash(supuestoHijo->edad);
-
-    if(rangoPadre<5 || rangoPadre>8)qDebug()<<"PROBLEMA CON EDAD PADRE";
 
     if(rangoPadre==5 && (rangoHijo == 0|| rangoHijo == 1)) return esDigno = true;
     else if(rangoPadre ==6 && (rangoHijo == 0 || rangoHijo ==1 || rangoHijo == 2|| rangoHijo == 3 )) return esDigno = true;
     else if(rangoPadre ==7 && (rangoHijo == 4|| rangoHijo == 5|| rangoHijo == 6 ))return esDigno = true;
     else if(rangoPadre ==8 && (rangoHijo == 6|| rangoHijo == 7))return esDigno = true;
 
-
+    if(esDigno) qDebug()<<"SI ES DIGNO DE SER SU HIJO";
     return esDigno;
 }
 
@@ -319,7 +324,6 @@ QString Mundo::crearLog(Persona *persona){
 void Mundo::asignarAmigos(Persona* persona){
     int cantAmigos = QRandomGenerator::global()->bounded(0,51);
     Persona * extrano = listaPersonasTotales->primerNodo->dato;
-    //agregarMetodo de moverse x nodos en la lista para seleccionar gente random
 
     int cont = 0;
     int insistir = 0;
@@ -329,14 +333,12 @@ void Mundo::asignarAmigos(Persona* persona){
         if(!persona->amigos->contains(extrano)){
             if(persona->pais  == extrano->pais){
                 persona->amigos->append(extrano);
-                qDebug() << "Asignando amigos";
                 cont++;
                 insistir = 0;
             }
             else if(QRandomGenerator::global()->bounded(1,100) <40){
                 persona->amigos->append(extrano);
 
-                qDebug() << "Asignando amigos";
                 cont++;
                 insistir = 0;
             }
