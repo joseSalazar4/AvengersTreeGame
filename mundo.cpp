@@ -125,7 +125,6 @@ void Mundo::crearPoblacion(int cantSolicitada){
     qDebug() << "PROMEDIO: " + QString::number(Thanos->promedio / listaPersonasTotales->largo);
     generacion++;
 
-
 }
 
 void Mundo::crearPersona(){
@@ -209,14 +208,14 @@ void Mundo::asignarFamilia(Persona* persona){
 
     NodoDoble<Persona> * pareja = getPersonaRandom();
     int i = 0;
-    while((pareja->dato->pareja != nullptr || pareja->dato->genero == persona->genero )){//|| (!longevidad->validarEdadPareja(persona, pareja)))){
+    while( (pareja->dato->pareja != nullptr || pareja->dato->genero == persona->genero) ){//|| (!longevidad->validarEdadPareja(persona, pareja)))){
         if(i >= listaPersonasTotales->largo){
             persona->estadoMarital = "Solter@";
             qDebug()<<"NO ENCONTRE PAREJA";
             return;
         }
 
-        if(pareja->siguiente) pareja = pareja->siguiente;
+        if(pareja->siguiente!=nullptr) pareja = pareja->siguiente;
         else pareja = listaPersonasTotales->primerNodo;
         i++;
     }
@@ -232,14 +231,12 @@ void Mundo::asignarFamilia(Persona* persona){
     int cont = 0, contMax = 0;
     while(cont<cantHijos){
         //Preguntamos primero por verificar para no hacer las otras preguntas
-        if(verificarValidezHijos(persona,tmp->dato) && (persona->pais  == tmp->dato->pais || persona->pareja->pais == tmp->dato->pais)  &&
-                (persona->apellido == tmp->dato->apellido ||  persona->pareja->apellido == tmp->dato->apellido) && persona->ID != tmp->dato->ID){
-            tmp->dato->hijos->append(tmp->dato);
+        if( verificarValidezHijos(persona,tmp->dato) &&  ((persona->pais  == tmp->dato->pais || persona->pareja->pais == tmp->dato->pais)  || (persona->apellido == tmp->dato->apellido ||  persona->pareja->apellido == tmp->dato->apellido)) ){
+            persona->hijos->append(tmp->dato);
             cont++;
-            qDebug()<<"METIENDO HIJOS";
         }
         //Si no hay suficientes personas con ese apellido podria enciclarse entonces que busque un maximo de 30 000 personas
-        if(listaPersonasTotales->largo>80000){
+        if(listaPersonasTotales->largo>90000){
             if(contMax>(listaPersonasTotales->largo)/2) return;
         }
         if(contMax>listaPersonasTotales->largo) return;
@@ -258,10 +255,9 @@ bool Mundo::verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHij
 
     //Primero preguntamos si el padre no es ya hijo de su supuesto hijo
     bool esDigno = true;
-    for(int i = 0;i<supuestoHijo->hijos->length();i++){
-        if(supuestoPadre == supuestoHijo->hijos->at(i)) esDigno = false;
-    }
-    if(!(!esDigno) || supuestoHijo->ID == supuestoPadre->ID) return false;
+    for(int i = 0;i<supuestoHijo->hijos->length();i++) if(supuestoPadre == supuestoHijo->hijos->at(i)) esDigno = false;
+
+    if( (!esDigno) || supuestoHijo->ID == supuestoPadre->ID) return false;
     esDigno = false;
 
     rangoPadre = longevidad->fHash(supuestoPadre->edad);
@@ -271,8 +267,6 @@ bool Mundo::verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHij
     else if(rangoPadre ==6 && (rangoHijo == 0 || rangoHijo ==1 || rangoHijo == 2|| rangoHijo == 3 )) return esDigno = true;
     else if(rangoPadre ==7 && (rangoHijo == 4|| rangoHijo == 5|| rangoHijo == 6 ))return esDigno = true;
     else if(rangoPadre ==8 && (rangoHijo == 6|| rangoHijo == 7))return esDigno = true;
-
-    if(esDigno) qDebug()<<"\n\n\n\n\n\n\n\nSI ES DIGNO DE SER SU HIJO";
     return esDigno;
 }
 
@@ -310,21 +304,21 @@ QString Mundo::crearLog(Persona *persona){
 
 void Mundo::asignarAmigos(Persona* persona){
     int cantAmigos = QRandomGenerator::global()->bounded(0,51);
-    Persona * extrano = listaPersonasTotales->primerNodo->dato;
+    NodoDoble<Persona> * extrano = getPersonaRandom();
 
     int cont = 0;
     int insistir = 0;
     while(cont<cantAmigos){
-        if(insistir > 100) return;
+        if(insistir > listaPersonasTotales->largo/2) return;
         insistir++;
-        if(!persona->amigos->contains(extrano)){
-            if(persona->pais  == extrano->pais){
-                persona->amigos->append(extrano);
-                cont++;
+        if(!persona->amigos->contains(extrano->dato)){
+            if(persona->pais  == extrano->dato->pais){
+                persona->amigos->append(extrano->dato);
                 insistir = 0;
+                cont++;
             }
             else if(QRandomGenerator::global()->bounded(1,100) <40){
-                persona->amigos->append(extrano);
+                persona->amigos->append(extrano->dato);
 
                 cont++;
                 insistir = 0;
@@ -332,9 +326,9 @@ void Mundo::asignarAmigos(Persona* persona){
 
             else {
                 bool coinciden = false;
-                for(int i = 0;i<extrano->amigos->length();i++){
+                for(int i = 0;i<extrano->dato->amigos->length();i++){
                     for(int j = 0;j<persona->amigos->length();j++ ){
-                        if(persona->amigos->at(j) == extrano->amigos->at(i)){
+                        if(persona->amigos->at(j) == extrano->dato->amigos->at(i)){
                             coinciden = true;
                             return;
                         }
@@ -343,14 +337,16 @@ void Mundo::asignarAmigos(Persona* persona){
                 }
 
                 if(coinciden){
-                    persona->amigos->append(extrano);
+                    persona->amigos->append(extrano->dato);
                     cont++;
                     insistir = 0;
                     coinciden = false;
                 }
             }
         }
-        continue;
+
+        if(extrano->siguiente) extrano = extrano->siguiente;
+        else extrano = listaPersonasTotales->primerNodo;
     }
 }
 
@@ -453,11 +449,16 @@ QString Mundo::corvusGlaive(){
     for(int i =0; i<arbolAplastado->length();i++) heapPecados->insertarPrioridadMax(arbolAplastado->at(i)->dato);
     for(int i =0; i<cantPorEliminar;i++) personasPecadoras->append(heapPecados->eliminarPrioridadMax());
 
-    for(int i =0; i<personasPecadoras->length();i++){
+    for(int i =1; i<personasPecadoras->length();i++){
         cantAsesinados++;
         personasPecadoras->at(i)->vivo = false;
         textoLog+=crearLog(personasPecadoras->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Corvus Glaive, por tener una cantidad total de pecados: "+QString::number(personasPecadoras->at(i)->pecadosTotales);
     }
+
+    cantAsesinados++;
+    personasPecadoras->at(0)->vivo = false;
+    textoLog+=crearLog(personasPecadoras->at(0))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasPecadoras->at(0)->buenasAccionesTotales);
+
     eliminacionesCorvusGlaive->append(textoLog);
 
     return escribirArchivo(textoLog.toStdString());
@@ -473,12 +474,15 @@ QString Mundo::midnight(){
     for(int i =0; i<arbolAplastado->length();i++) heapBuenasAcciones->insertarPrioridadMin(arbolAplastado->at(i)->dato);
     for(int i =0; i<cantPorEliminar;i++) personasNoBuenas->append(heapBuenasAcciones->eliminarPrioridadMin());
 
-    for(int i =0; i<personasNoBuenas->length();i++){
+    for(int i =1; i<personasNoBuenas->length();i++){
         cantAsesinados++;
         personasNoBuenas->at(i)->vivo = false;
         textoLog+=crearLog(personasNoBuenas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasNoBuenas->at(i)->buenasAccionesTotales);
     }
-    qDebug() << textoLog;
+    cantAsesinados++;
+    personasNoBuenas->at(0)->vivo = false;
+    textoLog+=crearLog(personasNoBuenas->at(0))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasNoBuenas->at(0)->buenasAccionesTotales);
+
     eliminacionesMidnight->append(textoLog);
     return escribirArchivo(textoLog.toStdString());
 }
