@@ -158,12 +158,12 @@ void MainWindow::on_btnThanos_clicked()
     int anno = ui->spinBoxAnnoThanos->value();
 
     if(isNivel && isAnno){ //Busca eliminar Año y Nivel
-
+        mundo->thanosAnnoYNivel(anno, nivel);
     }
     else if(isNivel && !isAnno){ //Busca eliminar solo el nivel
-
+        mundo->thanosNivel(nivel);
     }
     else if(isAnno && !isNivel){ //Busca eliminar solo el año
-
+        mundo->thanosAnno(anno);
     }
 }

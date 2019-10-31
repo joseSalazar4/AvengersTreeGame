@@ -55,6 +55,7 @@ public:
     QString thanosAnnoYNivel(int anno, int nivel);
     QString thanosNivel(int nivel);
     QString thanosAnno(int anno);
+    void thanosCrearHashTable();
 
     QString midnight();
     QString nebula(int);

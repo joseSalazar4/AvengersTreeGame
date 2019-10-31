@@ -51,6 +51,7 @@ void Mundo::hacerlesPecar(Persona* persona){
         persona->pecadosTotales+= persona->pecados[j];
 
     }
+    qDebug()<<persona->pecadosTotales;
 }
 
 //Tnto el metodo de arriba como el de abajo en window.cpp pero con un FOR
@@ -124,8 +125,6 @@ void Mundo::crearPoblacion(int cantSolicitada){
     qDebug() << "Repetidos: " + QString::number(repetido);
     qDebug() << "PROMEDIO: " + QString::number(Thanos->promedio / listaPersonasTotales->largo);
     generacion++;
-
-
 }
 
 void Mundo::crearPersona(){
@@ -159,8 +158,6 @@ void Mundo::crearPersona(){
     listaPersonasTotales->insertar(nuevaPersona);
     //Insertar en AVL Para prueba
     arbolMundo->insertar(nuevaPersona);
-
-    Thanos->IBNP(nuevaPersona);
 
 }
 
@@ -236,7 +233,6 @@ void Mundo::asignarFamilia(Persona* persona){
                 (persona->apellido == tmp->dato->apellido ||  persona->pareja->apellido == tmp->dato->apellido) && persona->ID != tmp->dato->ID){
             tmp->dato->hijos->append(tmp->dato);
             cont++;
-            qDebug()<<"METIENDO HIJOS";
         }
         //Si no hay suficientes personas con ese apellido podria enciclarse entonces que busque un maximo de 30 000 personas
         if(listaPersonasTotales->largo>80000){
@@ -387,10 +383,6 @@ void irANivel(Nodo<Persona> * root, int nivel){
 //---------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------
 
-QString Mundo::thanosAnnoYNivel(int anno, int nivel){
-
-}
-
 
 QString Mundo::thor(int nivel){
     Nodo<Persona> * root = arbolMundo->root;
@@ -436,6 +428,60 @@ QString Mundo::spiderMan(){
 //---------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------
 
+//Muere por haber nacido en el año (anno) y ser del nivel(nivel)
+QString Mundo::thanosAnnoYNivel(int anno, int nivel){
+    thanosCrearHashTable();
+    QList<Persona*> * eliminados = Thanos->matarPorAnnoYNivel(anno, nivel);
+    if(eliminados != nullptr){
+        for(int i=0; i<eliminados->size(); i++){
+            eliminados->at(i)->vivo = false;
+        }
+        return "No se como hacer los logs";
+    }
+    return "No deberia haber pasado esto";
+}
+
+//Murio por ser del nivel (nivel)
+QString Mundo::thanosNivel(int nivel){
+    thanosCrearHashTable();
+    QList<QList<Persona*>*>*eliminados = Thanos->matarPorNivel(nivel);
+    if(eliminados != nullptr){
+        for(int i=0; i<eliminados->size(); i++){
+            for(int j=0; j<eliminados[i].size(); i++){
+                for(int k=0; k<eliminados[i][j]->size(); k++){
+                    eliminados[i][j]->at(k)->vivo = false;
+                }
+            }
+        }
+        return "No se como hacer los logs";
+    }
+     return "No deberia haber pasado esto";
+}
+
+//Murio por haber nacido en al año (anno)
+QString Mundo::thanosAnno(int anno){
+    thanosCrearHashTable();
+    QList<QList<Persona*>*>*eliminados = Thanos->matarPorAnno(anno);
+    if(eliminados != nullptr){
+        for(int i=0; i<eliminados->size(); i++){
+            for(int j=0; j<eliminados[i].size(); i++){
+                for(int k=0; k<eliminados[i][j]->size(); k++){
+                    eliminados[i][j]->at(k)->vivo = false;
+                }
+            }
+        }
+        return "No se como hacer los logs";
+    }
+     return "No deberia haber pasado esto";
+}
+
+void Mundo::thanosCrearHashTable(){
+    NodoDoble<Persona> * nodoPersona = listaPersonasTotales->atNodo(0);
+    while(nodoPersona != nullptr){
+        Thanos->agregarPersona(nodoPersona->dato);
+        nodoPersona = nodoPersona->siguiente;
+    }
+}
 
 QString Mundo::nebula(int IDCulpable){
     Persona * culpable = listaPersonasTotales->buscar(IDCulpable);
