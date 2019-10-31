@@ -92,7 +92,6 @@ void Mundo::crearPoblacion(int cantSolicitada){
             asignarAmigos(tmp->dato);
             tmp = tmp->siguiente;
         }
-        qDebug()<<"Term";
     }
 
 
@@ -160,7 +159,6 @@ void Mundo::crearPersona(){
     listaPersonasTotales->insertar(nuevaPersona);
     //Insertar en AVL Para prueba
     arbolMundo->insertar(nuevaPersona);
-    qDebug()<<nuevaPersona->nombre+"\n";
 
     int ibnp = Thanos->IBNP(nuevaPersona);
     qDebug() << "IBNP: "+QString::number(ibnp);
@@ -222,37 +220,34 @@ void Mundo::asignarFamilia(Persona* persona){
     //Soltero es no tener hijos
     if(persona->estadoMarital == "Solter@") return;
 
-    Persona * pareja = getPersonaRandom();
+    NodoDoble<Persona> * pareja = getPersonaRandom();
     int i = 0;
-    while((pareja->pareja != nullptr || pareja->genero == persona->genero )){//|| (!longevidad->validarEdadPareja(persona, pareja)))){
-        if(i >= 1000){
+    while((pareja->dato->pareja != nullptr || pareja->dato->genero == persona->genero )){//|| (!longevidad->validarEdadPareja(persona, pareja)))){
+        if(i >= listaPersonasTotales->largo){
             persona->estadoMarital = "Solter@";
             qDebug()<<"NO ENCONTRE PAREJA";
             return;
         }
 
-        if(pareja->siguiente){
-            pareja = pareja->siguiente;
-        }
-        pareja = listaPersonasTotales->primerNodo;
+        if(pareja->siguiente) pareja = pareja->siguiente;
+        else pareja = listaPersonasTotales->primerNodo;
         i++;
     }
-    persona->pareja = pareja;
-    //qDebug()<<"ENCONTRE PAREJA";
+    persona->pareja = pareja->dato;
 
     //Si no tiene mas de 20 no es Joven y no puede tener hijos
     if(persona->edad< 20) return;
 
     int cantHijos = QRandomGenerator::global()->bounded(0,5);
-    Persona * tmp = getPersonaRandom();
+    NodoDoble<Persona> * tmp = getPersonaRandom();
     //agregarMetodo de moverse x nodos en la lista para seleccionar gente random
 
     int cont = 0, contMax = 0;
     while(cont<cantHijos){
         //Preguntamos primero por verificar para no hacer las otras preguntas
-        if(verificarValidezHijos(persona,tmp) && (persona->pais  == tmp->pais || persona->pareja->pais == tmp->pais)  &&
-                (persona->apellido == tmp->apellido ||  persona->pareja->apellido == tmp->apellido)){
-            tmp->hijos->append(tmp);
+        if(verificarValidezHijos(persona,tmp->dato) && (persona->pais  == tmp->dato->pais || persona->pareja->pais == tmp->dato->pais)  &&
+                (persona->apellido == tmp->dato->apellido ||  persona->pareja->apellido == tmp->dato->apellido)){
+            tmp->dato->hijos->append(tmp->dato);
             cont++;
         }
         //Si no hay suficientes personas con ese apellido podria enciclarse entonces que busque un maximo de 30 000 personas
@@ -262,10 +257,9 @@ void Mundo::asignarFamilia(Persona* persona){
         if(contMax>listaPersonasTotales->largo) return;
 
         contMax++;
-        if(tmp->siguiente){
-            tmp = tmp->siguiente;
-        }
-        tmp = listaPersonasTotales->primerNodo;
+        if(tmp->siguiente) tmp = tmp->siguiente;
+        else tmp = listaPersonasTotales->primerNodo;
+        i++;
     }
 }
 
@@ -604,7 +598,7 @@ int Mundo::generateRandom(int min, int max){
 
 }
 
-NodoDoble<Persona*> * Mundo::getPersonaRandom(){
+NodoDoble<Persona> * Mundo::getPersonaRandom(){
     int index = generateRandom(0, listaPersonasTotales->largo-1);
     return listaPersonasTotales->atNodo(index);
 }

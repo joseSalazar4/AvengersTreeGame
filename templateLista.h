@@ -111,7 +111,7 @@ template <typename T> struct ListaDoble{
        }
    }
 
-   NodoDoble<T*> * atNodo(int index){
+   NodoDoble<T> * atNodo(int index){
        if(estaVacio() || index >= largo || index < 0){
            qDebug() << "index out of bounds" <<endl;
        }

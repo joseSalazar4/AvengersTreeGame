@@ -81,17 +81,15 @@ private:
 
      Nodo<T>* buscarNodo (QString valor, Nodo<T>* nodo)
      {
-          if (nodo == nullptr)
+          if(nodo == nullptr)
             return nullptr;
-          else if (nodo->dato->ID == valor)
+          else if (nodo->dato->ID.toInt() == valor.toInt())
             return nodo;
-          else if (nodo->dato->ID < valor)
+          else if (nodo->dato->ID.toInt() < valor.toInt())
             return buscarNodo(valor, nodo->right);
           else
             return buscarNodo(valor, nodo->left);
-
       }
-
 
      void preOrder( Nodo<T>* node)
      {
@@ -219,9 +217,9 @@ private:
         /* 1. Perform the normal BST insertion */
         if (node == nullptr)
             return(newNodo(dato));
-        if (dato->ID < node->dato->ID)
+        if (dato->ID.toInt() < node->dato->ID.toInt())
             node->left = insert(node->left, dato);
-        else if (dato->ID > node->dato->ID)
+        else if (dato->ID.toInt() > node->dato->ID.toInt())
             node->right = insert(node->right, dato);
         else // Equal datos are not allowed in BST
             return node;
@@ -239,22 +237,22 @@ private:
         // there are 4 cases
 
         // Left Left Case
-        if (balance > 1 && dato->ID < node->left->dato->ID)
+        if (balance > 1 && dato->ID.toInt() < node->left->dato->ID.toInt())
             return rightRotate(node);
 
         // Right Right Case
-        if (balance < -1 && dato->ID > node->right->dato->ID)
+        if (balance < -1 && dato->ID.toInt() > node->right->dato->ID.toInt())
             return leftRotate(node);
 
         // Left Right Case
-        if (balance > 1 && dato->ID > node->left->dato->ID)
+        if (balance > 1 && dato->ID.toInt() > node->left->dato->ID.toInt())
         {
             node->left = leftRotate(node->left);
             return rightRotate(node);
         }
 
         // Right Left Case
-        if (balance < -1 && dato->ID < node->right->dato->ID)
+        if (balance < -1 && dato->ID.toInt() < node->right->dato->ID.toInt())
         {
             node->right = rightRotate(node->right);
             return leftRotate(node);

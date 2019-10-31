@@ -86,7 +86,7 @@ public:
 
 
     //Devuelve una persona Random de la lista Principal
-    NodoDoble<Persona*> * getPersonaRandom();
+    NodoDoble<Persona> * getPersonaRandom();
     int generateRandom(int min, int max);
 
 };
