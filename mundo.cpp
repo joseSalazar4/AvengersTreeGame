@@ -245,7 +245,6 @@ void Mundo::asignarFamilia(Persona* persona){
 
     int cont = 0, contMax = 0;
     while(cont<cantHijos){
-        qDebug() << "Cantidad de hijos";
         //Preguntamos primero por verificar para no hacer las otras preguntas
         if(verificarValidezHijos(persona,tmp) && (persona->pais  == tmp->pais || persona->pareja->pais == tmp->pais)  &&
                 (persona->apellido == tmp->apellido ||  persona->pareja->apellido == tmp->apellido)){
@@ -275,19 +274,14 @@ bool Mundo::verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHij
     esDigno = false;
 
     //Revisar los rangos pero como?
-    for(int i = 0;i<9;i++){ //recorrer rango etario y revisar si es muy joven o  muy viejo para ser su hijo
-        if(longevidad->tablaRangoEtario[i]->contains(supuestoHijo))rangoHijo = i;
-    }
-
-    for(int i = 0;i<9;i++){ //recorrer rango etario y revisar si es muy joven o  muy viejo para ser su hijo
-        if(longevidad->tablaRangoEtario[i]->contains(supuestoPadre))rangoPadre = i;
-    }
+    rangoPadre = longevidad->fHash(supuestoPadre->edad);
+    rangoHijo = longevidad->fHash(supuestoHijo->edad);
 
     if(rangoPadre==5 && (rangoHijo == 0|| rangoHijo == 1)) return esDigno = true;
     else if(rangoPadre ==6 && (rangoHijo == 0 || rangoHijo ==1 || rangoHijo == 2|| rangoHijo == 3 )) return esDigno = true;
     else if(rangoPadre ==7 && (rangoHijo == 4|| rangoHijo == 5|| rangoHijo == 6 ))return esDigno = true;
     else if(rangoPadre ==8 && (rangoHijo == 6|| rangoHijo == 7))return esDigno = true;
-    else qDebug()<<"ERROR EN LA EDAD DEL PADRE!!!!!!!\n\nALERTAAAA\\n\nATENCIONNNN";
+
 
     return esDigno;
 }
@@ -351,11 +345,9 @@ void Mundo::asignarAmigos(Persona* persona){
 
             else {
                 bool coinciden = false;
-                QList<Persona*>  * amigosExtrano = extrano->amigos;
-                QList<Persona*> * amigosPersona = persona->amigos;
                 for(int i = 0;i<extrano->amigos->length();i++){
                     for(int j = 0;j<persona->amigos->length();j++ ){
-                        if(amigosPersona[j] == amigosExtrano[i]){
+                        if(persona->amigos->at(j) == extrano->amigos->at(i)){
                             coinciden = true;
                             return;
                         }
