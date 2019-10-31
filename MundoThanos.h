@@ -13,6 +13,7 @@ public:
                 mundo[i][j] = nullptr; //new QList<Persona*>;
             }
         }
+        promedio = 0;
     }
 
     void agregarPersona(Persona * persona){
@@ -64,7 +65,6 @@ public:
     }
 
 
-private:
     //IBNP = Indice de buenas personas.
     int IBNP(Persona * persona){
         int b =     (persona->pecadosTotales - persona->buenasAccionesTotales)
