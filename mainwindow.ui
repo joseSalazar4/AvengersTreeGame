@@ -263,9 +263,9 @@
    <widget class="QPushButton" name="btnBuenasAcciones">
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>540</x>
       <y>380</y>
-      <width>211</width>
+      <width>221</width>
       <height>31</height>
      </rect>
     </property>

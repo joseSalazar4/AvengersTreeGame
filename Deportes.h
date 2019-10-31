@@ -56,7 +56,7 @@ public:
     }
 
     int generarVecesxSemana(){
-        return generateRandom(1, 21);
+        return generateRandom(1, 21 );
     }
 };
 
