@@ -194,5 +194,5 @@ void MainWindow::on_btnConsultaFamiliaID_clicked()
 void MainWindow::on_btnConsultaDeportes_clicked()
 {
     ui->comboBoxDeportesConsulta->currentText();
-    enviarCorreo(mundo->consultarDeporte(),"Consulta del deporte: "+ui->comboBoxDeportesConsulta->currentText())
+    enviarCorreo(mundo->consultarDeporte(),"Consulta del deporte: "+ui->comboBoxDeportesConsulta->currentText());
 }

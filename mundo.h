@@ -82,13 +82,13 @@ public:
     bool verificarValidezHijos(Persona * supuestoPadre, Persona * supuestoHijo);
 
     //Consultas (Heroes y Villanos)
-    QString consultarDeporte();
-    QString consultarHumanoID();
-    QString consultarFamiliaID();
     QString consultarSalvaciones();
-    QString consultarAmigosAmigos();
     QString consultarEliminaciones();
     QString consultarEstadosHumanos();
+    QString consultarDeporte(QString);
+    QString consultarHumanoID(QString ID);
+    QString consultarFamiliaID(QString ID);
+    QString consultarAmigosAmigos(QString ID);
 
 
     //Devuelve una persona Random de la lista Principal

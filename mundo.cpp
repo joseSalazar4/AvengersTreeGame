@@ -149,6 +149,7 @@ void Mundo::crearPersona(){
     nuevaPersona->fechaNacimiento = new FechaNacimiento();
     nuevaPersona->edad = longevidad->obtenerEdad(nuevaPersona);
     nuevaPersona->deportes = deportes->generarDeportes(nuevaPersona);
+    /agregar Esta Persnaa a cada deportes  pra el mtdo conslta y asi solo buscar un deporte
     nuevaPersona->ctdEjercicioxSemana = deportes->generarVecesxSemana();
     hacerBuenasAcciones(nuevaPersona);
     vivirExperiencias(nuevaPersona);
@@ -650,26 +651,33 @@ QString Mundo::consultarEliminaciones(){
 
 //VIVOS MUERTOS Y ELIMINADOS
 QString Mundo::consultarEstadosHumanos(){
-
+    QString textoConsulta = "";
+    return escribirArchivo(textoConsulta.toStdString());
 }
 
 //EN CADENA PA BAJO
-QString Mundo::consultarAmigosAmigos(){
-
+QString Mundo::consultarAmigosAmigos(QString ID){
+    QString textoConsulta = "";
+    return escribirArchivo(textoConsulta.toStdString());
 }
 
 //Un deporte en especifico
-QString Mundo::consultarDeporte(){
-
+QString Mundo::consultarDeporte(QString deporte){
+    QString textoConsulta = "";
+    ESTO DEBEMOS USARLO PARA NO RECORRER TODO EN CREARPERSON()0 deportes->deportes->at(0)->at()
+    return escribirArchivo(textoConsulta.toStdString());
 }
 
 
 //Info de la familia segun ID
-QString Mundo::consultarFamiliaID(){
-
+QString Mundo::consultarFamiliaID(QString ID){
+    QString textoConsulta = "";
+    return escribirArchivo(textoConsulta.toStdString());
 }
 
 //Devolver toda la info de un humano segun ID
-QString Mundo::consultarHumanoID(){
+QString Mundo::consultarHumanoID(QString ID){
+    QString textoConsulta = "";
 
+    return escribirArchivo(textoConsulta.toStdString());
 }
