@@ -416,12 +416,20 @@ QString Mundo::ironMan(){
     //Recorre el arbol, pregunta si ya pasó por ese nodo. Si no, hace random y depende del resultado salva ese nodo y lo pone true.
     //Al terminar el proceso, restaura los valores de los nodos a false.
 
+    //Se usara el aplastarArbol (Lista)
+    arbolMundo->aplastarArbol();
+    int porcentaje = generateRandom(40, 60);
+    int numeroDeSalvados = arbolMundo->listaArbol
+
     QString textoLog = "",tiempoSalvacion = crearTxtTiempo();
     salvacionesIronMan->append(textoLog);
 
 
     return escribirArchivo(textoLog.toStdString());
 }
+
+
+
 
 QString Mundo::spiderMan(){
 
