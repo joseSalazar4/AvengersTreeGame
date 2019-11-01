@@ -103,7 +103,7 @@ public:
 
     //Insercion en arbol completo
     void insertarEnArbol();
-    void completarArbol(QList<Persona*> * lista, Nodo<Persona> * nodo, int min, int max);
+    void completarArbol(QList<Persona*> * lista, Nodo<Persona> * nodo, int diff, int pos);
     QList<Persona*> * listaOrdenada();
 
     //Ordenamiento de Lista

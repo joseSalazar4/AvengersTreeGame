@@ -135,22 +135,25 @@ void Mundo::insertarEnArbol(){
 
     //Ya tenemos en listaParaArbol las n personas para el arbol.
     //Ahora las ordenamos de menor a mayor.
-    //quickSort(listaParaArbol);
+    quickSort(listaParaArbol);
     //Insertamos las personas al arbol de forma de que quede completo y balanceado.
-    //arbolCompleto->root = arbolCompleto->newNodo(listaParaArbol->at(listaParaArbol->size()/2));
-    //completarArbol(listaParaArbol, arbolCompleto->root->left, 0, listaParaArbol->size()/2);
-    //completarArbol(listaParaArbol, arbolCompleto->root->right, listaParaArbol->size()/2, listaParaArbol->size());
+    int medio = (listaParaArbol->size()-1)/2;
+    arbolCompleto->root = arbolCompleto->newNodo(listaParaArbol->at(medio));
+    arbolCompleto->cantidadPersonas++;
+    completarArbol(listaParaArbol, arbolCompleto->root, (listaParaArbol->size()+1)/2, medio);
+    // NO USAR completarArbol(listaParaArbol, arbolCompleto->root->right, medio, listaParaArbol->size());
 }
 
-void Mundo::completarArbol(QList<Persona*> * lista, Nodo<Persona> * nodo, int min, int max){
-    if(min != max){
-        int medio = (min+max)/2;
-        nodo = arbolCompleto->newNodo(lista->at(medio));
-        //qDebug() <<QString::number(medio) +" : "+ nodo->dato->ID;
-        completarArbol(lista, nodo->left, min, medio);
-        completarArbol(lista, nodo->right, medio, max);
-    }
-    //else nodo = arbolCompleto->newNodo(lista->at(min));
+void Mundo::completarArbol(QList<Persona*> * lista, Nodo<Persona> * nodo, int diff, int pos){
+    diff=diff/2;
+    if(diff==0) return;
+    nodo->left=arbolCompleto->newNodo(lista->at(pos-diff));
+    arbolCompleto->cantidadPersonas++;
+    nodo->right=arbolCompleto->newNodo(lista->at(pos+diff));
+    arbolCompleto->cantidadPersonas++;
+    completarArbol(lista, nodo->left, diff, pos-diff);
+    completarArbol(lista, nodo->right, diff, pos+diff);
+
 }
 
 void Mundo::crearPersona(){
@@ -593,7 +596,7 @@ QString Mundo::spiderMan(){
     QList<Nodo<Persona>*> * listaPersonas = arbolMundo->aplastarArbol();
     int ctdNodosRecorridos = generateRandom(0, listaPersonas->size()-1);
     textoLog += "----Recorrido de Spiderman----\n";
-    for(int i=0; i<ctdNodosRecorridos; i++){
+    for(int i=0; i<ctdNodosRecorridos-1; i++){
         int index = generateRandom(0, listaPersonas->size());
         //telaranna->append(listaPersonas->at(index)->dato);
         Persona * pp =  listaPersonas->at(index)->dato;
