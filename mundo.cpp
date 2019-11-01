@@ -132,14 +132,14 @@ void Mundo::insertarEnArbol(){
     qDebug() << "Repetidos: " + QString::number(repetido);
     qDebug() << "PROMEDIO: " + QString::number(Thanos->promedio / listaPersonasTotales->largo);
     arbolMundo->imprimirNiveles();
-    //Ya tenemos en listaParaArbol las n personas para el arbol.
 
+    //Ya tenemos en listaParaArbol las n personas para el arbol.
     //Ahora las ordenamos de menor a mayor.
-    quickSort(listaParaArbol);
+    // quickSort(listaParaArbol);
     //Insertamos las personas al arbol de forma de que quede completo y balanceado.
-    arbolCompleto->root = arbolCompleto->newNodo(listaParaArbol->at(listaParaArbol->size()/2));
-    completarArbol(listaParaArbol, arbolCompleto->root->left, 0, listaParaArbol->size()/2);
-    completarArbol(listaParaArbol, arbolCompleto->root->right, listaParaArbol->size()/2, listaParaArbol->size());
+   // arbolCompleto->root = arbolCompleto->newNodo(listaParaArbol->at(listaParaArbol->size()/2));
+  //  completarArbol(listaParaArbol, arbolCompleto->root->left, 0, listaParaArbol->size()/2);
+    //completarArbol(listaParaArbol, arbolCompleto->root->right, listaParaArbol->size()/2, listaParaArbol->size());
 }
 
 void Mundo::completarArbol(QList<Persona*> * lista, Nodo<Persona> * nodo, int min, int max){
@@ -263,7 +263,7 @@ QString crearLogMuerteTxt(Persona * persona){
         listaTxt+="\t"+persona->logMuerte->at(i)+",  ";
     }
 
-    listaTxt+= " ]";
+    listaTxt+= "\n ]";
     return  listaTxt;
 }
 
@@ -274,7 +274,7 @@ QString crearLogSalvacionTxt(Persona * persona){
         listaTxt+="\t"+persona->logSalvacion->at(i)+",  ";
     }
 
-    listaTxt+= " ]";
+    listaTxt+= "\n ]";
     return  listaTxt;
 }
 
@@ -549,8 +549,9 @@ QString Mundo::ironMan(){
 
     for(int i=0; i<numeroDeSalvados; i++){
         Persona * persona = arbolPersonas->at(i)->dato;
+        if(!persona->vivo) cantSalvados++;
         persona->vivo = true;
-        cantSalvados++;
+
         logPersonal = crearLog(persona)+
            "\nEl/Ella y su Familia fueron salvados el "+tiempoSalvacion+
            " por Iron Man al estar entre los " + QString::number(numeroDeSalvados) + " nodos del arbol que explotaron";
@@ -569,8 +570,8 @@ QString Mundo::ironManAux(Persona*persona, QString IdFamiliar){
     QList<Persona*> * familiares = getFamiliaresDirectos(persona);
     for(int f=0; f<familiares->size(); f++){
         Persona * familiar = familiares->at(f);
+        if(!familiar->vivo) cantSalvados++;
         familiar->vivo = true;
-        cantSalvados++;
         logPersonal = crearLog(familiar)+
            "\nFue salvado el "+tiempoMuerte+
            " por Iron Man por ser familia de la persona con ID: " + IdFamiliar;
@@ -805,6 +806,7 @@ QString Mundo::ebonyMaw(int IDCulpable){
 QString Mundo::ebonyMawAux(Persona *victima, QString progenitorId){
     QString textoLog = "", tiempoMuerte = crearTxtTiempo(), logPersonal;
     victima->vivo = false;
+    cantAsesinados++;
      logPersonal = crearLog(victima)+
             "\nMurio el "+tiempoMuerte+
             " aniquilado por Ebony Maw por ser familia de la persona con ID: "+progenitorId;
@@ -990,8 +992,9 @@ QString Mundo::consultarDeporte(QString deporteBuscado){
 QString Mundo::consultarFamiliaID(QString ID){
     QString textoConsulta = "", pareja = "";
 
+    if(!listaPersonasTotales->buscarNodo(ID)) return "Error obteniendo la persona";
     Persona * persona = listaPersonasTotales->buscarNodo(ID)->dato;
-    if(persona==nullptr) return "Error obteniendo la persona";
+
 
     if(persona->pareja) pareja = persona->pareja->nombre;
 
@@ -1005,8 +1008,10 @@ QString Mundo::consultarFamiliaID(QString ID){
 QString Mundo::consultarHumanoID(QString ID){
     QString textoConsulta = "", vivo = "", madre = "N/A", padre = "N/A";
 
+
+    if(!listaPersonasTotales->buscarNodo(ID)) return "Error obteniendo la persona";
     Persona * persona = listaPersonasTotales->buscarNodo(ID)->dato;
-    if(persona==nullptr) return "Error obteniendo la persona";
+
 
     if(persona->vivo) vivo = "Vivo";
     else vivo = "Muerto";
