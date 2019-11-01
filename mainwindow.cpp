@@ -61,11 +61,8 @@ void MainWindow::on_btnCorvusG_clicked(){
 
 void MainWindow::on_btnNebula_clicked()
 {
-    int ID = ui->spinBoxNebula->value();
-
-    ui->spinBoxNebula->setValue(1);
     //El boton simplemente enviara el correo con el archivo de texto
-    enviarCorreo(mundo->nebula(ID),"Nebula");
+    enviarCorreo(mundo->nebula(),"Nebula");
 }
 
 void MainWindow::on_btnBuenasAcciones_clicked()

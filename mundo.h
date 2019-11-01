@@ -60,7 +60,8 @@ public:
     void thanosCrearHashTable();
 
     QString midnight();
-    QString nebula(int);
+    QString nebula();
+    QString nebulaAux(Persona*);
     QString ebonyMaw(int);
     QString ebonyMawAux(Persona*victima, QString progenitorId);
     QString corvusGlaive();
