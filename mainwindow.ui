@@ -338,27 +338,6 @@
      <string>Indique el ID</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>130</y>
-      <width>121</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>Indique el ID</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
@@ -412,16 +391,6 @@
     </property>
     <property name="maximum">
      <number>9999999</number>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="spinBoxNebula">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>160</y>
-      <width>51</width>
-      <height>22</height>
-     </rect>
     </property>
    </widget>
    <widget class="QComboBox" name="comboBoxDeportes">
@@ -1000,11 +969,9 @@
    <zorder>btnPecar</zorder>
    <zorder>label</zorder>
    <zorder>label_2</zorder>
-   <zorder>label_3</zorder>
    <zorder>label_4</zorder>
    <zorder>label_5</zorder>
    <zorder>spinBoxEbonyMaw</zorder>
-   <zorder>spinBoxNebula</zorder>
    <zorder>comboBoxDeportes</zorder>
    <zorder>spinBoxAntMan</zorder>
    <zorder>spinBoxThor</zorder>

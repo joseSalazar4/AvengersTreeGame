@@ -598,14 +598,39 @@ void Mundo::thanosCrearHashTable(){
     }
 }
 
-QString Mundo::nebula(int IDCulpable){
-    Persona * culpable = listaPersonasTotales->buscar(IDCulpable);
-    QString textoLog = "",tiempoMuerte = crearTxtTiempo();
-    //maybe llamar a un metodo secundario
+QString Mundo::nebula(){
+    QString textoLog = "", tiempoMuerte = crearTxtTiempo(), logPersonal;
+    arbolMundo->aplastarArbol();
+    Persona * culpable = arbolMundo->listaArbol->at(generateRandom(0, arbolMundo->listaArbol->size()-1))->dato;
+    if(culpable != nullptr){
+        //maybe llamar a un metodo secundario
+        for(int i=0; i<culpable->amigos->size(); i++){
+            culpable->amigos->at(i)->vivo = false;
+            logPersonal = crearLog(culpable)+
+                    "\nFue asesinado el "+tiempoMuerte+
+                    " por Nebula por ser amigo de la persona con ID (Y ÉL SE SALVO!): " + culpable->ID;
+            culpable->amigos->at(i)->logMuerte->append(logPersonal);
+            textoLog += nebulaAux(culpable->amigos->at(i));
+        }
 
-
-    eliminacionesNebula->append(textoLog);
+        eliminacionesNebula->append(textoLog);
+        qDebug() << textoLog;
+    }
     return escribirArchivo(textoLog.toStdString());
+}
+
+QString Mundo::nebulaAux(Persona * culpable){
+    QString textoLog = "", tiempoMuerte = crearTxtTiempo(), logPersonal;
+    for(int i=0; i<culpable->amigos->size(); i++){
+        culpable->amigos->at(i)->vivo = false;
+        logPersonal = crearLog(culpable)+
+                "\nFue asesinado el "+tiempoMuerte+
+                " por Nebula por ser amigo de la persona con ID (Y ÉL SE SALVO!): " + culpable->ID;
+        culpable->amigos->at(i)->logMuerte->append(logPersonal);
+        textoLog += nebulaAux(culpable->amigos->at(i));
+    }
+
+    return textoLog;
 }
 
 QString Mundo::corvusGlaive(){
@@ -634,6 +659,10 @@ QString Mundo::corvusGlaive(){
     qDebug().noquote() << textoLog;
     return escribirArchivo(textoLog.toStdString());
 }
+
+
+
+
 
 QString Mundo::midnight(){
     QString textoLog = "",tiempoMuerte = crearTxtTiempo(), logPersonal;
