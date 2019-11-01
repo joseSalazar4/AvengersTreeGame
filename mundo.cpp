@@ -1037,7 +1037,7 @@ QString Mundo::consultarAmigosAmigosAux(Persona * amigoSalado, QString IDAmigoCu
 QString Mundo::consultarDeporte(QString deporteBuscado){
     QString textoConsulta = "[ ";
     int indice = deportes->nombresDeportes.indexOf(deporteBuscado);
-    QList<Persona*> * listaDeportistas = deportes->deportes->at(indice);
+    QList<Persona*> * listaDeportistas = deportes->deportes->at(indice);//adbso
     for(int i = 0 ; i<listaDeportistas->size();i++ ) {
         if(!listaDeportistas->at(i)->deportes->contains(deporteBuscado))
         textoConsulta +=  listaDeportistas->at(i)->nombre+"--"+listaDeportistas->at(i)->ID+", \n";
