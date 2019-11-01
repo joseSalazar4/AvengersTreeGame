@@ -532,9 +532,10 @@ QString Mundo::corvusGlaive(){
     for(int i =0;i<heapPecados->index;i++) heapPecados->eliminarPrioridadMax();
     if(heapPecados->heap->empty()) qDebug()<<"\n\n\n\n\n ESTA VACIA LA PICHA";
 
-    int cantPorEliminar = int((arbolAplastado->length())*(0.05));
+    int cantPorEliminar = int((arbolAplastado->length())*(0.05))+1;
 
     for(int i =0; i<arbolAplastado->length();i++) heapPecados->insertarPrioridadMax(arbolAplastado->at(i)->dato);
+    heapPecados->eliminarPrioridadMax(); //PRUEBA
     for(int i =0; i<cantPorEliminar;i++) personasPecadoras->append(heapPecados->eliminarPrioridadMax());
 
     for(int i =1; i<personasPecadoras->length();i++){
