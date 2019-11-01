@@ -61,14 +61,14 @@ public:
 
     QString midnight();
     QString nebula();
-    QString nebulaAux(Persona*);
     QString ebonyMaw(int);
-    QString ebonyMawAux(Persona*victima, QString progenitorId);
     QString corvusGlaive();
+    QString nebulaAux(Persona*);
     QString blackDwarf(int,QString);
-
+    QString ebonyMawAux(Persona*victima, QString progenitorId);
 
     QString terminarPartida();
+    QString consultarAmigosAmigosAux(Persona * amigoSalado, QString IDAmigoCulpable);
 
     //Pecados ^ Buenas Acciones
     void hacerlesPecar(Persona* persona);  //recorrer la lista de personas y darles qrandom a cada una de las personas.
@@ -103,7 +103,7 @@ public:
 
     //Insercion en arbol completo
     void insertarEnArbol();
-    void completarArbol(QList<Persona*> * lista, Nodo<Persona> * nodo, int min, int max);
+    void completarArbol(QList<Persona*> * lista, Nodo<Persona> * nodo, int diff, int pos);
     QList<Persona*> * listaOrdenada();
 
     //Ordenamiento de Lista

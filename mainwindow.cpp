@@ -27,7 +27,7 @@ void MainWindow::enviarCorreo(QString nombre,QString nombreCaracter){
     QList<QString> archivos = {nombre};
     Smtp* smtp = new Smtp("mikomeka1@gmail.com", "mikomeka11", "smtp.gmail.com", 465);
     connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
-    smtp->sendMail("mikomeka1@gmail.com", "jsalazarg48@gmail.com" , "Log de: "+nombreCaracter,
+    smtp->sendMail("mikomeka1@gmail.com", "thisismabot@gmail.com" , "Log de: "+nombreCaracter,
                    "He cumplido con lo solicitado, aca esta la informacion", archivos);
 }
 

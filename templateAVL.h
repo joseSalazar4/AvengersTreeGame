@@ -171,7 +171,7 @@ public:
     Nodo<T>* newNodo(T *dato)
     {
         Nodo<T> *nodo = new Nodo<T>(dato);
-        return(nodo);
+        return nodo;
     }
 
     // A utility function to right
@@ -284,6 +284,57 @@ public:
 
 };
 
+/*Codigo para arbol completo
+class Tree:
+    def __init__(self, value, left, right):
+        self.value = value
+        self.left = left
+        self.right = right
 
+    def count(self):
+        if self == None:
+            return 0
+        elements = 0
+        if self.left != None:
+            elements = elements + self.left.count()
+        if self.right != None:
+            elements = elements + self.right.count()
+        return 1 + elements
+
+    def cloneAndShift(self, shift):
+        newLeft = None
+        newRight = None
+        if self.left != None:
+            newLeft = self.left.cloneAndShift(shift)
+        if self.right != None:
+            newRight = self.right.cloneAndShift(shift)
+        return Tree(self.value + shift, newLeft, newRight)
+
+
+def totalNodes(lvl):
+    return 2**lvl - 1
+
+def fullTree(lvl):
+    if lvl == 0:
+        return None
+    if lvl == 1:
+        return Tree(1, None, None)
+    return Tree(1, fullTree(lvl -1), fullTree(lvl -1))
+
+
+def moveTree(T, start = 1):
+    if T.left != None:
+        T.left = moveTree(T.left, start)
+        T.value = T.left.count() + 1
+    else:
+        T.value = start
+    if T.right != None:
+        T.right = T.left.cloneAndShift(T.value)
+    return T
+
+def fx(lvl):
+    return moveTree(fullTree(lvl));
+
+*/
 
 #endif // TEMPLATEAVL_H
