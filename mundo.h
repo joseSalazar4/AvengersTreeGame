@@ -61,14 +61,14 @@ public:
 
     QString midnight();
     QString nebula();
-    QString nebulaAux(Persona*);
     QString ebonyMaw(int);
-    QString ebonyMawAux(Persona*victima, QString progenitorId);
     QString corvusGlaive();
+    QString nebulaAux(Persona*);
     QString blackDwarf(int,QString);
-
+    QString ebonyMawAux(Persona*victima, QString progenitorId);
 
     QString terminarPartida();
+    QString consultarAmigosAmigosAux(Persona * amigoSalado, QString IDAmigoCulpable);
 
     //Pecados ^ Buenas Acciones
     void hacerlesPecar(Persona* persona);  //recorrer la lista de personas y darles qrandom a cada una de las personas.

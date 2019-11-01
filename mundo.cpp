@@ -827,7 +827,6 @@ QString Mundo::ebonyMaw(int IDCulpable){
 QString Mundo::ebonyMawAux(Persona *victima, QString progenitorId){
     QString textoLog = "", tiempoMuerte = crearTxtTiempo(), logPersonal;
     if(victima->vivo){
-
         cantAsesinados++;
         victima->vivo = false;
         logPersonal = crearLog(victima)+
@@ -989,16 +988,47 @@ QString Mundo::consultarEliminaciones(){
 
 //VIVOS MUERTOS Y ELIMINADOS
 QString Mundo::consultarEstadosHumanos(){
-    QString textoConsulta = "";
+    QString textoConsulta = "",textoVivos= "",textoEliminados= "", textoSalvados= "", textoMuertos="";
+    for(int i = 0; i<listaPersonasTotales->largo;i++){
+
+
+        if(listaPersonasTotales->at(i)->vivo) textoVivos+=crearLog(listaPersonasTotales->at(i));
+        else textoMuertos=  crearLog(listaPersonasTotales->at(i));
+
+        textoSalvados+=crearLogSalvacionTxt(listaPersonasTotales->at(i));
+        textoEliminados+=crearLogMuerteTxt(listaPersonasTotales->at(i));
+
+    }
+    textoConsulta="\n\nPERSONAS VIVAS: \n"+textoVivos+"\nPERSONAS MUERTAS: \n"+textoMuertos+"\nPERSONAS SALVADAS: \n"+textoSalvados+"\nPERSONAS ASESINADAS: \n\n"+textoEliminados;
     return escribirArchivo(textoConsulta.toStdString());
 }
 
 //EN CADENA PA BAJO
 QString Mundo::consultarAmigosAmigos(QString ID){
     QString textoConsulta = "";
+    if(!listaPersonasTotales->buscarNodo(ID)) return "Error obteniendo la persona";
+    Persona * persona = listaPersonasTotales->buscarNodo(ID)->dato;
+
+
+    for(int i= 0 ; i<persona->amigos->length();i++){
+        textoConsulta+=consultarAmigosAmigosAux(persona->amigos->at(i),persona->ID);
+    }
     return escribirArchivo(textoConsulta.toStdString());
 }
 
+
+QString Mundo::consultarAmigosAmigosAux(Persona * amigoSalado, QString IDAmigoCulpable){
+    QString textoLog = "",logPersonal;
+
+    logPersonal = crearLog(amigoSalado)+" Es amigo de "+IDAmigoCulpable+"\n\n";
+
+    textoLog+= logPersonal;
+
+    for(Persona*amigo:*amigoSalado->amigos){
+        textoLog+=consultarAmigosAmigosAux(amigo, amigoSalado->ID);
+    }
+    return textoLog;
+}
 //Un deporte en especifico
 QString Mundo::consultarDeporte(QString deporteBuscado){
     QString textoConsulta = "[ ";
