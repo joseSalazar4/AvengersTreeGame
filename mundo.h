@@ -24,6 +24,7 @@ public:
     AVL<Persona> * arbolMundo;
     Deportes * deportes = new Deportes();
     ListaDoble<Persona> * listaPersonasTotales;
+    AVL<Persona>*arbolCompleto = new AVL<Persona>();
     Heap * heapPecados;
     Heap * heapBuenasAcciones;
     Longevidad * longevidad = new Longevidad();
@@ -95,6 +96,16 @@ public:
     QString consultarHumanoID(QString ID);
     QString consultarFamiliaID(QString ID);
     QString consultarAmigosAmigos(QString ID);
+
+    //Insercion en arbol completo
+    void insertarEnArbol();
+    void completarArbol(QList<Persona*> * lista, Nodo<Persona> * nodo, int min, int max);
+    QList<Persona*> * listaOrdenada();
+
+    //Ordenamiento de Lista
+    int obtainPivot(QList<Persona*>* lista, int min, int max);
+    void quickSortFunction(QList<Persona*> * lista, int min, int max);
+    void quickSort(QList<Persona*> * lista);
 
 
     //Devuelve una persona Random de la lista Principal

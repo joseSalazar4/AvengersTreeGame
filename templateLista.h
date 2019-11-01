@@ -76,6 +76,19 @@ template <typename T> struct ListaDoble{
     return nullptr;
     }
 
+   NodoDoble<T> * buscarNodo(QString ID){
+    //Devuelve el nodo solicitado
+    if(!estaVacio()){
+        NodoDoble<T> * temp = primerNodo;
+        while(temp != nullptr){
+            if(temp->dato->ID == ID)
+                return temp;
+            temp = temp->siguiente;
+            }
+        }
+    return nullptr;
+    }
+
    T * buscarNombre(QString nombre){
     //Devuelve el nodo solicitado
     if(!estaVacio()){

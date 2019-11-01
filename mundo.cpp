@@ -10,6 +10,7 @@ Mundo::Mundo()
     heapPecados = new Heap();
     heapBuenasAcciones = new Heap();
     arbolMundo = new AVL<Persona>();
+    arbolCompleto = new AVL<Persona>();
     listaPersonasTotales = new ListaDoble<Persona>();
     Thanos = new MundoThanos();
 
@@ -93,10 +94,17 @@ void Mundo::crearPoblacion(int cantSolicitada){
         }
     }
 
+    insertarEnArbol();
+    generacion++;
 
+}
+
+void Mundo::insertarEnArbol(){
     //INSERTAR PERSONAS DEL ARBOL
     //if(generacion!=0) arbolMundo->;
     arbolMundo = new AVL<Persona>();
+    arbolCompleto = new AVL<Persona>();
+    QList<Persona*> * listaParaArbol = new QList<Persona*>();
     int cantidadTotal = listaPersonasTotales->largo;
     int cantidadParaArbol = cantidadTotal/100;
     int ctdElegidos = 0;
@@ -110,21 +118,37 @@ void Mundo::crearPoblacion(int cantSolicitada){
 
     Persona * p;
     int repetido = 0;
-    for(int k=0; k<ctdElegidos; k++){
+    for(int k=0; k<ctdElegidos-1; k++){
         do{
             index = generateRandom(0, cantidadTotal);
             p = listaPersonasTotales->at(index);
             repetido++;
         }
-        while(arbolMundo->estaEnElArbol(p->ID));
+        while(listaParaArbol->contains(p));
         arbolMundo->insertar(p);
+        listaParaArbol->append(p);
         repetido--;
     }
-
     qDebug() << "Repetidos: " + QString::number(repetido);
     qDebug() << "PROMEDIO: " + QString::number(Thanos->promedio / listaPersonasTotales->largo);
-    generacion++;
+    arbolMundo->imprimirNiveles();
+    //Ya tenemos en listaParaArbol las n personas para el arbol.
 
+    //Ahora las ordenamos de menor a mayor.
+    //quickSort(listaParaArbol);
+    //Insertamos las personas al arbol de forma de que quede completo y balanceado.
+   // completarArbol(listaParaArbol, arbolCompleto->root, 0, listaParaArbol->size()-1);
+
+}
+
+void Mundo::completarArbol(QList<Persona*> * lista, Nodo<Persona> * nodo, int min, int max){
+    if(min != max){
+        int medio = (max-min)/2;
+        nodo = arbolCompleto->newNodo(lista->at(medio));
+        completarArbol(lista, nodo->left, min, medio-1);
+        completarArbol(lista, nodo->right, medio+1, max);
+    }
+    else nodo = arbolCompleto->newNodo(lista->at(min));
 }
 
 void Mundo::crearPersona(){
@@ -158,7 +182,8 @@ void Mundo::crearPersona(){
     //Finalmente se agrega a la listaPrincipal del mundo
     listaPersonasTotales->insertar(nuevaPersona);
     //Insertar en AVL Para prueba
-    arbolMundo->insertar(nuevaPersona);
+
+    //arbolMundo->insertar(nuevaPersona);
 
 }
 
@@ -430,7 +455,7 @@ QString Mundo::ironMan(){
         persona->vivo = true;
         logPersonal = crearLog(persona)+
            "\nEl/Ella y su Familia fueron salvados el "+tiempoSalvacion+
-           " por Iron Man al estar entre los" + QString::number(numeroDeSalvados) + " nodos del arbol que explotaron";
+           " por Iron Man al estar entre los " + QString::number(numeroDeSalvados) + " nodos del arbol que explotaron";
         textoLog += logPersonal;
         persona->logSalvacion->append(logPersonal);
         textoLog+= ironManAux(arbolPersonas->at(i)->dato, arbolPersonas->at(i)->dato->ID);
@@ -460,8 +485,36 @@ QString Mundo::ironManAux(Persona*persona, QString IdFamiliar){
 }
 
 QString Mundo::spiderMan(){
+    QString textoLog = "", tiempoSalvacion = crearTxtTiempo(), logPersonal;
+    QList<Nodo<Persona>*> * listaPersonas = arbolMundo->aplastarArbol();
+    QList<Persona*> * telaranna = new QList<Persona*>();
+    int ctdNodosRecorridos = generateRandom(0, listaPersonas->size()-1);
+    textoLog += "----Recorrido de Spiderman----\n";
+    for(int i=0; i<ctdNodosRecorridos; i++){
+        int index = generateRandom(0, listaPersonas->size());
+        //telaranna->append(listaPersonas->at(index)->dato);
+        textoLog +=listaPersonas->at(index)->dato->ID +  "-> ";
+        if(listaPersonas->at(index)->right == nullptr && listaPersonas->at(index)->left == nullptr){
+            textoLog += "\n LLegó a un nodo! \n";
+            NodoDoble<Persona> * nodo = listaPersonasTotales->buscarNodo(listaPersonas->at(index)->dato->ID);
+            int ctdSalvados = ctdNodosRecorridos;
+            int contador = 0;
+            while(contador < ctdSalvados){
+                if(nodo == nullptr) nodo = listaPersonasTotales->primerNodo;
 
-    QString textoLog = "",tiempoSalvacion = crearTxtTiempo();
+                nodo->dato->vivo = true;
+                logPersonal = crearLog(nodo->dato)+
+                   "\n Fue salvado el " + tiempoSalvacion+
+                   " por Spider Man al estar en un rango de " + QString::number(ctdSalvados) + " personas desde una hoja del arbol";
+                textoLog += logPersonal;
+                nodo->dato->logSalvacion->append(logPersonal);
+
+                nodo = nodo->siguiente;
+                contador++;
+            }
+            textoLog += "\n Vuelve a la telaraña! \n";
+        }
+    }
 
     salvacionesSpiderMan->append(textoLog);
     return escribirArchivo(textoLog.toStdString());
@@ -825,4 +878,30 @@ QString Mundo::consultarHumanoID(QString ID){
     QString textoConsulta = "";
 
     return escribirArchivo(textoConsulta.toStdString());
+}
+
+int Mundo::obtainPivot(QList<Persona*>* lista, int min, int max){
+    Persona * pivot = lista->at(max);
+    int greaterIndex = min-1;
+    for(int j=min; j<=max-1; j++){
+        if(lista->at(j)->ID < pivot->ID){
+            greaterIndex++;
+            lista->swapItemsAt(j, greaterIndex);
+        }
+    }
+    lista->swapItemsAt(greaterIndex+1, max);
+    return greaterIndex+1;
+
+}
+
+void Mundo::quickSortFunction(QList<Persona*> * lista, int min, int max){
+    if(min < max){
+        int pivot = obtainPivot(lista, min, max);
+        quickSortFunction(lista, min, pivot-1);
+        quickSortFunction(lista, pivot+1, max);
+    }
+}
+
+void Mundo::quickSort(QList<Persona*> * lista){
+    quickSortFunction(lista, 0, lista->size()-1);
 }
