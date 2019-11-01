@@ -165,6 +165,9 @@ void Mundo::completarArbol(QList<Persona*> * lista, Nodo<Persona> * nodo, int di
 
 }
 
+
+//ESTO ES UN PUSH NUEVO
+
 void Mundo::crearPersona(){
     Persona * nuevaPersona = new Persona();
 
