@@ -340,8 +340,6 @@ void Mundo::asignarFamilia(Persona* persona){
         else tmp = listaPersonasTotales->primerNodo;
         i++;
     }
-            if(persona->hijos->first())
-            qDebug()<<persona->hijos->first()->nombre+" es Hijo de: "+persona->nombre;
 }
 
 //Permite saber si puede ser hijo o no
@@ -988,18 +986,16 @@ QString Mundo::consultarDeporte(QString deporteBuscado){
 
 //Info de la familia segun ID
 QString Mundo::consultarFamiliaID(QString ID){
-    QString textoConsulta = "";
+    QString textoConsulta = "", pareja = "";
 
-    auto nodo = arbolMundo->buscar(ID);
-    Persona * persona = nodo==nullptr?listaPersonasTotales->buscar(ID.toInt()):nodo->dato;
-
+    Persona * persona = listaPersonasTotales->buscarNodo(ID)->dato;
     if(persona==nullptr) return "Error obteniendo la persona";
 
-    for(int i = 0 ;i<persona->hijos->length() ;i++){
+    if(persona->pareja) pareja = persona->pareja->nombre;
 
+    for(int i = 0 ;i<persona->hijos->length() ;i++){
         textoConsulta +="\n"+consultarHumanoID(persona->hijos->at(i)->ID)+"\n";
     }
-
     return escribirArchivo(textoConsulta.toStdString());
 }
 
@@ -1007,9 +1003,9 @@ QString Mundo::consultarFamiliaID(QString ID){
 QString Mundo::consultarHumanoID(QString ID){
     QString textoConsulta = "", vivo = "", madre = "N/A", padre = "N/A";
 
-    auto nodo = arbolMundo->buscar(ID);
-    Persona * persona = nodo==nullptr?listaPersonasTotales->buscar(ID.toInt()):nodo->dato;
+    Persona * persona = listaPersonasTotales->buscarNodo(ID)->dato;
     if(persona==nullptr) return "Error obteniendo la persona";
+
     if(persona->vivo) vivo = "Vivo";
     else vivo = "Muerto";
     if(persona->madre) {
