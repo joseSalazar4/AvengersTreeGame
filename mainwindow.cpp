@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     mundo = new Mundo();
     ventanaCrearPersonas.hide();
     ui->comboBoxDeportes->addItems(nombresDeportes);
+    ui->comboBoxDeportesConsulta->addItems(nombresDeportes);
     ui->SpinBoxNivelThanos->setRange(0,9);
     ui->spinBoxAnnoThanos->setRange(1954, 2019);
     connect(&ventanaCrearPersonas, SIGNAL(finalizo(int,int,int,int,int,int,int,int,int,int,int)), this, SLOT(on_btnGenerarPersonas_Finished(int,int,int,int,int,int,int,int,int,int, int)));

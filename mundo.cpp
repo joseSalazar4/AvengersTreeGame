@@ -803,9 +803,14 @@ QString Mundo::consultarAmigosAmigos(QString ID){
 }
 
 //Un deporte en especifico
-QString Mundo::consultarDeporte(QString deporte){
-    QString textoConsulta = "";
-    deportes->deportes;
+QString Mundo::consultarDeporte(QString deporteBuscado){
+    QString textoConsulta = "[ ";
+    int indice = deportes->nombresDeportes.indexOf(deporteBuscado);
+    QList<Persona*> * listaDeportistas = deportes->deportes->at(indice);
+    for(int i = 0 ; i<listaDeportistas->size();i++ ) {
+        textoConsulta +=  listaDeportistas->at(i)->nombre+"--"+listaDeportistas->at(i)->ID+", ";
+    }
+
     return escribirArchivo(textoConsulta.toStdString());
 }
 
