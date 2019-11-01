@@ -135,11 +135,11 @@ void Mundo::insertarEnArbol(){
     //Ya tenemos en listaParaArbol las n personas para el arbol.
 
     //Ahora las ordenamos de menor a mayor.
-    quickSort(listaParaArbol);
+    //quickSort(listaParaArbol);
     //Insertamos las personas al arbol de forma de que quede completo y balanceado.
-    arbolCompleto->root = arbolCompleto->newNodo(listaParaArbol->at(listaParaArbol->size()/2));
-    completarArbol(listaParaArbol, arbolCompleto->root->left, 0, listaParaArbol->size()/2);
-    completarArbol(listaParaArbol, arbolCompleto->root->right, listaParaArbol->size()/2, listaParaArbol->size());
+    //arbolCompleto->root = arbolCompleto->newNodo(listaParaArbol->at(listaParaArbol->size()/2));
+    //completarArbol(listaParaArbol, arbolCompleto->root->left, 0, listaParaArbol->size()/2);
+    //completarArbol(listaParaArbol, arbolCompleto->root->right, listaParaArbol->size()/2, listaParaArbol->size());
 }
 
 void Mundo::completarArbol(QList<Persona*> * lista, Nodo<Persona> * nodo, int min, int max){
@@ -589,7 +589,8 @@ QString Mundo::spiderMan(){
     for(int i=0; i<ctdNodosRecorridos; i++){
         int index = generateRandom(0, listaPersonas->size());
         //telaranna->append(listaPersonas->at(index)->dato);
-        textoLog +=listaPersonas->at(index)->dato->ID +  "-> ";
+        Persona * pp =  listaPersonas->at(index)->dato;
+        if(pp != nullptr) textoLog += pp->ID +  "-> ";
         if(listaPersonas->at(index)->right == nullptr && listaPersonas->at(index)->left == nullptr){
             textoLog += "\n LLegó a un nodo! \n";
             NodoDoble<Persona> * nodo = listaPersonasTotales->buscarNodo(listaPersonas->at(index)->dato->ID);
@@ -1001,6 +1002,8 @@ QString Mundo::consultarFamiliaID(QString ID){
     return escribirArchivo(textoConsulta.toStdString());
 }
 
+
+
 //Devolver toda la info de un humano segun ID
 QString Mundo::consultarHumanoID(QString ID){
     QString textoConsulta = "", vivo = "", madre = "N/A", padre = "N/A";
@@ -1049,4 +1052,19 @@ void Mundo::quickSortFunction(QList<Persona*> * lista, int min, int max){
 
 void Mundo::quickSort(QList<Persona*> * lista){
     quickSortFunction(lista, 0, lista->size()-1);
+}
+
+QString Mundo::terminarPartida(){
+    QString mensaje = "";
+    mensaje += "Cantidad de eliminados: " + QString::number(cantAsesinados);
+    mensaje += "\n Cantidad de salvados: " + QString::number(cantSalvados);
+
+    if(cantSalvados >= cantAsesinados){
+      mensaje += "\n Los Avengers Ganaron!\n";
+    }
+    else{
+      mensaje += "\n Thanos y los Villanos ganaron!\n";
+    }
+
+    return mensaje;
 }
