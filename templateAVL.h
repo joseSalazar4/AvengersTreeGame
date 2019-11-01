@@ -28,7 +28,7 @@ template<typename T> struct Nodo
 template<typename T> struct AVL{
     Nodo<T> * root;
     int cantidadPersonas = 0;
-    QList<Nodo<T>*> * listaArbol = new QList<Nodo<T>*>();
+    QList<Nodo<T>*> * listaArbol;
     QList<QString> * niveles;
 
 public:
@@ -46,6 +46,7 @@ public:
     }
 
      QList<Nodo<T>*> * aplastarArbol(){
+       this->listaArbol = new QList<Nodo<T>*>();
        aplastarArbolPrivate(root);
        return listaArbol;
     }
