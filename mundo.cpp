@@ -125,34 +125,43 @@ void Mundo::insertarEnArbol(){
             repetido++;
         }
         while(listaParaArbol->contains(p));
-        arbolMundo->insertar(p);
+        //arbolMundo->insertar(p); -----
         listaParaArbol->append(p);
         repetido--;
     }
-    qDebug() << "Repetidos: " + QString::number(repetido);
-    qDebug() << "PROMEDIO: " + QString::number(Thanos->promedio / listaPersonasTotales->largo);
-    arbolMundo->imprimirNiveles();
+    //qDebug() << "Repetidos: " + QString::number(repetido);
+    //qDebug() << "PROMEDIO: " + QString::number(Thanos->promedio / listaPersonasTotales->largo);
+    //arbolMundo->imprimirNiveles();
 
     //Ya tenemos en listaParaArbol las n personas para el arbol.
     //Ahora las ordenamos de menor a mayor.
     quickSort(listaParaArbol);
     //Insertamos las personas al arbol de forma de que quede completo y balanceado.
     int medio = (listaParaArbol->size()-1)/2;
-    arbolCompleto->root = arbolCompleto->newNodo(listaParaArbol->at(medio));
-    arbolCompleto->cantidadPersonas++;
-    completarArbol(listaParaArbol, arbolCompleto->root, (listaParaArbol->size()+1)/2, medio);
+    arbolMundo->root = arbolMundo->newNodo(listaParaArbol->at(medio));
+    arbolMundo->cantidadPersonas++;
+    completarArbol(listaParaArbol, arbolMundo->root, (listaParaArbol->size()+1)/2, medio);
     // NO USAR completarArbol(listaParaArbol, arbolCompleto->root->right, medio, listaParaArbol->size());
+
+    qDebug() << "Repetidos: " + QString::number(repetido);
+    qDebug() << "PROMEDIO: " + QString::number(Thanos->promedio / listaPersonasTotales->largo);
+    arbolMundo->imprimirNiveles();
+
 }
 
 void Mundo::completarArbol(QList<Persona*> * lista, Nodo<Persona> * nodo, int diff, int pos){
     diff=diff/2;
     if(diff==0) return;
-    nodo->left=arbolCompleto->newNodo(lista->at(pos-diff));
-    arbolCompleto->cantidadPersonas++;
-    nodo->right=arbolCompleto->newNodo(lista->at(pos+diff));
-    arbolCompleto->cantidadPersonas++;
+    nodo->left=arbolMundo->newNodo(lista->at(pos-diff));
+    arbolMundo->cantidadPersonas++;
+    nodo->right=arbolMundo->newNodo(lista->at(pos+diff));
+    arbolMundo->cantidadPersonas++;
     completarArbol(lista, nodo->left, diff, pos-diff);
     completarArbol(lista, nodo->right, diff, pos+diff);
+
+    /* 2. Update height of this ancestor node */
+    nodo->height = 1 + arbolMundo->max(arbolMundo->height(nodo->left),
+                        arbolMundo->height(nodo->right));
 
 }
 
@@ -506,7 +515,7 @@ QString Mundo::thor(int nivel){
         }
         salvacionesThor->append(textoLog);
     }else{
-        textoLog += "Nivel invalido";
+        textoLog += "Hey! Este nivel no existe en esta dimension";
     }
     return   escribirArchivo(textoLog.toStdString());
 }
