@@ -662,7 +662,7 @@ QString Mundo::thanosLogKill(QList<Persona*> * sacrificados, QString razonMuerte
     else razonMuerte = "pertener al nivel: "+QString::number(nivel)+" y ser del anno: "+QString::number(anno);
 
     for(int i = 0 ; i<sacrificados->length();i++){
-        cantAsesinados++;
+        if(!sacrificados->at(i)->vivo)cantAsesinados++;
         sacrificados->at(i)->vivo = false;
         logPersonal = crearLog(sacrificados->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Thanos, el increible guerrero, por "+razonMuerte;
         textoLog += logPersonal;
@@ -741,10 +741,14 @@ QString Mundo::corvusGlaive(){
     int cantPorEliminar = int((arbolAplastado->length())*(0.05));
 
     for(int i =0; i<arbolAplastado->length();i++) heapPecados->insertarPrioridadMax(arbolAplastado->at(i)->dato);
-    for(int i =0; i<cantPorEliminar+1;i++) personasPecadoras->append(heapPecados->eliminarPrioridadMax());
+    for(int i =0; i<cantPorEliminar+1;i++){
+        Persona * p = heapPecados->eliminarPrioridadMax();
+        if(p==nullptr) return "ERROR NO HAY PERSONAS";
+        personasPecadoras->append(p);
+    }
 
     for(int i =1; i<personasPecadoras->length();i++){
-        cantAsesinados++;
+        if(personasPecadoras->at(i)->vivo) cantAsesinados++;
         personasPecadoras->at(i)->vivo = false;
         logPersonal=crearLog(personasPecadoras->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Corvus Glaive, por tener una cantidad total de pecados: "+QString::number(personasPecadoras->at(i)->pecadosTotales);
         textoLog+=logPersonal;
@@ -767,17 +771,18 @@ QString Mundo::midnight(){
     int cantPorEliminar = int((arbolAplastado->length())*(0.05));
 
     for(int i =0; i<arbolAplastado->length();i++) heapBuenasAcciones->insertarPrioridadMin(arbolAplastado->at(i)->dato);
-    for(int i =0; i<cantPorEliminar+1;i++) personasNoBuenas->append(heapBuenasAcciones->eliminarPrioridadMin());
-
+    for(int i =0; i<cantPorEliminar+1;i++) {
+        Persona * p = heapPecados->eliminarPrioridadMax();
+        if(p==nullptr) return "ERROR NO HAY PERSONAS";
+        personasNoBuenas->append(p);
+    }
     for(int i =1; i<personasNoBuenas->length();i++){
-        cantAsesinados++;
-
+        if(personasNoBuenas->at(i)->vivo) cantAsesinados++;
         personasNoBuenas->at(i)->vivo = false;
         logPersonal=crearLog(personasNoBuenas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasNoBuenas->at(i)->buenasAccionesTotales);
         textoLog+=logPersonal;
         personasNoBuenas->at(i)->logMuerte->append(logPersonal);
     }
-
     eliminacionesMidnight->append(textoLog);
     return escribirArchivo(textoLog.toStdString());
 }
@@ -806,8 +811,8 @@ QString Mundo::ebonyMaw(int IDCulpable){
 
 QString Mundo::ebonyMawAux(Persona *victima, QString progenitorId){
     QString textoLog = "", tiempoMuerte = crearTxtTiempo(), logPersonal;
+    if(!victima->vivo) cantAsesinados++;
     victima->vivo = false;
-    cantAsesinados++;
      logPersonal = crearLog(victima)+
             "\nMurio el "+tiempoMuerte+
             " aniquilado por Ebony Maw por ser familia de la persona con ID: "+progenitorId;
@@ -837,11 +842,11 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
     }
 
     for(int i=0;i<(deportistas->length()/2);i++){
+        if(deportistas->at(i)->vivo)cantAsesinados++;
         deportistas->at(i)->vivo = false;
 
         QString pareja = "N/A";
         if (deportistas->at(i)->pareja) pareja = deportistas->at(i)->pareja->nombre;
-        cantAsesinados++;
 
         logPersonal= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+
                 vecesQStr+" veces "+deporte;
@@ -982,7 +987,7 @@ QString Mundo::consultarDeporte(QString deporteBuscado){
     int indice = deportes->nombresDeportes.indexOf(deporteBuscado);
     QList<Persona*> * listaDeportistas = deportes->deportes->at(indice);
     for(int i = 0 ; i<listaDeportistas->size();i++ ) {
-        if(!listaDeportistas->at(i)->deportes->contains(deporteBuscado)) qDebug()<<"\n\nNO LO TENGO NE DEPORTEEEES";
+        if(!listaDeportistas->at(i)->deportes->contains(deporteBuscado))
         textoConsulta +=  listaDeportistas->at(i)->nombre+"--"+listaDeportistas->at(i)->ID+", \n";
     }
 

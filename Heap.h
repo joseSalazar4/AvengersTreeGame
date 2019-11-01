@@ -32,6 +32,7 @@ public:
     }
 
     Persona* eliminarPrioridadMax(){
+        if(heap->empty()) return nullptr;
         Persona* ultimoElemento = heap->at(index-1);
         Persona* eliminado = heap->at(0);
         heap->replace(0, ultimoElemento);
