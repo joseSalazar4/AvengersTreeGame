@@ -161,6 +161,7 @@ void Mundo::crearPersona(){
     //IDs
     nuevaPersona->ID = QString::number(registroIds->generarId());
 
+
     //Lectura de archivos
     nuevaPersona->pais = paises[QRandomGenerator::global()->bounded(rangoPaises1,rangoPaises2+1)];
     nuevaPersona->creencia = creencias[QRandomGenerator::global()->bounded(rangoCreencias1,rangoCreencias2+1)];
@@ -303,7 +304,6 @@ void Mundo::asignarFamilia(Persona* persona){
     while( (pareja->dato->pareja != nullptr || pareja->dato->genero == persona->genero) ){//|| (!longevidad->validarEdadPareja(persona, pareja)))){
         if(i >= listaPersonasTotales->largo){
             persona->estadoMarital = "Solter@";
-            qDebug()<<"NO ENCONTRE PAREJA";
             return;
         }
 
@@ -325,8 +325,10 @@ void Mundo::asignarFamilia(Persona* persona){
         //Preguntamos primero por verificar para no hacer las otras preguntas
         if( verificarValidezHijos(persona,tmp->dato) &&  ((persona->pais  == tmp->dato->pais || persona->pareja->pais == tmp->dato->pais)  || (persona->apellido == tmp->dato->apellido ||  persona->pareja->apellido == tmp->dato->apellido)) ){
             persona->hijos->append(tmp->dato);
+
             cont++;
         }
+
         //Si no hay suficientes personas con ese apellido podria enciclarse entonces que busque un maximo de 30 000 personas
         if(listaPersonasTotales->largo>90000){
             if(contMax>(listaPersonasTotales->largo)/2) return;
@@ -338,6 +340,8 @@ void Mundo::asignarFamilia(Persona* persona){
         else tmp = listaPersonasTotales->primerNodo;
         i++;
     }
+            if(persona->hijos->first())
+            qDebug()<<persona->hijos->first()->nombre+" es Hijo de: "+persona->nombre;
 }
 
 //Permite saber si puede ser hijo o no
@@ -485,6 +489,7 @@ QString Mundo::thor(int nivel){
         for(int f=0; f<familiares->size(); f++){
             Persona * familiar = familiares->at(f);
             for(int a=0; a<familiar->amigos->size(); a++){
+                cantSalvados++;
                 familiar->amigos->at(a)->vivo = true;
                 logPersonal =crearLog(familiar->amigos->at(a)) + "\nFue Salvado el "+tiempoSalvacion+" Por el Dios del Trueno. Por ser amigo de " + familiar->nombre + ".Y este familiar de " + persona->nombre;
                 textoLog+=logPersonal;
@@ -493,7 +498,6 @@ QString Mundo::thor(int nivel){
             }
         }
     }
-
     salvacionesThor->append(textoLog);
     return   escribirArchivo(textoLog.toStdString());
 }
@@ -546,6 +550,7 @@ QString Mundo::ironMan(){
     for(int i=0; i<numeroDeSalvados; i++){
         Persona * persona = arbolPersonas->at(i)->dato;
         persona->vivo = true;
+        cantSalvados++;
         logPersonal = crearLog(persona)+
            "\nEl/Ella y su Familia fueron salvados el "+tiempoSalvacion+
            " por Iron Man al estar entre los " + QString::number(numeroDeSalvados) + " nodos del arbol que explotaron";
@@ -565,6 +570,7 @@ QString Mundo::ironManAux(Persona*persona, QString IdFamiliar){
     for(int f=0; f<familiares->size(); f++){
         Persona * familiar = familiares->at(f);
         familiar->vivo = true;
+        cantSalvados++;
         logPersonal = crearLog(familiar)+
            "\nFue salvado el "+tiempoMuerte+
            " por Iron Man por ser familia de la persona con ID: " + IdFamiliar;
@@ -572,7 +578,6 @@ QString Mundo::ironManAux(Persona*persona, QString IdFamiliar){
         familiar->logSalvacion->append(logPersonal);
         textoLog += ironManAux(familiar, IdFamiliar);
     }
-
     return textoLog;
 }
 
@@ -592,7 +597,7 @@ QString Mundo::spiderMan(){
             int contador = 0;
             while(contador < ctdSalvados){
                 if(nodo == nullptr) nodo = listaPersonasTotales->primerNodo;
-
+                cantSalvados++;
                 nodo->dato->vivo = true;
                 logPersonal = crearLog(nodo->dato)+
                    "\n Fue salvado el " + tiempoSalvacion+
@@ -743,13 +748,10 @@ QString Mundo::corvusGlaive(){
         textoLog+=logPersonal;
         personasPecadoras->at(i)->logMuerte->append(logPersonal);
     }
-
     eliminacionesCorvusGlaive->append(textoLog);
     qDebug().noquote() << textoLog;
     return escribirArchivo(textoLog.toStdString());
 }
-
-
 
 
 
