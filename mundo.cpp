@@ -545,10 +545,6 @@ QString Mundo::corvusGlaive(){
         personasPecadoras->at(i)->logMuerte->append(logPersonal);
     }
 
-    //cantAsesinados++;
-    //personasPecadoras->at(0)->vivo = false;
-    //textoLog+=crearLog(personasPecadoras->at(0))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasPecadoras->at(0)->buenasAccionesTotales);
-
     eliminacionesCorvusGlaive->append(textoLog);
     qDebug().noquote() << textoLog;
     return escribirArchivo(textoLog.toStdString());
@@ -569,11 +565,13 @@ QString Mundo::midnight(){
 
     for(int i =1; i<personasNoBuenas->length();i++){
         cantAsesinados++;
+
         personasNoBuenas->at(i)->vivo = false;
         logPersonal=crearLog(personasNoBuenas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasNoBuenas->at(i)->buenasAccionesTotales);
         textoLog+=logPersonal;
         personasNoBuenas->at(i)->logMuerte->append(logPersonal);
     }
+
     eliminacionesMidnight->append(textoLog);
     qDebug().noquote() << textoLog;
     return escribirArchivo(textoLog.toStdString());
