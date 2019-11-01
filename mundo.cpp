@@ -776,7 +776,7 @@ QString Mundo::consultarDeporte(QString deporteBuscado){
     int indice = deportes->nombresDeportes.indexOf(deporteBuscado);
     QList<Persona*> * listaDeportistas = deportes->deportes->at(indice);
     for(int i = 0 ; i<listaDeportistas->size();i++ ) {
-        textoConsulta +=  listaDeportistas->at(i)->nombre+"--"+listaDeportistas->at(i)->ID+", ";
+        textoConsulta +=  listaDeportistas->at(i)->nombre+"--"+listaDeportistas->at(i)->ID+", \n";
     }
 
     return escribirArchivo(textoConsulta.toStdString());
