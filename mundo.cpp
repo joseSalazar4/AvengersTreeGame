@@ -461,10 +461,7 @@ QList<Persona*> * getFamiliaresDirectos(Persona* persona){
     }
 
     return familiares;
-
 }
-
-
 
 //
 //
