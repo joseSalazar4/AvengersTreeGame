@@ -291,7 +291,7 @@ QString Mundo::crearTxtTiempo(){
 }
 
 QString Mundo::crearLog(Persona *persona){
-    QString tiempoMuerte = crearTxtTiempo(), logGenerado = "", pareja="";
+    QString tiempoMuerte = crearTxtTiempo(), logGenerado = "", pareja=" Solter@";
     if(persona->pareja) pareja = " Nombre: "+persona->pareja->nombre+" Apellido: "+persona->pareja->apellido;
 
     logGenerado+="\n\n\n"+tiempoMuerte+"「ID: "+persona->ID+"」 「Nombre: "+persona->nombre+
@@ -337,7 +337,6 @@ void Mundo::asignarAmigos(Persona* persona){
                         if(coinciden) return;
                     }
                 }
-
                 if(coinciden){
                     persona->amigos->append(extrano->dato);
                     cont++;
@@ -419,7 +418,7 @@ QString Mundo::ironMan(){
     //Se usara el aplastarArbol (Lista)
     arbolMundo->aplastarArbol();
     int porcentaje = generateRandom(40, 60);
-    //int numeroDeSalvados = arbolMundo->listaArbol
+    //int numeroDeSalvados = arbolMundo->listaArbol->length();
 
     QString textoLog = "",tiempoSalvacion = crearTxtTiempo();
     salvacionesIronMan->append(textoLog);
@@ -779,7 +778,7 @@ QString Mundo::consultarAmigosAmigos(QString ID){
 //Un deporte en especifico
 QString Mundo::consultarDeporte(QString deporte){
     QString textoConsulta = "";
-    //ESTO DEBEMOS USARLO PARA NO RECORRER TODO EN CREARPERSON()0 deportes->deportes->at(0)->at()
+    deportes->deportes
     return escribirArchivo(textoConsulta.toStdString());
 }
 
