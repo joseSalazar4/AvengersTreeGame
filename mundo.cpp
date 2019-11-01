@@ -51,7 +51,6 @@ void Mundo::hacerlesPecar(Persona* persona){
         persona->pecadosTotales+= persona->pecados[j];
 
     }
-    qDebug()<<persona->pecadosTotales;
 }
 
 //Tnto el metodo de arriba como el de abajo en window.cpp pero con un FOR
@@ -385,7 +384,7 @@ QList<Persona*> * getFamiliaresDirectos(Persona* persona){
 
 
 QString Mundo::thor(int nivel){  
-    QString textoLog = "",tiempoSalvacion = crearTxtTiempo();
+    QString textoLog = "",tiempoSalvacion = crearTxtTiempo(), logPersonal;
     //VALIDAR QUE EL NIVEL NO SEA MAYOR QUE LA ALTURA-1
     QList<Persona*> * personasEnNivel = arbolMundo->buscarEnNivel(nivel);
     for(int i=0; i<personasEnNivel->size(); i++){
@@ -395,8 +394,9 @@ QString Mundo::thor(int nivel){
             Persona * familiar = familiares->at(f);
             for(int a=0; a<familiar->amigos->size(); a++){
                 familiar->amigos->at(a)->vivo = true;
-                textoLog+=crearLog(familiar->amigos->at(a)) + "\nFue Salvado el "+tiempoSalvacion+" Por el Dios del Trueno. Por ser amigo de " + familiar->nombre + ".Y este familiar de " + persona->nombre;
-                persona->logSalvacion->append(textoLog);
+                logPersonal =crearLog(familiar->amigos->at(a)) + "\nFue Salvado el "+tiempoSalvacion+" Por el Dios del Trueno. Por ser amigo de " + familiar->nombre + ".Y este familiar de " + persona->nombre;
+                textoLog+=logPersonal;
+                persona->logSalvacion->append(logPersonal);
                 qDebug().noquote() << textoLog;
             }
         }
@@ -439,11 +439,18 @@ QString Mundo::spiderMan(){
     return escribirArchivo(textoLog.toStdString());
 }
 
+
+
+
 //---------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------VILLANOS-----------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 
 //Muere por haber nacido en el año (anno) y ser del nivel(nivel)
 QString Mundo::thanosAnnoYNivel(int anno, int nivel){
@@ -470,7 +477,7 @@ QString Mundo::thanosNivel(int nivel){
 }
 
 QString Mundo::thanosLogKill(QList<Persona*> * sacrificados, QString razonMuerte, int nivel, int anno){
-    QString textoLog = "", tiempoMuerte = crearTxtTiempo();
+    QString textoLog = "", tiempoMuerte = crearTxtTiempo(), logPersonal;
     //Nivel es 1 anno es 2 y ambos seria LA NUMERO 3
     if(razonMuerte == "1") razonMuerte = "pertenecer al nivel: "+QString::number(nivel);
     else if(razonMuerte == "2") razonMuerte = "pertenecer al anno: "+QString::number(anno);
@@ -479,8 +486,9 @@ QString Mundo::thanosLogKill(QList<Persona*> * sacrificados, QString razonMuerte
     for(int i = 0 ; i<sacrificados->length();i++){
         cantAsesinados++;
         sacrificados->at(i)->vivo = false;
-        textoLog += crearLog(sacrificados->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Thanos, el increible guerrero, por "+razonMuerte;
-        sacrificados->at(i)->logMuerte->append(textoLog);
+        logPersonal = crearLog(sacrificados->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Thanos, el increible guerrero, por "+razonMuerte;
+        textoLog += logPersonal;
+        sacrificados->at(i)->logMuerte->append(logPersonal);
     }
     return escribirArchivo(textoLog.toStdString());
 }
@@ -520,7 +528,7 @@ QString Mundo::nebula(int IDCulpable){
 }
 
 QString Mundo::corvusGlaive(){
-    QString textoLog = "",tiempoMuerte = crearTxtTiempo();
+    QString textoLog = "",tiempoMuerte = crearTxtTiempo(), logPersonal;
     QList<Persona*> * personasPecadoras = new QList<Persona*>();
     QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
 
@@ -532,9 +540,11 @@ QString Mundo::corvusGlaive(){
 
     for(int i =1; i<personasPecadoras->length();i++){
         cantAsesinados++;
+
         personasPecadoras->at(i)->vivo = false;
-        textoLog+=crearLog(personasPecadoras->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Corvus Glaive, por tener una cantidad total de pecados: "+QString::number(personasPecadoras->at(i)->pecadosTotales);
-        personasPecadoras->at(i)->logMuerte->append(textoLog);
+        logPersonal=crearLog(personasPecadoras->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Corvus Glaive, por tener una cantidad total de pecados: "+QString::number(personasPecadoras->at(i)->pecadosTotales);
+        textoLog+=logPersonal;
+        personasPecadoras->at(i)->logMuerte->append(logPersonal);
     }
 
     cantAsesinados++;
@@ -547,7 +557,7 @@ QString Mundo::corvusGlaive(){
 }
 
 QString Mundo::midnight(){
-    QString textoLog = "",tiempoMuerte = crearTxtTiempo();
+    QString textoLog = "",tiempoMuerte = crearTxtTiempo(), logPersonal;
     QList<Persona*> * personasNoBuenas = new QList<Persona*>(); //No se me ocurrio un mejor nombre \_°-°_/
     QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
 
@@ -559,12 +569,15 @@ QString Mundo::midnight(){
     for(int i =1; i<personasNoBuenas->length();i++){
         cantAsesinados++;
         personasNoBuenas->at(i)->vivo = false;
-        textoLog+=crearLog(personasNoBuenas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasNoBuenas->at(i)->buenasAccionesTotales);
-        personasNoBuenas->at(i)->logMuerte->append(textoLog);
+        logPersonal+=crearLog(personasNoBuenas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasNoBuenas->at(i)->buenasAccionesTotales);
+        textoLog+=logPersonal;
+        personasNoBuenas->at(i)->logMuerte->append(logPersonal);
     }
     cantAsesinados++;
     personasNoBuenas->at(0)->vivo = false;
-    textoLog+=crearLog(personasNoBuenas->at(0))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasNoBuenas->at(0)->buenasAccionesTotales);
+    logPersonal=crearLog(personasNoBuenas->at(0))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasNoBuenas->at(0)->buenasAccionesTotales);
+    textoLog+=logPersonal;
+    personasNoBuenas->at(0)->logMuerte->append(logPersonal);
 
     eliminacionesMidnight->append(textoLog);
     return escribirArchivo(textoLog.toStdString());
@@ -583,16 +596,9 @@ QString Mundo::ebonyMaw(int IDCulpable){
     Persona * victima = nodo==nullptr?listaPersonasTotales->buscar(IDCulpable):nodo->dato;
 
     if(victima==nullptr) return "Error obteniendo la persona";
-
-    victima->vivo = false;
-    textoLog+= crearLog(victima)+
-            "\nMurio el "+tiempoMuerte+
-            " aniquilado por Ebony Maw";
-
     for(Persona*hijo:*victima->hijos){
         textoLog+=ebonyMawAux(hijo, victima->ID);
     }
-
     eliminacionesEbonyMaw->append(textoLog);
     //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
     return escribirArchivo(textoLog.toStdString());
@@ -600,12 +606,13 @@ QString Mundo::ebonyMaw(int IDCulpable){
 }
 
 QString Mundo::ebonyMawAux(Persona *victima, QString progenitorId){
-    QString textoLog = "", tiempoMuerte = crearTxtTiempo();
+    QString textoLog = "", tiempoMuerte = crearTxtTiempo(), logPersonal;
     victima->vivo = false;
-    textoLog+= crearLog(victima)+
+     logPersonal = crearLog(victima)+
             "\nMurio el "+tiempoMuerte+
             " aniquilado por Ebony Maw por ser familia de la persona con ID: "+progenitorId;
-
+    textoLog+= logPersonal;
+    victima->logMuerte->append(logPersonal);
     for(Persona*hijo:*victima->hijos){
         textoLog+=ebonyMawAux(hijo, victima->ID);
     }
@@ -616,7 +623,7 @@ QString Mundo::ebonyMawAux(Persona *victima, QString progenitorId){
 QString Mundo:: blackDwarf(int veces, QString deporte){
     QString::number(veces);
     QList<Persona*> * deportistas = new QList<Persona*>();
-    QString textoLog = "", tiempoMuerte = crearTxtTiempo() , vecesQStr = "";
+    QString textoLog = "", tiempoMuerte = crearTxtTiempo() , vecesQStr = "", logPersonal;
 
     //Convertir solo una vez y dejarlo asi para el for
     vecesQStr = QString::number(veces);
@@ -636,9 +643,10 @@ QString Mundo:: blackDwarf(int veces, QString deporte){
         if (deportistas->at(i)->pareja) pareja = deportistas->at(i)->pareja->nombre;
         cantAsesinados++;
 
-        textoLog+= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+
+        logPersonal= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Black Dwarf por hacer "+
                 vecesQStr+" veces "+deporte;
-        deportistas->at(i)->logMuerte->append(textoLog);
+        textoLog+=logPersonal;
+        deportistas->at(i)->logMuerte->append(logPersonal);
     }
     eliminacionesBlackD->append(textoLog);
 
@@ -748,7 +756,7 @@ QString Mundo::consultarEliminaciones(){
 
     //ELIMINAR
     for(int i = 0; i <5;i++){
-        consulta+= "\n\nELIMINACIONES HECHAS POR: "+nombresVillanos->at(i);
+        consulta+= "\n\n\nELIMINACIONES HECHAS POR: "+nombresVillanos->at(i);
         for(int j = 0 ; i<(eliminacionesVillanos->at(i).length()+1);i++){
             consulta+=eliminacionesVillanos->at(i).at(j);
         }
