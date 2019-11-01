@@ -485,25 +485,29 @@ QList<Persona*> * getFamiliaresDirectos(Persona* persona){
 QString Mundo::thor(int nivel){  
     QString textoLog = "",tiempoSalvacion = crearTxtTiempo(), logPersonal;
     //VALIDAR QUE EL NIVEL NO SEA MAYOR QUE LA ALTURA-1
-    QList<Persona*> * personasEnNivel = arbolMundo->buscarEnNivel(nivel);
-    for(int i=0; i<personasEnNivel->size(); i++){
-        Persona * persona = personasEnNivel->at(i);
-        QList<Persona*> * familiares = getFamiliaresDirectos(persona);
-        for(int f=0; f<familiares->size(); f++){
-            Persona * familiar = familiares->at(f);
-            for(int a=0; a<familiar->amigos->size(); a++){
-                if(!familiar->amigos->at(a)->vivo){
-                    cantSalvados++;
-                    familiar->amigos->at(a)->vivo = true;
-                    logPersonal =crearLog(familiar->amigos->at(a)) + "\nFue Salvado el "+tiempoSalvacion+" Por el Dios del Trueno. Por ser amigo de " + familiar->nombre + ".Y este familiar de " + persona->nombre;
-                    textoLog+=logPersonal;
-                    persona->logSalvacion->append(logPersonal);
-                    qDebug().noquote() << textoLog;
+    if(nivel < arbolMundo->root->height){
+        QList<Persona*> * personasEnNivel = arbolMundo->buscarEnNivel(nivel);
+        for(int i=0; i<personasEnNivel->size(); i++){
+            Persona * persona = personasEnNivel->at(i);
+            QList<Persona*> * familiares = getFamiliaresDirectos(persona);
+            for(int f=0; f<familiares->size(); f++){
+                Persona * familiar = familiares->at(f);
+                for(int a=0; a<familiar->amigos->size(); a++){
+                    if(!familiar->amigos->at(a)->vivo){
+                        cantSalvados++;
+                        familiar->amigos->at(a)->vivo = true;
+                        logPersonal =crearLog(familiar->amigos->at(a)) + "\nFue Salvado el "+tiempoSalvacion+" Por el Dios del Trueno. Por ser amigo de " + familiar->nombre + ".Y este familiar de " + persona->nombre;
+                        textoLog+=logPersonal;
+                        persona->logSalvacion->append(logPersonal);
+                        qDebug().noquote() << textoLog;
+                    }
                 }
             }
         }
+        salvacionesThor->append(textoLog);
+    }else{
+        textoLog += "Nivel invalido";
     }
-    salvacionesThor->append(textoLog);
     return   escribirArchivo(textoLog.toStdString());
 }
 
