@@ -123,6 +123,7 @@ private:
          /* now recur on right subtree */
          preOrder(node->right);
      }
+
     void * aplastarArbolPrivate(Nodo<T> *rootN)  //Genera una lista del arbol
     {
         if(rootN != nullptr)

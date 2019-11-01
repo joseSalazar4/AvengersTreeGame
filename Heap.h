@@ -107,8 +107,8 @@ private:
 
     void algoritmoInsertarPrioridadMax(int i){
         int parent = (i - 1) / 2;
-        if(i==0) parent = 0;
-        if (parent > 0) {
+        //if(i==0) parent = 0;
+        if (heap->at(parent)->pecadosTotales > 0) {
             if (heap->at(i)->pecadosTotales > heap->at(parent)->pecadosTotales) {
                 heap->swapItemsAt(i, parent);
                 algoritmoInsertarPrioridadMax(parent);
