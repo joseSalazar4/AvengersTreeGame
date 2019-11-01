@@ -523,6 +523,8 @@ QString Mundo::antMan(int cantHormigas){
      }
 
      //AAhora max2
+     //s
+
 
     salvacionesAntMan->append(textoLog);
     return escribirArchivo(textoLog.toStdString());
