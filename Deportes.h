@@ -18,9 +18,9 @@ struct Deportes{
                    "Atletismo", "Natacion", "Golf", "Futbol Americano","Ultimate Frisbee"};
     QList<QList<Persona*>*> * deportes;
     Deportes(){
-        deportes = new QList<QList<Persona*>*>;
+        deportes = new QList<QList<Persona*>*>();
         for(int i= 0; i<nombresDeportes.size(); i++){
-            deportes->append(new QList<Persona*>);
+            deportes->append(new QList<Persona*>());
         }
     }
 
@@ -34,7 +34,7 @@ private:
 public:
 
     QList<QString>* generarDeportes(Persona *persona){
-        QList<QString> * deportesPersona = new QList<QString>;
+        QList<QString> * deportesPersona = new QList<QString>();
         int numeroDeportes = generateRandom(1, nombresDeportes.size()-1);
 
         for(int i=0; i<numeroDeportes; i++){
