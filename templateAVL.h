@@ -14,7 +14,7 @@ template<typename T> struct Nodo
     int height;
 
     int feromonas;  //Para Ant Man
-    bool utilizado; //true = ya pasó por ahi
+    bool utilizado, isTelarana; //true = ya pasó por ahi
 
     Nodo(T *dato){
         this->dato = dato;
@@ -22,6 +22,7 @@ template<typename T> struct Nodo
         right = nullptr;
         height = 1;
         feromonas = 0;
+        isTelarana = false;
     }
 };
 
@@ -79,7 +80,6 @@ public:
          return listaDelNivel;
      }
 
-private:
 
      void imprimirNivelPrivate(Nodo<T> *nodo, int nivel){
          if(nodo!=nullptr){
