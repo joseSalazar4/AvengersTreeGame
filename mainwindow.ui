@@ -888,9 +888,12 @@
      <rect>
       <x>580</x>
       <y>250</y>
-      <width>51</width>
+      <width>131</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="maximum">
+     <number>9999999</number>
     </property>
    </widget>
    <widget class="QSpinBox" name="spinBoxFamiliaID">
@@ -898,9 +901,12 @@
      <rect>
       <x>580</x>
       <y>160</y>
-      <width>51</width>
+      <width>121</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="maximum">
+     <number>9999999</number>
     </property>
    </widget>
    <widget class="QSpinBox" name="spinBoxConsultaID">
@@ -908,16 +914,19 @@
      <rect>
       <x>240</x>
       <y>350</y>
-      <width>51</width>
+      <width>121</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="maximum">
+     <number>9999999</number>
     </property>
    </widget>
    <widget class="QPushButton" name="btnConsultaDeportes">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>500</y>
+      <x>250</x>
+      <y>450</y>
       <width>121</width>
       <height>24</height>
      </rect>
@@ -934,8 +943,8 @@
    <widget class="QComboBox" name="comboBoxDeportesConsulta">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>470</y>
+      <x>240</x>
+      <y>420</y>
       <width>141</width>
       <height>24</height>
      </rect>
@@ -944,8 +953,8 @@
    <widget class="QLabel" name="label_16">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>440</y>
+      <x>240</x>
+      <y>390</y>
       <width>161</width>
       <height>20</height>
      </rect>

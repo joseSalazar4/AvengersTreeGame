@@ -1019,7 +1019,7 @@ QString Mundo::consultarHumanoID(QString ID){
             +"\nPractica los deportes: "+crearDeportesTxt(persona)+"Un total de: "+QString::number(persona->ctdEjercicioxSemana)+" veces."
             + "\tPais de residencia: "+persona->pais+"\nSu profesion es: "+persona->profesion
             +"\t Estado Marital: "+persona->estadoMarital+" Creencia: "+persona->creencia
-            +""+crearPecadosTxt(persona)+crearBuenasAccionesTxt(persona)
+            +crearPecadosTxt(persona)+crearBuenasAccionesTxt(persona)
             +crearLogSalvacionTxt(persona)+crearLogMuerteTxt(persona);
 
     return escribirArchivo(textoConsulta.toStdString());
