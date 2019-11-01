@@ -154,9 +154,10 @@ void MainWindow::on_btnThanos_clicked()
     bool isAnno = ui->checkBoxAnnoThanos->isChecked();
 
     //Si ninguno ha sido seleccionado
-    if(!(isNivel || isAnno)){
+    if(! (isNivel || isAnno) ){
         QMessageBox msgBox;
         msgBox.setText("Debe seleccionar al menos UNA OPCION para asesinar despiadadamente. \nGracias.");
+        msgBox.exec();
         return;
     }
 
