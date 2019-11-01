@@ -203,3 +203,11 @@ void MainWindow::on_btnConsultaDeportes_clicked()
     ui->comboBoxDeportesConsulta->currentText();
     enviarCorreo(mundo->consultarDeporte(ui->comboBoxDeportesConsulta->currentText()),"Consulta del deporte: "+ui->comboBoxDeportesConsulta->currentText());
 }
+
+void MainWindow::on_btnTerminarPartida_clicked()
+{
+    QMessageBox msgBox;
+    msgBox.setText(mundo->terminarPartida());
+    msgBox.exec();
+
+}

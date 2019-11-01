@@ -67,6 +67,9 @@ public:
     QString corvusGlaive();
     QString blackDwarf(int,QString);
 
+
+    QString terminarPartida();
+
     //Pecados ^ Buenas Acciones
     void hacerlesPecar(Persona* persona);  //recorrer la lista de personas y darles qrandom a cada una de las personas.
     void hacerBuenasAcciones(Persona* persona);

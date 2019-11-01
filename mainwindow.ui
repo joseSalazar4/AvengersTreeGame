@@ -90,7 +90,7 @@
     <property name="geometry">
      <rect>
       <x>1000</x>
-      <y>480</y>
+      <y>430</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -107,9 +107,9 @@
    <widget class="QPushButton" name="btnIronMan">
     <property name="geometry">
      <rect>
-      <x>1010</x>
-      <y>433</y>
-      <width>91</width>
+      <x>1000</x>
+      <y>370</y>
+      <width>121</width>
       <height>31</height>
      </rect>
     </property>
@@ -126,9 +126,9 @@
     <property name="geometry">
      <rect>
       <x>1000</x>
-      <y>110</y>
-      <width>80</width>
-      <height>24</height>
+      <y>100</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -143,10 +143,10 @@
    <widget class="QPushButton" name="btnAntMan">
     <property name="geometry">
      <rect>
-      <x>1010</x>
-      <y>270</y>
-      <width>80</width>
-      <height>24</height>
+      <x>1000</x>
+      <y>240</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -179,8 +179,8 @@
    <widget class="QLabel" name="lblHeroes">
     <property name="geometry">
      <rect>
-      <x>990</x>
-      <y>40</y>
+      <x>1000</x>
+      <y>30</y>
       <width>121</width>
       <height>41</height>
      </rect>
@@ -341,8 +341,8 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>910</x>
-      <y>300</y>
+      <x>960</x>
+      <y>270</y>
       <width>271</width>
       <height>31</height>
      </rect>
@@ -362,7 +362,7 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>930</x>
+      <x>970</x>
       <y>150</y>
       <width>271</width>
       <height>20</height>
@@ -406,8 +406,8 @@
    <widget class="QSpinBox" name="spinBoxAntMan">
     <property name="geometry">
      <rect>
-      <x>1000</x>
-      <y>351</y>
+      <x>1010</x>
+      <y>310</y>
       <width>91</width>
       <height>21</height>
      </rect>
@@ -427,7 +427,7 @@
    <widget class="QSpinBox" name="spinBoxThor">
     <property name="geometry">
      <rect>
-      <x>1000</x>
+      <x>1010</x>
       <y>180</y>
       <width>81</width>
       <height>21</height>
@@ -971,6 +971,19 @@
      <string>Indique el Deporte</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnTerminarPartida">
+    <property name="geometry">
+     <rect>
+      <x>980</x>
+      <y>590</y>
+      <width>161</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TERMINAR PARTIDA</string>
+    </property>
+   </widget>
    <zorder>lblWallpaper</zorder>
    <zorder>btnNebula</zorder>
    <zorder>btnCorvusG</zorder>
@@ -1022,6 +1035,7 @@
    <zorder>btnConsultaDeportes</zorder>
    <zorder>comboBoxDeportesConsulta</zorder>
    <zorder>label_16</zorder>
+   <zorder>btnTerminarPartida</zorder>
   </widget>
  </widget>
  <resources>

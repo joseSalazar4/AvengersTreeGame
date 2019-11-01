@@ -65,6 +65,8 @@ private slots:
 
     void on_btnConsultaDeportes_clicked();
 
+    void on_btnTerminarPartida_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
