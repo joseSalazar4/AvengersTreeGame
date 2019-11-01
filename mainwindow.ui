@@ -35,8 +35,8 @@
    <widget class="QPushButton" name="btnCorvusG">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>600</y>
+      <x>30</x>
+      <y>520</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -53,8 +53,8 @@
    <widget class="QPushButton" name="btnMidnight">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>550</y>
+      <x>50</x>
+      <y>470</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -71,8 +71,8 @@
    <widget class="QPushButton" name="btnEbonyMaw">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>220</y>
+      <x>40</x>
+      <y>140</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -162,9 +162,9 @@
     <property name="geometry">
      <rect>
       <x>580</x>
-      <y>420</y>
+      <y>410</y>
       <width>181</width>
-      <height>31</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -245,8 +245,8 @@
    <widget class="QPushButton" name="btnBlackDwarf">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>360</y>
+      <x>30</x>
+      <y>280</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -299,8 +299,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>400</y>
+      <x>30</x>
+      <y>320</y>
       <width>161</width>
       <height>20</height>
      </rect>
@@ -320,8 +320,8 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>270</y>
+      <x>50</x>
+      <y>190</y>
       <width>101</width>
       <height>16</height>
      </rect>
@@ -329,27 +329,6 @@
     <property name="font">
      <font>
       <pointsize>13</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>Indique el ID</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>130</y>
-      <width>121</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -404,8 +383,8 @@
    <widget class="QSpinBox" name="spinBoxEbonyMaw">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>300</y>
+      <x>40</x>
+      <y>220</y>
       <width>111</width>
       <height>22</height>
      </rect>
@@ -414,21 +393,11 @@
      <number>9999999</number>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spinBoxNebula">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>160</y>
-      <width>51</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QComboBox" name="comboBoxDeportes">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>430</y>
+      <x>30</x>
+      <y>350</y>
       <width>141</width>
       <height>24</height>
      </rect>
@@ -482,8 +451,8 @@
    <widget class="QSpinBox" name="spinBoxBlackD">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>505</y>
+      <x>30</x>
+      <y>425</y>
       <width>61</width>
       <height>22</height>
      </rect>
@@ -503,8 +472,8 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>480</y>
+      <x>30</x>
+      <y>400</y>
       <width>141</width>
       <height>20</height>
      </rect>
@@ -623,8 +592,8 @@
    <widget class="QPushButton" name="btnThanos">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>700</y>
+      <x>80</x>
+      <y>600</y>
       <width>131</width>
       <height>24</height>
      </rect>
@@ -641,9 +610,9 @@
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>610</y>
-      <width>141</width>
+      <x>10</x>
+      <y>650</y>
+      <width>131</width>
       <height>20</height>
      </rect>
     </property>
@@ -662,8 +631,8 @@
    <widget class="QSpinBox" name="SpinBoxNivelThanos">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>640</y>
+      <x>20</x>
+      <y>680</y>
       <width>61</width>
       <height>22</height>
      </rect>
@@ -683,8 +652,8 @@
    <widget class="QSpinBox" name="spinBoxAnnoThanos">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>640</y>
+      <x>160</x>
+      <y>680</y>
       <width>61</width>
       <height>22</height>
      </rect>
@@ -704,8 +673,8 @@
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>610</y>
+      <x>150</x>
+      <y>650</y>
       <width>141</width>
       <height>20</height>
      </rect>
@@ -725,11 +694,16 @@
    <widget class="QCheckBox" name="checkBoxNivelThanos">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>670</y>
+      <x>20</x>
+      <y>710</y>
       <width>71</width>
       <height>19</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Nivel</string>
@@ -738,11 +712,16 @@
    <widget class="QCheckBox" name="checkBoxAnnoThanos">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>670</y>
+      <x>160</x>
+      <y>710</y>
       <width>61</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Año</string>
@@ -937,8 +916,8 @@
    <widget class="QPushButton" name="btnConsultaDeportes">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>460</y>
+      <x>220</x>
+      <y>500</y>
       <width>121</width>
       <height>24</height>
      </rect>
@@ -955,8 +934,8 @@
    <widget class="QComboBox" name="comboBoxDeportesConsulta">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>430</y>
+      <x>210</x>
+      <y>470</y>
       <width>141</width>
       <height>24</height>
      </rect>
@@ -965,8 +944,8 @@
    <widget class="QLabel" name="label_16">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>400</y>
+      <x>210</x>
+      <y>440</y>
       <width>161</width>
       <height>20</height>
      </rect>
@@ -1000,11 +979,9 @@
    <zorder>btnPecar</zorder>
    <zorder>label</zorder>
    <zorder>label_2</zorder>
-   <zorder>label_3</zorder>
    <zorder>label_4</zorder>
    <zorder>label_5</zorder>
    <zorder>spinBoxEbonyMaw</zorder>
-   <zorder>spinBoxNebula</zorder>
    <zorder>comboBoxDeportes</zorder>
    <zorder>spinBoxAntMan</zorder>
    <zorder>spinBoxThor</zorder>

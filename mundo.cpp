@@ -197,10 +197,78 @@ QString crearListaAmigosTxt(Persona * persona){
     return  listaTxt;
 }
 
+QString crearDeportesTxt(Persona * persona){
+    QString listaTxt = "\nDeportes [ ";
+    for(int i =0 ; i<persona->deportes->length();i++){
+        listaTxt+=persona->deportes->at(i)+", ";
+    }
+    listaTxt+=" ]";
+    return listaTxt;
+}
+
 QString crearListaFamiliaTxt(Persona * persona){
     QString listaTxt = "\nFamilia [ ";
     for(int i = 0 ; i<persona->hijos->length();i++){
         listaTxt+=persona->hijos->at(i)->ID+"--"+persona->hijos->at(i)->nombre+"--"+persona->hijos->at(i)->apellido+", ";
+    }
+
+    listaTxt+= " ]";
+    return  listaTxt;
+}
+
+QString crearPecadosTxt(Persona * persona){
+    QString listaTxt = "\nPecados: [ ";
+    QList<QString> *nombresPecados = new QList<QString>();
+    nombresPecados->append("Lujuria");
+    nombresPecados->append("Gula");
+    nombresPecados->append("Avaricia");
+    nombresPecados->append("Pereza");
+    nombresPecados->append("Ira");
+    nombresPecados->append("Envidia");
+    nombresPecados->append("Soberbia");
+
+    for(int i = 0 ; i<7;i++){
+        listaTxt+=nombresPecados->at(i)+": "+QString::number(persona->pecados[i])+", ";
+    }
+
+    listaTxt+= " ]";
+    return  listaTxt;
+}
+
+QString crearBuenasAccionesTxt(Persona * persona){
+    QString listaTxt = "\nBuenasAcciones [ ";
+    QList<QString> *nombresBnasAcc = new QList<QString>();
+    nombresBnasAcc->append("Castidad");
+    nombresBnasAcc->append("Ayuno");
+    nombresBnasAcc->append("Donacion");
+    nombresBnasAcc->append("Diligencia");
+    nombresBnasAcc->append("Calma");
+    nombresBnasAcc->append("Solidaridad");
+    nombresBnasAcc->append("HUmildad");
+
+    for(int i = 0 ; i<7;i++){
+        listaTxt+=nombresBnasAcc->at(i)+": "+QString::number(persona->buenasAcciones[i])+", ";
+    }
+
+    listaTxt+= " ]";
+    return  listaTxt;
+}
+
+QString crearLogMuerteTxt(Persona * persona){
+    QString listaTxt = "\nMuertes [ ";
+    for(int i = 0 ; i<persona->logMuerte->length();i++){
+        listaTxt+="\t"+persona->logMuerte->at(i)+",  ";
+    }
+
+    listaTxt+= " ]";
+    return  listaTxt;
+}
+
+
+QString crearLogSalvacionTxt(Persona * persona){
+    QString listaTxt = "\nSalvaciones [ ";
+    for(int i = 0 ; i<persona->logSalvacion->length();i++){
+        listaTxt+="\t"+persona->logSalvacion->at(i)+",  ";
     }
 
     listaTxt+= " ]";
@@ -432,22 +500,45 @@ QString Mundo::thor(int nivel){
 
 QString Mundo::antMan(int cantHormigas){
     QString textoLog = "",tiempoSalvacion = crearTxtTiempo();
+    int max1 =0, max2 = 0 ;
+    //QRandom de cantidad de hormigas, hacer recursivamente a esas hromigas una a una
+    //recorrer y qrandom (0,2) para ir izquierda o derecha y cuando llegue a una hoja contar sus feromonas
+    //las 2 hojas con mas feromonas seran los dos caminos.
+    AVL<Persona> * arbolMundoAuxiliar = arbolMundo;
+    Nodo<Persona> * tmp = arbolMundoAuxiliar->root;
+
+    for(int i = 0 ; i<cantHormigas;i++){
+        tmp->feromonas+=1;
+
+        if (! (tmp->right && tmp->left) ) 2+4;//si llega a una hoja tons listo trayecto hecho
+        if(QRandomGenerator::global()->bounded(0,2) == 1) tmp = tmp->right;
+        else tmp = tmp->left;
+
+    }
+
+     QList<Nodo<Persona>*> * posiblesCaminos = arbolMundoAuxiliar->aplastarArbol();
+
+     for(int i = 0; i<posiblesCaminos->length();i++){
+         if(posiblesCaminos->at(i)->feromonas>max1) max1 = posiblesCaminos->at(i)->feromonas;
+     }
+
+     //AAhora max2
+
     salvacionesAntMan->append(textoLog);
     return escribirArchivo(textoLog.toStdString());
 }
 
+//Recorre el arbol, pregunta si ya pasó por ese nodo. Si no, hace random y depende del resultado salva ese nodo y lo pone true.
+//Al terminar el proceso, restaura los valores de los nodos a false.
 QString Mundo::ironMan(){
     QString textoLog = "",tiempoSalvacion = crearTxtTiempo();
     QString logPersonal = "";
-    //Recorre el arbol, pregunta si ya pasó por ese nodo. Si no, hace random y depende del resultado salva ese nodo y lo pone true.
-    //Al terminar el proceso, restaura los valores de los nodos a false.
 
     //Se usara el aplastarArbol (Lista)
     arbolMundo->aplastarArbol();
-    int porcentaje = generateRandom(40, 60);
+    int porcentaje = generateRandom(40, 61);
     double numeroDeSalvadosD = arbolMundo->listaArbol->size() * (porcentaje*0.01);
     int numeroDeSalvados = int(numeroDeSalvadosD);
-    qDebug() << "Wait, WTF." + QString::number(numeroDeSalvados);
     QList<Nodo<Persona>*> * arbolPersonas = arbolMundo->aplastarArbol();
 
     for(int i=0; i<numeroDeSalvados; i++){
@@ -459,7 +550,6 @@ QString Mundo::ironMan(){
         textoLog += logPersonal;
         persona->logSalvacion->append(logPersonal);
         textoLog+= ironManAux(arbolPersonas->at(i)->dato, arbolPersonas->at(i)->dato->ID);
-        qDebug().noquote() << textoLog;
     }
 
     salvacionesIronMan->append(textoLog);
@@ -487,7 +577,6 @@ QString Mundo::ironManAux(Persona*persona, QString IdFamiliar){
 QString Mundo::spiderMan(){
     QString textoLog = "", tiempoSalvacion = crearTxtTiempo(), logPersonal;
     QList<Nodo<Persona>*> * listaPersonas = arbolMundo->aplastarArbol();
-    QList<Persona*> * telaranna = new QList<Persona*>();
     int ctdNodosRecorridos = generateRandom(0, listaPersonas->size()-1);
     textoLog += "----Recorrido de Spiderman----\n";
     for(int i=0; i<ctdNodosRecorridos; i++){
@@ -515,7 +604,6 @@ QString Mundo::spiderMan(){
             textoLog += "\n Vuelve a la telaraña! \n";
         }
     }
-
     salvacionesSpiderMan->append(textoLog);
     return escribirArchivo(textoLog.toStdString());
 }
@@ -615,7 +703,6 @@ QString Mundo::corvusGlaive(){
 
     //Obtenemos el 5%
     for(int i =0;i<heapPecados->index;i++) heapPecados->eliminarPrioridadMax();
-    if(heapPecados->heap->empty()) qDebug()<<"\n\n\n\n\n ESTA VACIA LA PICHA";
 
     int cantPorEliminar = int((arbolAplastado->length())*(0.05));
 
@@ -641,7 +728,6 @@ QString Mundo::midnight(){
     QList<Nodo<Persona>*> * arbolAplastado = arbolMundo->aplastarArbol();
 
     for(int i =0;i<heapBuenasAcciones->index;i++) heapBuenasAcciones->eliminarPrioridadMax();
-    if(heapBuenasAcciones->heap->empty()) qDebug()<<"\n\n\n\n\n ESTA VACIA LA PICHA";
 
     int cantPorEliminar = int((arbolAplastado->length())*(0.05));
 
@@ -658,7 +744,6 @@ QString Mundo::midnight(){
     }
 
     eliminacionesMidnight->append(textoLog);
-    qDebug().noquote() << textoLog;
     return escribirArchivo(textoLog.toStdString());
 }
 
@@ -861,6 +946,7 @@ QString Mundo::consultarDeporte(QString deporteBuscado){
     int indice = deportes->nombresDeportes.indexOf(deporteBuscado);
     QList<Persona*> * listaDeportistas = deportes->deportes->at(indice);
     for(int i = 0 ; i<listaDeportistas->size();i++ ) {
+        if(!listaDeportistas->at(i)->deportes->contains(deporteBuscado)) qDebug()<<"\n\nNO LO TENGO NE DEPORTEEEES";
         textoConsulta +=  listaDeportistas->at(i)->nombre+"--"+listaDeportistas->at(i)->ID+", \n";
     }
 
@@ -870,12 +956,40 @@ QString Mundo::consultarDeporte(QString deporteBuscado){
 //Info de la familia segun ID
 QString Mundo::consultarFamiliaID(QString ID){
     QString textoConsulta = "";
+
+    auto nodo = arbolMundo->buscar(ID);
+    Persona * persona = nodo==nullptr?listaPersonasTotales->buscar(ID.toInt()):nodo->dato;
+
+    if(persona==nullptr) return "Error obteniendo la persona";
+
+    for(int i = 0 ;i<persona->hijos->length() ;i++){
+
+        textoConsulta +="\n"+consultarHumanoID(persona->hijos->at(i)->ID)+"\n";
+    }
+
     return escribirArchivo(textoConsulta.toStdString());
 }
 
 //Devolver toda la info de un humano segun ID
 QString Mundo::consultarHumanoID(QString ID){
-    QString textoConsulta = "";
+    QString textoConsulta = "", vivo = "", madre = "N/A", padre = "N/A";
+
+    auto nodo = arbolMundo->buscar(ID);
+    Persona * persona = nodo==nullptr?listaPersonasTotales->buscar(ID.toInt()):nodo->dato;
+    if(persona==nullptr) return "Error obteniendo la persona";
+    if(persona->vivo) vivo = "Vivo";
+    else vivo = "Muerto";
+    if(persona->madre) {
+        madre = persona->madre->nombre;
+        padre = persona->padre->nombre;
+    }
+
+    textoConsulta+="\n"+crearLog(persona)+"\n La persona se encuentra"+vivo
+            +"\nPractica los deportes: "+crearDeportesTxt(persona)+"Un total de: "+QString::number(persona->ctdEjercicioxSemana)+" veces."
+            + "\tPais de residencia: "+persona->pais+"\nSu profesion es: "+persona->profesion
+            +"\t Estado Marital: "+persona->estadoMarital+" Creencia: "+persona->creencia
+            +""+crearPecadosTxt(persona)+crearBuenasAccionesTxt(persona)
+            +crearLogSalvacionTxt(persona)+crearLogMuerteTxt(persona);
 
     return escribirArchivo(textoConsulta.toStdString());
 }
