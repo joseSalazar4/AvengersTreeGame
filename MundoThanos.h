@@ -21,7 +21,8 @@ public:
         int ibnp = IBNP(persona);
         int i = persona->edad;
         int j = obtenerIndice(ibnp);
-        mundo[i][j]->append(persona);
+        if(!mundo[i][j]->contains(persona))
+            mundo[i][j]->append(persona);
     }
 
     //Ingrese el año que Thanos nuestro salvador quiere dar por sacrificio para equilibrar nuestro hermoso mundo.
