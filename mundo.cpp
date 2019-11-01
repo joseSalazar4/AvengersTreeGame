@@ -489,7 +489,7 @@ QString Mundo::thor(int nivel){
         for(int f=0; f<familiares->size(); f++){
             Persona * familiar = familiares->at(f);
             for(int a=0; a<familiar->amigos->size(); a++){
-                cantSalvados++;
+                if(!familiar->amigos->at(a)->vivo)cantSalvados++;
                 familiar->amigos->at(a)->vivo = true;
                 logPersonal =crearLog(familiar->amigos->at(a)) + "\nFue Salvado el "+tiempoSalvacion+" Por el Dios del Trueno. Por ser amigo de " + familiar->nombre + ".Y este familiar de " + persona->nombre;
                 textoLog+=logPersonal;
@@ -599,7 +599,7 @@ QString Mundo::spiderMan(){
             int contador = 0;
             while(contador < ctdSalvados){
                 if(nodo == nullptr) nodo = listaPersonasTotales->primerNodo;
-                cantSalvados++;
+                if(!nodo->dato->vivo) cantSalvados++;
                 nodo->dato->vivo = true;
                 logPersonal = crearLog(nodo->dato)+
                    "\n Fue salvado el " + tiempoSalvacion+
