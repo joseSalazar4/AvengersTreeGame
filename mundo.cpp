@@ -546,11 +546,6 @@ QString Mundo::corvusGlaive(){
         textoLog+=logPersonal;
         personasPecadoras->at(i)->logMuerte->append(logPersonal);
     }
-
-    cantAsesinados++;
-    personasPecadoras->at(0)->vivo = false;
-    textoLog+=crearLog(personasPecadoras->at(0))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasPecadoras->at(0)->buenasAccionesTotales);
-
     eliminacionesCorvusGlaive->append(textoLog);
 
     return escribirArchivo(textoLog.toStdString());
@@ -563,21 +558,17 @@ QString Mundo::midnight(){
 
     int cantPorEliminar = int((arbolAplastado->length())*(0.05));
 
-    for(int i =0; i<arbolAplastado->length();i++) heapBuenasAcciones->insertarPrioridadMin(arbolAplastado->at(i)->dato);
-    for(int i =0; i<cantPorEliminar;i++) personasNoBuenas->append(heapBuenasAcciones->eliminarPrioridadMin());
+    for(int i =0; i<arbolAplastado->length();i++) heapBuenasAcciones->insertarPrioridadMax(arbolAplastado->at(i)->dato);
+    for(int i =0; i<cantPorEliminar;i++) personasNoBuenas->append(heapBuenasAcciones->eliminarPrioridadMax());
 
     for(int i =1; i<personasNoBuenas->length();i++){
         cantAsesinados++;
+
         personasNoBuenas->at(i)->vivo = false;
-        logPersonal+=crearLog(personasNoBuenas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasNoBuenas->at(i)->buenasAccionesTotales);
+        logPersonal=crearLog(personasNoBuenas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasNoBuenas->at(i)->buenasAccionesTotales);
         textoLog+=logPersonal;
         personasNoBuenas->at(i)->logMuerte->append(logPersonal);
     }
-    cantAsesinados++;
-    personasNoBuenas->at(0)->vivo = false;
-    logPersonal=crearLog(personasNoBuenas->at(0))+"\nMurio el "+tiempoMuerte+" aniquilado por Midnight, por tener una cantidad total de buenas acciones de: "+QString::number(personasNoBuenas->at(0)->buenasAccionesTotales);
-    textoLog+=logPersonal;
-    personasNoBuenas->at(0)->logMuerte->append(logPersonal);
 
     eliminacionesMidnight->append(textoLog);
     return escribirArchivo(textoLog.toStdString());
