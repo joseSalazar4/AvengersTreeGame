@@ -778,7 +778,7 @@ QString Mundo::consultarAmigosAmigos(QString ID){
 //Un deporte en especifico
 QString Mundo::consultarDeporte(QString deporte){
     QString textoConsulta = "";
-    deportes->deportes
+    deportes->deportes->at(0);
     return escribirArchivo(textoConsulta.toStdString());
 }
 
