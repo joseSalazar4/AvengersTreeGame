@@ -587,7 +587,7 @@ QString Mundo::spiderMan(){
     QList<Nodo<Persona>*> * listaPersonas = arbolMundo->aplastarArbol();
     int ctdNodosRecorridos = generateRandom(0, listaPersonas->size()-1);
     textoLog += "----Recorrido de Spiderman----\n";
-    for(int i=0; i<ctdNodosRecorridos; i++){
+    for(int i=0; i<ctdNodosRecorridos-1; i++){
         int index = generateRandom(0, listaPersonas->size());
         //telaranna->append(listaPersonas->at(index)->dato);
         Persona * pp =  listaPersonas->at(index)->dato;
