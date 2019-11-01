@@ -118,8 +118,8 @@ private:
 
     void algoritmoInsertarPrioridadMin(int i){
         int parent = (i - 1) / 2;
-        if(i==0) parent = 0;
-        if (parent > 0) {
+        //if(i==0) parent = 0;
+        if (heap->at(parent)->buenasAccionesTotales > 0) {
             if (heap->at(i)->buenasAccionesTotales < heap->at(parent)->buenasAccionesTotales) {
                 heap->swapItemsAt(i, parent);
                 algoritmoInsertarPrioridadMin(parent);
