@@ -135,20 +135,22 @@ void Mundo::insertarEnArbol(){
     //Ya tenemos en listaParaArbol las n personas para el arbol.
 
     //Ahora las ordenamos de menor a mayor.
-    //quickSort(listaParaArbol);
+    quickSort(listaParaArbol);
     //Insertamos las personas al arbol de forma de que quede completo y balanceado.
-   // completarArbol(listaParaArbol, arbolCompleto->root, 0, listaParaArbol->size()-1);
-
+    arbolCompleto->root = arbolCompleto->newNodo(listaParaArbol->at(listaParaArbol->size()/2));
+    completarArbol(listaParaArbol, arbolCompleto->root->left, 0, listaParaArbol->size()/2);
+    completarArbol(listaParaArbol, arbolCompleto->root->right, listaParaArbol->size()/2, listaParaArbol->size());
 }
 
 void Mundo::completarArbol(QList<Persona*> * lista, Nodo<Persona> * nodo, int min, int max){
     if(min != max){
-        int medio = (max-min)/2;
+        int medio = (min+max)/2;
         nodo = arbolCompleto->newNodo(lista->at(medio));
-        completarArbol(lista, nodo->left, min, medio-1);
-        completarArbol(lista, nodo->right, medio+1, max);
+        //qDebug() <<QString::number(medio) +" : "+ nodo->dato->ID;
+        completarArbol(lista, nodo->left, min, medio);
+        completarArbol(lista, nodo->right, medio, max);
     }
-    else nodo = arbolCompleto->newNodo(lista->at(min));
+    //else nodo = arbolCompleto->newNodo(lista->at(min));
 }
 
 void Mundo::crearPersona(){
