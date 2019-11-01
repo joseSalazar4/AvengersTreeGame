@@ -171,7 +171,7 @@ public:
     Nodo<T>* newNodo(T *dato)
     {
         Nodo<T> *nodo = new Nodo<T>(dato);
-        return(nodo);
+        return nodo;
     }
 
     // A utility function to right
