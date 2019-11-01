@@ -562,22 +562,47 @@ QString Mundo::midnight(){
     return escribirArchivo(textoLog.toStdString());
 }
 
+/**
+ * Del arbol, toma una persona (la del ID del parametro) y busca a todos sus descendientes
+ * a todos sus miembros y los mato (persona.vivo=false) y suma la cantAsesinados (1 por cada descendiente)
+ * @param IDCulpable
+ * @return
+ */
 QString Mundo::ebonyMaw(int IDCulpable){
-    Persona * victima = new  Persona();
-    QString textoLog = "", tiempoMuerte = crearTxtTiempo(), pareja = "N/A";
+    QString textoLog = "", tiempoMuerte = crearTxtTiempo();
+    auto nodo = arbolMundo->buscar(QString::number(IDCulpable));
 
-    QList<Persona> * familiaresSalados = new QList<Persona>();
+    Persona * victima = nodo==nullptr?listaPersonasTotales->buscar(IDCulpable):nodo->dato;
 
+    if(victima==nullptr) return "Error obteniendo la persona";
 
-    //->vivo = false;
-    //textoLog+= crearLog(deportistas->at(i))+"\nMurio el "+tiempoMuerte+" aniquilado por Ebony Maw por ser familia de la persona con ID: "+
-    QString::number(IDCulpable);
+    victima->vivo = false;
+    textoLog+= crearLog(victima)+
+            "\nMurio el "+tiempoMuerte+
+            " aniquilado por Ebony Maw";
 
+    for(Persona*hijo:*victima->hijos){
+        textoLog+=ebonyMawAux(hijo, victima->ID);
+    }
 
     eliminacionesEbonyMaw->append(textoLog);
     //Rellenar con lo que hace y meter a textoLog para que se cree al archivo
     return escribirArchivo(textoLog.toStdString());
 
+}
+
+QString Mundo::ebonyMawAux(Persona *victima, QString progenitorId){
+    QString textoLog = "", tiempoMuerte = crearTxtTiempo();
+    victima->vivo = false;
+    textoLog+= crearLog(victima)+
+            "\nMurio el "+tiempoMuerte+
+            " aniquilado por Ebony Maw por ser familia de la persona con ID: "+progenitorId;
+
+    for(Persona*hijo:*victima->hijos){
+        textoLog+=ebonyMawAux(hijo, victima->ID);
+    }
+
+    return textoLog;
 }
 
 QString Mundo:: blackDwarf(int veces, QString deporte){

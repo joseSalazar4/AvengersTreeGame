@@ -60,6 +60,7 @@ public:
     QString midnight();
     QString nebula(int);
     QString ebonyMaw(int);
+    QString ebonyMawAux(Persona*victima, QString progenitorId);
     QString corvusGlaive();
     QString blackDwarf(int,QString);
 

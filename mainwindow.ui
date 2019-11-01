@@ -404,11 +404,14 @@
    <widget class="QSpinBox" name="spinBoxEbonyMaw">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>30</x>
       <y>300</y>
-      <width>51</width>
+      <width>111</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="maximum">
+     <number>9999999</number>
     </property>
    </widget>
    <widget class="QSpinBox" name="spinBoxNebula">
