@@ -48,6 +48,7 @@ public:
     //SUPERHEROES
     QString thor(int);
     QString ironMan();
+    QString ironManAux(Persona*, QString);
     QString antMan(int);
     QString spiderMan();
 

@@ -412,19 +412,51 @@ QString Mundo::antMan(int cantHormigas){
 }
 
 QString Mundo::ironMan(){
+    QString textoLog = "",tiempoSalvacion = crearTxtTiempo();
+    QString logPersonal = "";
     //Recorre el arbol, pregunta si ya pasó por ese nodo. Si no, hace random y depende del resultado salva ese nodo y lo pone true.
     //Al terminar el proceso, restaura los valores de los nodos a false.
 
     //Se usara el aplastarArbol (Lista)
     arbolMundo->aplastarArbol();
     int porcentaje = generateRandom(40, 60);
-    //int numeroDeSalvados = arbolMundo->listaArbol->length();
+    double numeroDeSalvadosD = arbolMundo->listaArbol->size() * (porcentaje*0.01);
+    int numeroDeSalvados = int(numeroDeSalvadosD);
+    qDebug() << "Wait, WTF." + QString::number(numeroDeSalvados);
+    QList<Nodo<Persona>*> * arbolPersonas = arbolMundo->aplastarArbol();
 
-    QString textoLog = "",tiempoSalvacion = crearTxtTiempo();
+    for(int i=0; i<numeroDeSalvados; i++){
+        Persona * persona = arbolPersonas->at(i)->dato;
+        persona->vivo = true;
+        logPersonal = crearLog(persona)+
+           "\nEl/Ella y su Familia fueron salvados el "+tiempoSalvacion+
+           " por Iron Man al estar entre los" + QString::number(numeroDeSalvados) + " nodos del arbol que explotaron";
+        textoLog += logPersonal;
+        persona->logSalvacion->append(logPersonal);
+        textoLog+= ironManAux(arbolPersonas->at(i)->dato, arbolPersonas->at(i)->dato->ID);
+        qDebug().noquote() << textoLog;
+    }
+
     salvacionesIronMan->append(textoLog);
-
-
     return escribirArchivo(textoLog.toStdString());
+}
+
+
+QString Mundo::ironManAux(Persona*persona, QString IdFamiliar){
+    QString textoLog = "", tiempoMuerte = crearTxtTiempo(), logPersonal;
+    QList<Persona*> * familiares = getFamiliaresDirectos(persona);
+    for(int f=0; f<familiares->size(); f++){
+        Persona * familiar = familiares->at(f);
+        familiar->vivo = true;
+        logPersonal = crearLog(familiar)+
+           "\nFue salvado el "+tiempoMuerte+
+           " por Iron Man por ser familia de la persona con ID: " + IdFamiliar;
+        textoLog += logPersonal;
+        familiar->logSalvacion->append(logPersonal);
+        textoLog += ironManAux(familiar, IdFamiliar);
+    }
+
+    return textoLog;
 }
 
 QString Mundo::spiderMan(){
